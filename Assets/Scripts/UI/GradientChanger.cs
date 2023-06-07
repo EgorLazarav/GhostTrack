@@ -5,18 +5,21 @@ using System.Collections;
 
 public class GradientChanger : MonoBehaviour
 {
-    [SerializeField] private List<Color> _vertexColors;
+    [SerializeField] private float _animationTime = 2;
+    [SerializeField] private float _animationSpeed = 1;
 
+    private List<Color> _vertexColors;
     private TMP_Text _text;
 
     void Start()
     {
         _text = GetComponent<TMP_Text>();
 
-        _vertexColors.Add(_text.colorGradient.topRight);
-        _vertexColors.Add(_text.colorGradient.bottomRight);
-        _vertexColors.Add(_text.colorGradient.bottomLeft);
+        _vertexColors = new List<Color>();
         _vertexColors.Add(_text.colorGradient.topLeft);
+        _vertexColors.Add(_text.colorGradient.topRight);
+        _vertexColors.Add(_text.colorGradient.bottomLeft);
+        _vertexColors.Add(_text.colorGradient.bottomRight);
 
         // _text.colorGradient = new VertexGradient(Color.black, Color.black, Color.black, Color.black);
 
@@ -30,12 +33,7 @@ public class GradientChanger : MonoBehaviour
             Color[] colors = new Color[_vertexColors.Count];
 
             for (int i = 0; i < colors.Length; i++)
-            {
                 colors[i] = _vertexColors[i];
-                yield return null;
-            }
-
-            yield return null;
 
             for (int i = 0; i < _vertexColors.Count; i++)
             {
@@ -47,24 +45,22 @@ public class GradientChanger : MonoBehaviour
 
                 _vertexColors[i] = colors[i + 1];
 
-                yield return null;
             }
 
-            yield return null;
 
-            while (_text.colorGradient.topRight != _vertexColors[0]
-                || _text.colorGradient.bottomRight != _vertexColors[1] 
-                || _text.colorGradient.bottomLeft != _vertexColors[2] 
-                || _text.colorGradient.topLeft != _vertexColors[3]
-                )
+            float timer = 0;
+
+            while (timer < _animationTime)
             {
-                var topRightColor = Color.Lerp(_text.colorGradient.topRight, _vertexColors[0], Time.deltaTime);
-                var bottomRightColor = Color.Lerp(_text.colorGradient.bottomRight, _vertexColors[1], Time.deltaTime);
-                var bottomLeftColor = Color.Lerp(_text.colorGradient.bottomLeft, _vertexColors[2], Time.deltaTime);
-                var topLeftColor = Color.Lerp(_text.colorGradient.topLeft, _vertexColors[3], Time.deltaTime);
+                _text.colorGradient = new VertexGradient(
+                    Color.Lerp(_text.colorGradient.topLeft, _vertexColors[0], Time.deltaTime * _animationSpeed), 
+                    Color.Lerp(_text.colorGradient.topRight, _vertexColors[1], Time.deltaTime * _animationSpeed), 
+                    Color.Lerp(_text.colorGradient.bottomLeft, _vertexColors[2], Time.deltaTime * _animationSpeed), 
+                    Color.Lerp(_text.colorGradient.bottomRight, _vertexColors[3], Time.deltaTime * _animationSpeed)
+                    );
 
-                _text.colorGradient = new VertexGradient(topRightColor, bottomRightColor, bottomLeftColor, topLeftColor);
-                yield return new WaitForSeconds(1f);
+                timer += Time.deltaTime;
+                yield return null;
             }
         }
     }
