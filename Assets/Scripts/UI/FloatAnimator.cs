@@ -16,7 +16,6 @@ public class FloatAnimator : MonoBehaviour
     private void Start()
     {
         _startPosition = _objectTransform.position;
-        StartCoroutine(Floating());
     }
 
     private IEnumerator Floating()

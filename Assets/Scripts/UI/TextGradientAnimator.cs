@@ -21,8 +21,6 @@ public class TextGradientAnimator : MonoBehaviour
         _vertexColors.Add(_text.colorGradient.topRight);
         _vertexColors.Add(_text.colorGradient.bottomLeft);
         _vertexColors.Add(_text.colorGradient.bottomRight);
-
-        StartCoroutine(ColorChanging());
     }
 
     private IEnumerator ColorChanging()
