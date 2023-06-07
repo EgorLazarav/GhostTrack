@@ -1,2 +1,2 @@
-# GhostTrack
-Unity 2D top-down shooter in style of Hotline Miami
+# ColdColumnSibir
+hotline-miami clone 2d top-down shooter
