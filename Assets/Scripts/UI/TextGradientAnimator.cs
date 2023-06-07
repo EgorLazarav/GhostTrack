@@ -3,25 +3,24 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 
-public class GradientChanger : MonoBehaviour
+public class TextGradientAnimator : MonoBehaviour
 {
+    [SerializeField] private TMP_Text _text;
+
+    [Header("Settings")]
     [SerializeField] private float _animationTime = 2;
     [SerializeField] private float _animationSpeed = 1;
 
     private List<Color> _vertexColors;
-    private TMP_Text _text;
 
     void Start()
     {
-        _text = GetComponent<TMP_Text>();
-
         _vertexColors = new List<Color>();
+
         _vertexColors.Add(_text.colorGradient.topLeft);
         _vertexColors.Add(_text.colorGradient.topRight);
         _vertexColors.Add(_text.colorGradient.bottomLeft);
         _vertexColors.Add(_text.colorGradient.bottomRight);
-
-        // _text.colorGradient = new VertexGradient(Color.black, Color.black, Color.black, Color.black);
 
         StartCoroutine(ColorChanging());
     }
