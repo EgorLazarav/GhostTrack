@@ -47,6 +47,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnContinueButtonClicked()
     {
+        Time.timeScale = 1;
         SceneLoader.LoadLastSavedScene();
     }
 

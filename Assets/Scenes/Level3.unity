@@ -10865,7 +10865,7 @@ MonoBehaviour:
   _throwGunKey: 324
   _lookKey: 304
   _restartKey: 114
-  _openMenuKey: 27
+  _openInGameMenuKey: 27
 --- !u!1 &628074246
 GameObject:
   m_ObjectHideFlags: 0

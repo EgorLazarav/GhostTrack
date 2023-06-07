@@ -2863,19 +2863,12 @@ MonoBehaviour:
   _car: {fileID: 1705484681}
   _scoreHandler: {fileID: 1978672774}
   _panel: {fileID: 1067518862}
-  _header: {fileID: 672460088}
   _killScore: {fileID: 1908589060}
-  _accuracy: {fileID: 885247880}
-  _headshots: {fileID: 2079164923}
-  _timeElapsed: {fileID: 209370788}
+  _accuracyScore: {fileID: 885247880}
+  _headshotsScore: {fileID: 2079164923}
+  _timeScore: {fileID: 209370788}
+  _totalScore: {fileID: 1931056204}
   _pressAnyButton: {fileID: 220092396}
-  _texts:
-  - {fileID: 672460088}
-  - {fileID: 1908589060}
-  - {fileID: 885247880}
-  - {fileID: 2079164923}
-  - {fileID: 209370788}
-  - {fileID: 220092396}
 --- !u!1 &460058049
 GameObject:
   m_ObjectHideFlags: 0
@@ -5630,7 +5623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1067518861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6124,7 +6117,7 @@ MonoBehaviour:
   _throwGunKey: 324
   _lookKey: 304
   _restartKey: 114
-  _openMenuKey: 27
+  _openInGameMenuKey: 27
 --- !u!4 &1290564211
 Transform:
   m_ObjectHideFlags: 0
@@ -9400,9 +9393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92e91b515923e142b0129a182215d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyKillBounty: 100
   _playerCombat: {fileID: 1346110101}
+  _enemyKillBounty: 100
   _killStreakTimer: 2
+  _secondsCountForBestTime: 0
 --- !u!1 &1992456523
 GameObject:
   m_ObjectHideFlags: 0
