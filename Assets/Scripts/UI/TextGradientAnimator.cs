@@ -3,18 +3,19 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 
-public class TextGradientAnimator : MonoBehaviour
+[RequireComponent(typeof(TMP_Text))]
+public class TextGradientAnimator : MonoBehaviour, IAnimatedUI
 {
-    [SerializeField] private TMP_Text _text;
-
-    [Header("Settings")]
     [SerializeField] private float _animationTime = 2;
     [SerializeField] private float _animationSpeed = 1;
 
+    private TMP_Text _text;
     private List<Color> _vertexColors;
+    private Coroutine _colorChangingCoroutine;
 
-    void Start()
+    void Awake()
     {
+        _text = GetComponent<TMP_Text>();
         _vertexColors = new List<Color>();
 
         _vertexColors.Add(_text.colorGradient.topLeft);
@@ -60,5 +61,16 @@ public class TextGradientAnimator : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    public void StartAnimation()
+    {
+        _colorChangingCoroutine = StartCoroutine(ColorChanging());
+    }
+
+    public void StopAnimation()
+    {
+        if (_colorChangingCoroutine != null)
+            StopCoroutine(_colorChangingCoroutine);
     }
 }
