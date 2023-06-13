@@ -59,7 +59,18 @@ public class MainMenu : MonoBehaviour
 
     private void OnExitButtonClicked()
     {
-        print("exit");
-        Application.Quit();
+        _confirmWindow.Show("Вы действительно хотите выйти?");
+        _confirmWindow.ActionConfirmed += OnExitConfirmed;
+    }
+
+    private void OnExitConfirmed(bool state)
+    {
+        _confirmWindow.ActionConfirmed -= OnExitConfirmed;
+
+        if (state)
+        {
+            print("exit");
+            Application.Quit();
+        }
     }
 }
