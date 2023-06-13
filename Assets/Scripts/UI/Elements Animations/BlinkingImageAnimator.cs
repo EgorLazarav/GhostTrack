@@ -4,23 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class FilledImageAnimator : AnimatedUI
+public class BlinkingImageAnimator : AnimatedUI
 {
+    [SerializeField][Range(0,1)] private float _minAlpha = 0;
+    [SerializeField][Range(0, 1)] private float _maxAlpha = 1;
+    [SerializeField][Range(1, 10)] private int _frequency = 1;
+
     private Image _image;
 
     private void Awake()
     {
         _image = GetComponent<Image>();
-        _image.type = Image.Type.Filled;
-    }
+    } 
 
     protected override IEnumerator Animating()
     {
-        while (_image.fillAmount < 1)
+        while (true)
         {
             yield return null;
-
-            _image.fillAmount += Time.unscaledDeltaTime * AnimationSpeed;
         }
     }
 }

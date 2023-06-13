@@ -5,18 +5,16 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(TMP_Text))]
-public class TextHoverAnimator : MonoBehaviour, IAnimatedUI
+public class TextHoverAnimator : AnimatedUI
 {
     [SerializeField] private float _hoverScaleSize = 1.1f;
-    [SerializeField] private float _animationSpeed = 1;
     [SerializeField] private Color _hoverColor = Color.white;
 
     private TMP_Text _text;
-    private Coroutine _growingCoroutine;
 
     private VertexGradient _vertexHoverColor;
-    private Vector3 _baseScale;
     private VertexGradient _baseColor;
+    private Vector3 _baseScale;
 
     private void Awake()
     {
@@ -27,30 +25,25 @@ public class TextHoverAnimator : MonoBehaviour, IAnimatedUI
         _vertexHoverColor = new VertexGradient(_hoverColor);
     }
 
-    private IEnumerator Hovering()
+    protected override IEnumerator Animating()
     {
+        _text.colorGradient = _vertexHoverColor;
+
         while (true)
         {
-            _text.transform.DOScale(_hoverScaleSize, 1/_animationSpeed);
-            yield return new WaitForSeconds(1 / _animationSpeed);
+            _text.transform.DOScale(_hoverScaleSize, 1/ AnimationSpeed);
+            yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
-            _text.transform.DOScale(_baseScale, 1 / _animationSpeed);
-            yield return new WaitForSeconds(1 / _animationSpeed);
+            _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
+            yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
         }
     }
 
-    public void StartAnimation()
+    public override void StopAnimation()
     {
-        _growingCoroutine = StartCoroutine(Hovering());
-        _text.colorGradient = _vertexHoverColor;
-    }
-
-    public void StopAnimation()
-    {
-        if (_growingCoroutine != null)
-            StopCoroutine(_growingCoroutine);
+        base.StopAnimation();
 
         _text.colorGradient = _baseColor;
-        _text.transform.DOScale(_baseScale, 1 / _animationSpeed);
+        _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
     }
 }

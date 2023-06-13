@@ -4,23 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class FilledImageAnimator : AnimatedUI
+public class BackgroundChangeAnimator : AnimatedUI
 {
+    [SerializeField] private Sprite[] _frames;
+
     private Image _image;
 
     private void Awake()
     {
         _image = GetComponent<Image>();
-        _image.type = Image.Type.Filled;
     }
 
     protected override IEnumerator Animating()
     {
-        while (_image.fillAmount < 1)
+        while (true)
         {
-            yield return null;
-
-            _image.fillAmount += Time.unscaledDeltaTime * AnimationSpeed;
+            foreach (var frame in _frames)
+            {
+                _image.sprite = frame;
+                yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
+            }
         }
     }
 }

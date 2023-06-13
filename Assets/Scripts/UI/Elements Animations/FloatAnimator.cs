@@ -3,28 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class FloatAnimator : MonoBehaviour, IAnimatedUI
+public class FloatAnimator : AnimatedUI
 {
-    [SerializeField] private float _animationSpeed = 1;
     [SerializeField] private float _floatingDelta = 1;
 
     private Vector3 _startPosition;
-    private Coroutine _floatingCoroutine;
-
-    private IEnumerator Floating()
-    {
-        while (true)
-        {
-            _startPosition = transform.position;
-            transform.DOMove(transform.position + GetRandomPosition(_floatingDelta), 1 / _animationSpeed);
-            transform.DORotate(new Vector3(0, 0, _floatingDelta), 1 / _animationSpeed);
-            yield return new WaitForSeconds(1 / _animationSpeed);
-
-            transform.DOMove(_startPosition, 1 / _animationSpeed);
-            transform.DORotate(new Vector3(0, 0, -_floatingDelta), 1 / _animationSpeed);
-            yield return new WaitForSeconds(1 / _animationSpeed);
-        }
-    }
 
     private Vector3 GetRandomPosition(float maxDistance)
     {
@@ -34,14 +17,18 @@ public class FloatAnimator : MonoBehaviour, IAnimatedUI
         return new Vector3(randomX, randomY);
     }
 
-    public void StartAnimation()
+    protected override IEnumerator Animating()
     {
-        _floatingCoroutine = StartCoroutine(Floating());
-    }
+        while (true)
+        {
+            _startPosition = transform.position;
+            transform.DOMove(transform.position + GetRandomPosition(_floatingDelta), 1 / AnimationSpeed);
+            transform.DORotate(new Vector3(0, 0, _floatingDelta), 1 / AnimationSpeed);
+            yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
-    public void StopAnimation()
-    {
-        if (_floatingCoroutine != null)
-            StopCoroutine(_floatingCoroutine);
+            transform.DOMove(_startPosition, 1 / AnimationSpeed);
+            transform.DORotate(new Vector3(0, 0, -_floatingDelta), 1 / AnimationSpeed);
+            yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
+        }
     }
 }
