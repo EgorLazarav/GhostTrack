@@ -20,6 +20,7 @@ public class FilledImageAnimator : MonoBehaviour, IAnimatedUI
 
     public void StartAnimation()
     {
+        _image.fillAmount = 0;
         _fillingCoroutine = StartCoroutine(Filling());
     }
 
@@ -35,7 +36,7 @@ public class FilledImageAnimator : MonoBehaviour, IAnimatedUI
     {
         while (_image.fillAmount < 1)
         {
-            yield return new WaitForSeconds(Time.deltaTime/_speed);
+            yield return null;
             _image.fillAmount += Time.deltaTime * _speed;
         }
     }
