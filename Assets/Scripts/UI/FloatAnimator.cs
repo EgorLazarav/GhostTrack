@@ -11,8 +11,6 @@ public class FloatAnimator : MonoBehaviour, IAnimatedUI
     private Vector3 _startPosition;
     private Coroutine _floatingCoroutine;
 
-
-
     private IEnumerator Floating()
     {
         while (true)

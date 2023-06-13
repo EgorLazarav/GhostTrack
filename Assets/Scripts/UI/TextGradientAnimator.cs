@@ -13,7 +13,7 @@ public class TextGradientAnimator : MonoBehaviour, IAnimatedUI
     private List<Color> _vertexColors;
     private Coroutine _colorChangingCoroutine;
 
-    void Awake()
+    private void Awake()
     {
         _text = GetComponent<TMP_Text>();
         _vertexColors = new List<Color>();
