@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
 
 public static class Extends
 {
@@ -18,5 +19,14 @@ public static class Extends
         var temp = array.GetValue(array.Length - 1);
         Array.Copy(array, 0, array, 1, array.Length - 1);
         array.SetValue(temp, 0);
+    }
+
+    public static Vector3 RandomTranslate(this Vector3 position, float maxDistance)
+    {
+        float randomX = UnityEngine.Random.Range(-maxDistance, maxDistance);
+        float randomY = UnityEngine.Random.Range(-maxDistance, maxDistance);
+        Vector3 translateVector = new Vector3(randomX, randomY, 0);
+
+        return position + translateVector;
     }
 }

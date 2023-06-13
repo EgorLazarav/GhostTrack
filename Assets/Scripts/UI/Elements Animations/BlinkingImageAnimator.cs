@@ -12,10 +12,11 @@ public class BlinkingImageAnimator : AnimatedUI
 
     private Image _image;
 
-    private void Awake()
+    protected override void Awake()
     {
         _image = GetComponent<Image>();
-    } 
+        base.Awake();
+    }
 
     protected override IEnumerator Animating()
     {

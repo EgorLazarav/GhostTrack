@@ -8,10 +8,11 @@ public class FilledImageAnimator : AnimatedUI
 {
     private Image _image;
 
-    private void Awake()
+    protected override void Awake()
     {
         _image = GetComponent<Image>();
         _image.type = Image.Type.Filled;
+        base.Awake();
     }
 
     protected override IEnumerator Animating()

@@ -10,7 +10,12 @@ public abstract class AnimatedUI : MonoBehaviour
     private Coroutine _animationCoroutine;
 
     public float AnimationSpeed => _animationSpeed;
-    public bool IsPlayingOnAwake => _isPlayingOnAwake;
+
+    protected virtual void Awake()
+    {
+        if (_isPlayingOnAwake)
+            StartAnimation();
+    }
 
     public virtual void StartAnimation()
     {

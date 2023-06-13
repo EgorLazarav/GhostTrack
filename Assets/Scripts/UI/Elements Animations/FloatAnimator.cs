@@ -9,25 +9,19 @@ public class FloatAnimator : AnimatedUI
 
     private Vector3 _startPosition;
 
-    private Vector3 GetRandomPosition(float maxDistance)
-    {
-        float randomX = Random.Range(-maxDistance, maxDistance);
-        float randomY = Random.Range(-maxDistance, maxDistance);
-
-        return new Vector3(randomX, randomY);
-    }
-
     protected override IEnumerator Animating()
     {
+        yield return new WaitForSecondsRealtime(0.1f);
+
         while (true)
         {
             _startPosition = transform.position;
-            transform.DOMove(transform.position + GetRandomPosition(_floatingDelta), 1 / AnimationSpeed);
-            transform.DORotate(new Vector3(0, 0, _floatingDelta), 1 / AnimationSpeed);
+            transform.DOMove(transform.position.RandomTranslate(_floatingDelta), 1 / AnimationSpeed);
+            transform.DORotate(new Vector3(0, 0, Random.Range(-_floatingDelta, _floatingDelta)), 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
             transform.DOMove(_startPosition, 1 / AnimationSpeed);
-            transform.DORotate(new Vector3(0, 0, -_floatingDelta), 1 / AnimationSpeed);
+            transform.DORotate(new Vector3(0, 0, Random.Range(-_floatingDelta, _floatingDelta)), 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
         }
     }

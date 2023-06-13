@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private ConfirmWindow _confirmWindow;
-
-    [Header("Buttons")]
     [SerializeField] private Button _continueButton;
     [SerializeField] private Button _newGameButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _exitButton;
+
+    public event UnityAction ContinueButtonClicked;
+    public event UnityAction NewGameButtonClicked;
+    public event UnityAction SettingsButtonClicked;
+    public event UnityAction ExitButtonClicked;
 
     private void OnEnable()
     {
@@ -29,48 +32,27 @@ public class MainMenu : MonoBehaviour
         _exitButton.onClick.RemoveListener(OnExitButtonClicked);
     }
 
-    private void OnNewGameButtonClicked()
-    {
-        print("new game");
-
-        _confirmWindow.Show("Вы действительно хотите начать новую игру? Весь прогресс будет сброшен.");
-        _confirmWindow.ActionConfirmed += OnNewGameConfirmed;
-    }
-
-    private void OnNewGameConfirmed(bool state)
-    {
-        _confirmWindow.ActionConfirmed -= OnNewGameConfirmed;
-
-        if (state)
-        {
-            print("starting new game...");
-        }
-    }
-
     private void OnContinueButtonClicked()
     {
-        print("continue");
+        print("continue button clicked");
+        ContinueButtonClicked?.Invoke();
+    }
+
+    private void OnNewGameButtonClicked()
+    {
+        print("new game button clicked");
+        NewGameButtonClicked?.Invoke();
     }
 
     private void OnSettingsButtonClicked()
     {
-        print("settings");
+        print("settings button clicked");
+        SettingsButtonClicked?.Invoke();
     }
 
     private void OnExitButtonClicked()
     {
-        _confirmWindow.Show("Вы действительно хотите выйти?");
-        _confirmWindow.ActionConfirmed += OnExitConfirmed;
-    }
-
-    private void OnExitConfirmed(bool state)
-    {
-        _confirmWindow.ActionConfirmed -= OnExitConfirmed;
-
-        if (state)
-        {
-            print("exit");
-            Application.Quit();
-        }
+        print("exit button clicked");
+        ExitButtonClicked?.Invoke();
     }
 }

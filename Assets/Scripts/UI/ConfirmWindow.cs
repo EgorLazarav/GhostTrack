@@ -11,29 +11,23 @@ public class ConfirmWindow : MonoBehaviour
     [SerializeField] private Button _acceptButton;
     [SerializeField] private Button _declineButton;
 
-    public event UnityAction<bool> ActionConfirmed;
+    public event UnityAction ActionConfirmed;
 
     private void OnEnable()
     {
         _acceptButton.onClick.AddListener(OnAcceptButtonClicked);
-        _declineButton.onClick.AddListener(OnDeclineButtonClicked);
+        _declineButton.onClick.AddListener(() => _blurPanel.gameObject.SetActive(false));
     }
 
     private void OnDisable()
     {
         _acceptButton.onClick.RemoveListener(OnAcceptButtonClicked);
-        _declineButton.onClick.RemoveListener(OnDeclineButtonClicked);
+        _declineButton.onClick.RemoveListener(() => _blurPanel.gameObject.SetActive(false));
     }
 
     private void OnAcceptButtonClicked()
     {
-        ActionConfirmed?.Invoke(true);
-        _blurPanel.gameObject.SetActive(false);
-    }
-
-    private void OnDeclineButtonClicked()
-    {
-        ActionConfirmed?.Invoke(false);
+        ActionConfirmed?.Invoke();
         _blurPanel.gameObject.SetActive(false);
     }
 

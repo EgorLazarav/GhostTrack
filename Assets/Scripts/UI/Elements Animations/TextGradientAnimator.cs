@@ -9,7 +9,7 @@ public class TextGradientAnimator : AnimatedUI
     private TMP_Text _text;
     private Color[] _vertexColors;
 
-    private void Awake()
+    protected override void Awake()
     {
         _text = GetComponent<TMP_Text>();
         _vertexColors = new Color[4];
@@ -19,7 +19,7 @@ public class TextGradientAnimator : AnimatedUI
         _vertexColors[2] = _text.colorGradient.bottomLeft;
         _vertexColors[3] = _text.colorGradient.bottomRight;
 
-        StartAnimation();
+        base.Awake();
     }
 
     protected override IEnumerator Animating()
@@ -29,8 +29,9 @@ public class TextGradientAnimator : AnimatedUI
             _vertexColors.ShiftArray();
 
             float timer = 0;
+            float randomDuration = Random.Range(1, 3);
 
-            while (timer < 2)
+            while (timer < randomDuration)
             {
                 _text.colorGradient = new VertexGradient(
                     Color.Lerp(_text.colorGradient.topLeft, _vertexColors[0], Time.unscaledDeltaTime * AnimationSpeed), 
@@ -40,6 +41,7 @@ public class TextGradientAnimator : AnimatedUI
                     );
 
                 timer += Time.unscaledDeltaTime;
+
                 yield return null;
             }
         }
