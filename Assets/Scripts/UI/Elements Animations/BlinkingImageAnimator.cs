@@ -23,9 +23,12 @@ public class BlinkingImageAnimator : AnimatedUI
         while (true)
         {
             _image.color = _image.color.SetAlpha(Random.Range(_minAlpha, _maxAlpha));
-            float newAlpha = Random.Range(0.95f, 1f);
+            float newMinAlpha = 0.93f;
+            float newMaxAlpha = 1;
+            float newAlpha = Random.Range(newMinAlpha, newMaxAlpha);
             Color newColor = _image.color.SetAlpha(newAlpha);
-            float timer = Random.Range(1f, 5f) / AnimationSpeed;
+
+            float timer = _frequency / (Random.Range(_frequency / 2, _frequency) * AnimationSpeed);
 
             while (timer > 0)
             {
