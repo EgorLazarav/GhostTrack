@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d4cafa61242704a878bf8c27a4b695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPlayingOnAwake: 0
+  _isPlayingOnAwake: 1
   _animationSpeed: 10
   _frames:
   - {fileID: 21300000, guid: 88fbb35f16e0cd1458c217eab99c090d, type: 3}
@@ -586,9 +586,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 2
-  _minAlpha: 0.4
-  _maxAlpha: 1
   _frequency: 10
+  _minAlpha: 0.65
+  _maxAlpha: 0.9
 --- !u!1 &843806472
 GameObject:
   m_ObjectHideFlags: 0
