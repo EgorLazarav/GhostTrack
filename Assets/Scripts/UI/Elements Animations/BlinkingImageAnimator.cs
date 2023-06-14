@@ -6,9 +6,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class BlinkingImageAnimator : AnimatedUI
 {
-    [SerializeField][Range(0,1)] private float _minAlpha = 0;
-    [SerializeField][Range(0, 1)] private float _maxAlpha = 1;
-    [SerializeField][Range(1, 10)] private int _frequency = 1;
+    [SerializeField][Range(1f, 10f)] private float _frequency = 10;
+    [SerializeField][Range(0f, 1f)] private float _minAlpha = 0.65f;
+    [SerializeField][Range(0f, 1f)] private float _maxAlpha = 0.9f;
 
     private Image _image;
 
@@ -22,7 +22,17 @@ public class BlinkingImageAnimator : AnimatedUI
     {
         while (true)
         {
-            yield return null;
+            _image.color = _image.color.SetAlpha(Random.Range(_minAlpha, _maxAlpha));
+            float newAlpha = Random.Range(0.95f, 1f);
+            Color newColor = _image.color.SetAlpha(newAlpha);
+            float timer = Random.Range(1f, 5f) / AnimationSpeed;
+
+            while (timer > 0)
+            {
+                timer -= AnimationSpeed * Time.unscaledDeltaTime;
+                _image.color = Color.Lerp(_image.color, newColor, AnimationSpeed * Time.unscaledDeltaTime);
+                yield return null;
+            }
         }
     }
 }

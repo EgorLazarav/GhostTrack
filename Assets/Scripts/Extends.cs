@@ -6,12 +6,12 @@ using UnityEngine;
 
 public static class Extends
 {
-    public static Color RandomAlpha(this System.Random random, Color currentColor, float min = 0, float max = 1)
+    public static Color SetAlpha(this Color color, float newAlpha)
     {
-        if (min < 0 || max > 1)
+        if (newAlpha < 0 || newAlpha > 1)
             throw new ArgumentOutOfRangeException();
 
-        return currentColor;
+        return new Color(color.r, color.g, color.b, newAlpha);
     }
 
     public static void ShiftArray(this Array array)
