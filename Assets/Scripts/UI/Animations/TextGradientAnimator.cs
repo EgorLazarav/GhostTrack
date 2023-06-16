@@ -26,7 +26,7 @@ public class TextGradientAnimator : AnimatedUI
     {
         while (true)
         {
-            _vertexColors.ShiftArray();
+            _vertexColors.ShiftArrayToRight();
 
             float timer = 0;
             float randomDuration = Random.Range(1, 3);

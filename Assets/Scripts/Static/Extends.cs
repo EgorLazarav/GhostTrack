@@ -14,7 +14,7 @@ public static class Extends
         return new Color(color.r, color.g, color.b, newAlpha);
     }
 
-    public static void ShiftArray(this Array array, int step = 1)
+    public static void ShiftArrayToRight(this Array array, int step = 1)
     {
         var temp = array.GetValue(array.Length - step);
         Array.Copy(array, 0, array, step, array.Length - step);
@@ -28,5 +28,14 @@ public static class Extends
         Vector3 translateVector = new Vector3(randomX, randomY, 0);
 
         return position + translateVector;
+    }
+
+    public static void SetRandomPosition(this Transform transform)
+    {
+        float randomXOnScreen = UnityEngine.Random.Range(0, Screen.width);
+        float randomYOnScreen = UnityEngine.Random.Range(0, Screen.height);
+        Vector3 randomPointOnScreen = new Vector3(randomXOnScreen, randomYOnScreen, 10);
+
+        transform.position = Camera.main.ScreenToWorldPoint(randomPointOnScreen);
     }
 }
