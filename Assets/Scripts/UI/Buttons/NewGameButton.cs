@@ -7,6 +7,6 @@ public class NewGameButton : ButtonClickHandler
 {
     protected override void OnButtonClicked()
     {
-        print("New Game");
+        ConfirmModalWindow.Instance.Show("Начать новую игру?", SceneLoader.Instance.LoadNewGame);
     }
 }
