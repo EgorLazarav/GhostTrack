@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class ConfirmModalWindow : MonoBehaviour
 {
     [SerializeField] private Image _blurPanel;
-    [SerializeField] private Text _headerText;
+    [SerializeField] private TMP_Text _headerText;
     [SerializeField] private Button _acceptButton;
     [SerializeField] private Button _declineButton;
 
@@ -21,8 +22,6 @@ public class ConfirmModalWindow : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
-        _blurPanel.gameObject.SetActive(false);
     }
 
     private void OnEnable()

@@ -1,26 +1,27 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-[RequireComponent(typeof(Text))]
-public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
+[RequireComponent(typeof(Image))]
+public class ImageHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float _hoverScaleSize = 1.1f;
     [SerializeField] private Color _hoverColor = Color.white;
 
-    private Text _text;
+    private Image _image;
 
     private Color _baseColor;
     private Vector3 _baseScale;
 
     protected override void OnEnable()
     {
-        _text = GetComponent<Text>();
+        _image = GetComponent<Image>();
 
-        _baseColor = _text.color;
-        _baseScale = _text.transform.localScale;
+        _baseColor = _image.color;
+        _baseScale = _image.transform.localScale;
 
         base.OnEnable();
     }
@@ -29,12 +30,12 @@ public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitH
     {
         while (true)
         {
-            _text.color = _hoverColor;
-            _text.transform.DOScale(_hoverScaleSize, 1 / AnimationSpeed);
+            _image.color = _hoverColor;
+            _image.transform.DOScale(_hoverScaleSize, 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
-            _text.color = _hoverColor;
-            _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
+            _image.color = _hoverColor;
+            _image.transform.DOScale(_baseScale, 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
         }
     }
@@ -43,8 +44,8 @@ public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitH
     {
         base.StopAnimation();
 
-        _text.color = _baseColor;
-        _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
+        _image.color = _baseColor;
+        _image.transform.DOScale(_baseScale, 1 / AnimationSpeed);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

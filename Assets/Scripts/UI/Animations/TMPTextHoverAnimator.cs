@@ -1,26 +1,29 @@
-﻿using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-[RequireComponent(typeof(Text))]
-public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
+[RequireComponent(typeof(TMP_Text))]
+public class TMPTextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float _hoverScaleSize = 1.1f;
     [SerializeField] private Color _hoverColor = Color.white;
 
-    private Text _text;
+    private TMP_Text _text;
 
-    private Color _baseColor;
+    private VertexGradient _vertexHoverColor;
+    private VertexGradient _baseColor;
     private Vector3 _baseScale;
 
     protected override void OnEnable()
     {
-        _text = GetComponent<Text>();
+        _text = GetComponent<TMP_Text>();
 
-        _baseColor = _text.color;
+        _baseColor = _text.colorGradient;
         _baseScale = _text.transform.localScale;
+        _vertexHoverColor = new VertexGradient(_hoverColor);
 
         base.OnEnable();
     }
@@ -29,11 +32,11 @@ public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitH
     {
         while (true)
         {
-            _text.color = _hoverColor;
-            _text.transform.DOScale(_hoverScaleSize, 1 / AnimationSpeed);
+            _text.colorGradient = _vertexHoverColor;
+            _text.transform.DOScale(_hoverScaleSize, 1/ AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
-            _text.color = _hoverColor;
+            _text.colorGradient = _vertexHoverColor;
             _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
         }
@@ -43,7 +46,7 @@ public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitH
     {
         base.StopAnimation();
 
-        _text.color = _baseColor;
+        _text.colorGradient = _baseColor;
         _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
     }
 

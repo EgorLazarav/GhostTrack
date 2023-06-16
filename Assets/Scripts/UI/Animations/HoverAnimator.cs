@@ -1,27 +1,22 @@
-﻿using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 using DG.Tweening;
 
-[RequireComponent(typeof(Text))]
-public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
+public class HoverAnimator<T> : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float _hoverScaleSize = 1.1f;
     [SerializeField] private Color _hoverColor = Color.white;
 
-    private Text _text;
-
-    private Color _baseColor;
+    protected Color BaseColor;
     private Vector3 _baseScale;
 
     protected override void OnEnable()
     {
-        _text = GetComponent<Text>();
-
-        _baseColor = _text.color;
-        _baseScale = _text.transform.localScale;
-
+        _baseScale = transform.localScale;
         base.OnEnable();
     }
 
@@ -29,12 +24,10 @@ public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitH
     {
         while (true)
         {
-            _text.color = _hoverColor;
-            _text.transform.DOScale(_hoverScaleSize, 1 / AnimationSpeed);
+            transform.DOScale(_hoverScaleSize, 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
-            _text.color = _hoverColor;
-            _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
+            transform.DOScale(_baseScale, 1 / AnimationSpeed);
             yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
         }
     }
@@ -42,9 +35,7 @@ public class TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitH
     public override void StopAnimation()
     {
         base.StopAnimation();
-
-        _text.color = _baseColor;
-        _text.transform.DOScale(_baseScale, 1 / AnimationSpeed);
+        transform.DOScale(_baseScale, 1 / AnimationSpeed);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

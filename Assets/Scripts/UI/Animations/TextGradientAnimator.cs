@@ -9,7 +9,7 @@ public class TextGradientAnimator : AnimatedUI
     private TMP_Text _text;
     private Color[] _vertexColors;
 
-    protected override void Awake()
+    protected override void OnEnable()
     {
         _text = GetComponent<TMP_Text>();
         _vertexColors = new Color[4];
@@ -19,7 +19,7 @@ public class TextGradientAnimator : AnimatedUI
         _vertexColors[2] = _text.colorGradient.bottomLeft;
         _vertexColors[3] = _text.colorGradient.bottomRight;
 
-        base.Awake();
+        base.OnEnable();
     }
 
     protected override IEnumerator Animating()
