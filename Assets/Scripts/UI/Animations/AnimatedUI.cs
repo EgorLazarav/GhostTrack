@@ -17,6 +17,11 @@ public abstract class AnimatedUI : MonoBehaviour
             StartAnimation();
     }
 
+    protected virtual void OnDisable()
+    {
+        StopAnimation();
+    }
+
     public virtual void StartAnimation()
     {
         _animationCoroutine = StartCoroutine(Animating());
