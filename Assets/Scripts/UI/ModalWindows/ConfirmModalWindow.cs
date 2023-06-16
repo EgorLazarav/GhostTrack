@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ConfirmModalWindow : ModalWindow
@@ -16,6 +17,6 @@ public class ConfirmModalWindow : ModalWindow
 
     public override void Close()
     {
-        _blurPanel.gameObject.SetActive(true);
+        _blurPanel.gameObject.SetActive(false);
     }
 }
