@@ -770,13 +770,14 @@ GameObject:
   - component: {fileID: 1098077137}
   - component: {fileID: 1098077136}
   - component: {fileID: 1098077142}
+  - component: {fileID: 1098077143}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1098077135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -983,6 +984,18 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
+--- !u!114 &1098077143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098077134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33486f650c1ac3d409d6bc598ad45d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1279970270
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,7 +1006,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1279970271}
   - component: {fileID: 1279970273}
-  - component: {fileID: 1279970275}
   - component: {fileID: 1279970276}
   m_Layer: 5
   m_Name: MainMenu
@@ -1034,22 +1046,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279970270}
   m_CullTransparentMesh: 1
---- !u!114 &1279970275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279970270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bb31ee72c24d44d8cf77c1d125ba69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _continueButton: {fileID: 1844984019}
-  _newGameButton: {fileID: 1538514512}
-  _settingsButton: {fileID: 1795415367}
-  _exitButton: {fileID: 1098077140}
 --- !u!114 &1279970276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,13 +1075,14 @@ GameObject:
   - component: {fileID: 1538514518}
   - component: {fileID: 1538514517}
   - component: {fileID: 1538514516}
+  - component: {fileID: 1538514519}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1538514509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1294,6 +1291,18 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
+--- !u!114 &1538514519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538514508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e7c8d918a18d44bb228b80d4ba3f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1541225496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,13 +1660,14 @@ GameObject:
   - component: {fileID: 1795415373}
   - component: {fileID: 1795415372}
   - component: {fileID: 1795415371}
+  - component: {fileID: 1795415374}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1795415364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1864,6 +1874,18 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
+--- !u!114 &1795415374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795415363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58eca316d00de4e82398eb8644380e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1808146811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,13 +1978,14 @@ GameObject:
   - component: {fileID: 1844984026}
   - component: {fileID: 1844984025}
   - component: {fileID: 1844984024}
+  - component: {fileID: 1844984027}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1844984018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2171,6 +2194,18 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
+--- !u!114 &1844984027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844984017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c23708d6cd062240a3970386c489215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2007123057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8b0380804507a4c867091e176ad49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenu: {fileID: 1279970275}
+  _mainMenu: {fileID: 0}
   _confirmWindow: {fileID: 527938553}
 --- !u!4 &2070950162
 Transform:

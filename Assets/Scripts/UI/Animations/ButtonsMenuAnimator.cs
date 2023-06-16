@@ -10,10 +10,12 @@ public class ButtonsMenuAnimator : AnimatedUI
     protected override IEnumerator Animating()
     {
         Button[] buttons = transform.GetComponentsInChildren<Button>(includeInactive: true);
+        buttons.ToList().ForEach(button => button.gameObject.SetActive(false));
 
         foreach (var button in buttons)
         {
             yield return new WaitForSecondsRealtime(1 / (AnimationSpeed * 2));
+
             button.gameObject.SetActive(true);
             button.transform.localScale = Vector3.zero;
             button.transform.DOScale(1, 1 / AnimationSpeed);

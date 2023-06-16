@@ -4,36 +4,46 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ConfirmWindow : MonoBehaviour
+public class ConfirmModalWindow : MonoBehaviour, IModalWindow
 {
     [SerializeField] private Image _blurPanel;
     [SerializeField] private Text _headerText;
     [SerializeField] private Button _acceptButton;
     [SerializeField] private Button _declineButton;
 
-    public event UnityAction ActionConfirmed;
+    public event UnityAction<bool> ActionConfirmed;
 
     private void OnEnable()
     {
         _acceptButton.onClick.AddListener(OnAcceptButtonClicked);
-        _declineButton.onClick.AddListener(() => _blurPanel.gameObject.SetActive(false));
+        _declineButton.onClick.AddListener(OnDeclineButtonClicked);
     }
 
     private void OnDisable()
     {
         _acceptButton.onClick.RemoveListener(OnAcceptButtonClicked);
-        _declineButton.onClick.RemoveListener(() => _blurPanel.gameObject.SetActive(false));
+        _declineButton.onClick.RemoveListener(OnDeclineButtonClicked);
     }
 
     private void OnAcceptButtonClicked()
     {
-        ActionConfirmed?.Invoke();
-        _blurPanel.gameObject.SetActive(false);
+        ActionConfirmed?.Invoke(true);
+        Close();
     }
 
-    public void Show(string header)
+    private void OnDeclineButtonClicked()
+    {
+        ActionConfirmed?.Invoke(false);
+        Close();
+    }
+
+    public void Show()
     {
         _blurPanel.gameObject.SetActive(true);
-        _headerText.text = header;
+    }
+
+    public void Close()
+    {
+        _blurPanel.gameObject.SetActive(true);
     }
 }

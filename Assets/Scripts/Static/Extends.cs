@@ -14,14 +14,14 @@ public static class Extends
         return new Color(color.r, color.g, color.b, newAlpha);
     }
 
-    public static void ShiftArray(this Array array)
+    public static void ShiftArray(this Array array, int step = 1)
     {
-        var temp = array.GetValue(array.Length - 1);
-        Array.Copy(array, 0, array, 1, array.Length - 1);
+        var temp = array.GetValue(array.Length - step);
+        Array.Copy(array, 0, array, step, array.Length - step);
         array.SetValue(temp, 0);
     }
 
-    public static Vector3 RandomTranslate(this Vector3 position, float maxDistance)
+    public static Vector3 RandomTranslateXY(this Vector3 position, float maxDistance)
     {
         float randomX = UnityEngine.Random.Range(-maxDistance, maxDistance);
         float randomY = UnityEngine.Random.Range(-maxDistance, maxDistance);
