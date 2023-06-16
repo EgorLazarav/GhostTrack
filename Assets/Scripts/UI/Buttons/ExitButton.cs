@@ -7,6 +7,6 @@ public class ExitButton : ButtonClickHandler
     protected override void OnButtonClicked()
     {
         print("exit");
-        ConfirmModalWindow.Instance.Show("Начать новую игру?", Application.Quit);
+        ConfirmModalWindow.Instance.Show("Выйти из игры?", Application.Quit);
     }
 }
