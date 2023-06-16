@@ -1230,8 +1230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 0
-  _animationSpeed: 1
-  _hoverScaleSize: 1.1
+  _animationSpeed: 2
+  _hoverScaleSize: 1.4
   _hoverColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &5459960912460489184
 MonoBehaviour:
@@ -1382,6 +1382,7 @@ GameObject:
   - component: {fileID: 5459960912635720185}
   - component: {fileID: 5459960912635720187}
   - component: {fileID: 5459960912635720184}
+  - component: {fileID: 5459960912635720191}
   m_Layer: 5
   m_Name: WrapperPanel
   m_TagString: Untagged
@@ -1389,6 +1390,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5459960912635720191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459960912635720190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a399365509433df418ddedbd68615ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPlayingOnAwake: 1
+  _animationSpeed: 1
+  _frequency: 5.72
+  _minAlpha: 0.208
+  _maxAlpha: 0.33
 --- !u!222 &5459960912672131641
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1539,6 +1557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 0
-  _animationSpeed: 1
-  _hoverScaleSize: 1.1
+  _animationSpeed: 2
+  _hoverScaleSize: 1.4
   _hoverColor: {r: 1, g: 1, b: 1, a: 1}

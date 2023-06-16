@@ -11,10 +11,13 @@ public class BlinkingImageAnimator : AnimatedUI
     [SerializeField][Range(0f, 1f)] private float _maxAlpha = 0.9f;
 
     private Image _image;
+    private float _baseAlpha;
 
     protected override void OnEnable()
     {
         _image = GetComponent<Image>();
+        _baseAlpha = _image.color.a;
+
         base.OnEnable();
     }
 
@@ -23,10 +26,7 @@ public class BlinkingImageAnimator : AnimatedUI
         while (true)
         {
             _image.color = _image.color.SetAlpha(Random.Range(_minAlpha, _maxAlpha));
-            float newMinAlpha = 0.93f;
-            float newMaxAlpha = 1;
-            float newAlpha = Random.Range(newMinAlpha, newMaxAlpha);
-            Color newColor = _image.color.SetAlpha(newAlpha);
+            Color newColor = _image.color.SetAlpha(_baseAlpha);
 
             float timer = _frequency / (Random.Range(_frequency / 2, _frequency) * AnimationSpeed);
 
@@ -37,5 +37,12 @@ public class BlinkingImageAnimator : AnimatedUI
                 yield return null;
             }
         }
+    }
+
+    public override void StartAnimation()
+    {
+        _image.color.SetAlpha(_baseAlpha);
+
+        base.StartAnimation();
     }
 }
