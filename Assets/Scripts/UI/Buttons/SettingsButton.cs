@@ -7,5 +7,6 @@ public class SettingsButton : ButtonClickHandler
     protected override void OnButtonClicked()
     {
         print("Settings");
+        SettingsModalWindow.Instance.Show();
     }
 }
