@@ -6,21 +6,21 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public abstract class ButtonClickHandler : MonoBehaviour
 {
-    private Button _button;
+    protected Button Button;
 
     private void Awake()
     {
-        _button = GetComponent<Button>();
+        Button = GetComponent<Button>();
     }
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnButtonClicked);   
+        Button.onClick.AddListener(OnButtonClicked);   
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnButtonClicked);
+        Button.onClick.RemoveListener(OnButtonClicked);
     }
 
     protected abstract void OnButtonClicked();

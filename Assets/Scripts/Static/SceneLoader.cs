@@ -26,4 +26,9 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Tutorial");
     }
+
+    public void LoadLastLevel()
+    {
+        SceneManager.LoadScene(PlayerData.CurrentLevel);
+    }
 }
