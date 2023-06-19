@@ -19,12 +19,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    private void OnLevelWasLoaded(int level)
-    {
-        PlayerData.TrySetCurrentLevel(level);
+        LoadMainMenu();
     }
 
     public void LoadMainMenu()
@@ -35,11 +30,5 @@ public class SceneLoader : MonoBehaviour
     public void LoadNewGame()
     {
         SceneManager.LoadSceneAsync("Tutorial");
-        PlayerData.SetCurrentLevel(2);
-    }
-
-    public void LoadLastLevel()
-    {
-        SceneManager.LoadSceneAsync(PlayerData.CurrentLevel);
     }
 }
