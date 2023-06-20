@@ -15,7 +15,6 @@ public class PlayerRotator : MonoBehaviour
     {
         var lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        float lookAngleOffset = 2; // прицел (мышка) не совпадает с направлением взгляда
-        _rigidbody.rotation = lookAngle + lookAngleOffset;
+        _rigidbody.rotation = lookAngle;
     }
 }

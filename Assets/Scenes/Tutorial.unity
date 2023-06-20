@@ -2062,19 +2062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228225249329624500, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
       propertyPath: m_Name
-      value: Uzi
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228225249329624501, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
-      propertyPath: _bulletsLeft
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228225249329624501, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
-      propertyPath: _baseReloadTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228225249329624501, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
-      propertyPath: _maxBulletsInClip
-      value: 20
+      value: UZI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
@@ -6345,18 +6333,6 @@ PrefabInstance:
     - target: {fileID: 342768273764057403, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}
       propertyPath: m_Name
       value: AK47
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228225249027225536, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}
-      propertyPath: _bulletsLeft
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228225249027225536, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}
-      propertyPath: _baseReloadTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228225249027225536, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}
-      propertyPath: _maxBulletsInClip
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}

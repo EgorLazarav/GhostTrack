@@ -130,10 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a62bf369f04e54f8c1a75f2389ad6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 8973967628468324882, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
+  _data: {fileID: 11400000, guid: 959a14f72e22c7f4fb4221c4443fb39e, type: 2}
   _shootPoint: {fileID: 4228225248639297006}
-  _shotPower: 10
-  _timeBetweenShots: 0.1
 --- !u!61 &821086376
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -3,28 +3,25 @@ using UnityEngine;
 
 public class Weapon : ObjectPool<Bullet>
 {
-    [SerializeField] private Bullet _bullet;
+    [SerializeField] private WeaponData _data;
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private float _shotPower;
-    [SerializeField] private float _timeBetweenShots;
-    [SerializeField] private int _bulletsLeft;
-    [SerializeField] private int _maxBulletsInClip;
-    [SerializeField] private float _baseReloadTime = 1;
 
     private Coroutine _internalReloadingCoroutine;
     private Coroutine _reloadingCoroutine;
     private WaitForSeconds _shotsDelay;
 
     private int _currentBulletsInClip;
+    private int _bulletsLeft;
 
     protected virtual void Awake()
     {
-        _shotsDelay = new WaitForSeconds(_timeBetweenShots);
+        _shotsDelay = new WaitForSeconds(_data.TimeBetweenShots);
 
-        _currentBulletsInClip = _bulletsLeft < _maxBulletsInClip? _bulletsLeft : _maxBulletsInClip;
+        _bulletsLeft = _data.BulletsLeft;
+        _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip? _bulletsLeft : _data.MaxBulletsInClip;
         _bulletsLeft -= _currentBulletsInClip;
 
-        Init(_bullet);
+        Init(_data.Bullet);
     }
 
     private IEnumerator InternalReloading()
@@ -35,9 +32,11 @@ public class Weapon : ObjectPool<Bullet>
 
     private IEnumerator Reloading(float reloadTimeReduceCoef)
     {
-        yield return new WaitForSeconds(_baseReloadTime / reloadTimeReduceCoef);
+        _currentBulletsInClip = 0;
 
-        _currentBulletsInClip = _bulletsLeft < _maxBulletsInClip ? _bulletsLeft : _maxBulletsInClip;
+        yield return new WaitForSeconds(_data.BaseReloadTime / reloadTimeReduceCoef);
+
+        _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip ? _bulletsLeft : _data.MaxBulletsInClip;
         _bulletsLeft -= _currentBulletsInClip;
         print(_currentBulletsInClip);
 
@@ -49,9 +48,6 @@ public class Weapon : ObjectPool<Bullet>
         if (_currentBulletsInClip <= 0)
             return;
 
-        if (_reloadingCoroutine != null)
-            return;
-
         if (_internalReloadingCoroutine != null)
             return;
 
@@ -60,7 +56,7 @@ public class Weapon : ObjectPool<Bullet>
         print(_currentBulletsInClip);
 
         var bullet = GetItem();
-        bullet.Init(_shootPoint.transform.position, _shootPoint.transform.rotation, _shotPower);
+        bullet.Init(_shootPoint.transform.position, _shootPoint.transform.rotation, _data.ShotPower);
     }
 
     public virtual void TryReload(float reloadTimeReduceCoef)

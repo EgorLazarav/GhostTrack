@@ -49,10 +49,8 @@ public class PlayerCombat : MonoBehaviour
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _pickUpWeaponRange);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
 
-        if (closestWeapon == null)
-            return;
-
-        EquipWeapon(closestWeapon.GetComponent<Weapon>());
+        if (closestWeapon != null)
+            EquipWeapon(closestWeapon.GetComponent<Weapon>());
     }
 
     private void TryShoot()

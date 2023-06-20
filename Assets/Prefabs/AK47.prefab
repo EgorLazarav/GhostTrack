@@ -156,7 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca15387c4515ca34f9d9f9d383714f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 8973967628468324882, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
+  _data: {fileID: 11400000, guid: d15d0e6ac4dfaa04ca99667e3ed4c553, type: 2}
   _shootPoint: {fileID: 342768273431040353}
-  _shotPower: 3
-  _timeBetweenShots: 1
