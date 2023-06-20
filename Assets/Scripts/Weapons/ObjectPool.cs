@@ -6,7 +6,6 @@ using System.Linq;
 public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
     private T _itemPrefab;
-
     private List<T> _items = new List<T>();
 
     protected void Init(T itemprefab)

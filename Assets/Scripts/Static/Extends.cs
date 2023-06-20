@@ -34,8 +34,13 @@ public static class Extends
     {
         float randomXOnScreen = UnityEngine.Random.Range(0, Screen.width);
         float randomYOnScreen = UnityEngine.Random.Range(0, Screen.height);
-        Vector3 randomPointOnScreen = new Vector3(randomXOnScreen, randomYOnScreen, Camera.main.depth);
+        Vector3 randomPointOnScreen = new Vector3(randomXOnScreen, randomYOnScreen, Camera.main.farClipPlane);
 
         transform.position = Camera.main.ScreenToWorldPoint(randomPointOnScreen);
+    }
+
+    public static void SetPositionX(this Transform transform, float newX)
+    {
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 }
