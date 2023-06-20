@@ -7,6 +7,9 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Weapon _weapon;
+    [SerializeField] private Transform _weaponPoint;
+    [SerializeField] private float _pickUpWeaponRange;
+    [SerializeField] private float _reloadSpeed = 1;
 
     private void Update()
     {
@@ -15,24 +18,41 @@ public class PlayerCombat : MonoBehaviour
             TryShoot();
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            TryDropWeapon();
+        }
+
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             TryEquipWeapon();
         }
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            TryReloadWeapon();
+        }
+    }
+
+    private void TryReloadWeapon()
+    {
+        if (_weapon == null)
+            return;
+
+        _weapon.TryReload(_reloadSpeed);
     }
 
     private void TryEquipWeapon()
     {
-        var objects = Physics2D.OverlapCircleAll(transform.position, 1);
-        var closestWeapon = objects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
+        var closestObjects = Physics2D.OverlapCircleAll(transform.position, _pickUpWeaponRange);
+        var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
 
         if (closestWeapon == null)
             return;
 
-        if (_weapon != null)
-        {
-
-        }
+        EquipWeapon(closestWeapon.GetComponent<Weapon>());
     }
 
     private void TryShoot()
@@ -41,5 +61,26 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         _weapon.TryShoot();
+    }
+
+    private void EquipWeapon(Weapon newWeapon)
+    {
+        TryDropWeapon();
+
+        newWeapon.transform.parent = _weaponPoint;
+        newWeapon.transform.rotation = _weaponPoint.rotation;
+        newWeapon.transform.position = _weaponPoint.position;
+
+        _weapon = newWeapon;
+    }
+
+    private void TryDropWeapon()
+    {
+        if (_weapon == null)
+            return;
+
+        _weapon.TryStopReloading();
+        _weapon.transform.parent = null;
+        _weapon = null;
     }
 }
