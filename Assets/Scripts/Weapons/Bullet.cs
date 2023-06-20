@@ -6,7 +6,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    private float _shotPower;
 
     private void Awake()
     {
@@ -26,8 +25,6 @@ public class Bullet : MonoBehaviour
 
     public void Init(Vector3 position, Quaternion rotation, float shotPower)
     {
-        _shotPower = shotPower;
-
         transform.rotation = rotation;
         transform.position = position;
 
