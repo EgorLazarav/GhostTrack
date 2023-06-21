@@ -40,7 +40,6 @@ public class BulletsDisplay : MonoBehaviour
         {
             _currentWeapon = newWeapon;
             _currentWeapon.BulletsChanged += OnPlayerCurrentWeaponBulletsChanged;
-            OnPlayerCurrentWeaponBulletsChanged(_currentWeapon.CurrentBulletsInClip, _currentWeapon.BulletsLeft);
         }
     }
 

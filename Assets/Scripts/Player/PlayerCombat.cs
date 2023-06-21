@@ -73,13 +73,9 @@ public class PlayerCombat : MonoBehaviour
     private void EquipWeapon(Weapon newWeapon)
     {
         TryDropWeapon();
-
-        newWeapon.transform.parent = _weaponPoint;
-        newWeapon.transform.rotation = _weaponPoint.rotation;
-        newWeapon.transform.position = _weaponPoint.position;
-
         _weapon = newWeapon;
-        WeaponChanged?.Invoke(newWeapon);
+        WeaponChanged?.Invoke(_weapon);
+        _weapon.Setup(_weaponPoint);
     }
 
     private void TryDropWeapon()
@@ -87,9 +83,9 @@ public class PlayerCombat : MonoBehaviour
         if (_weapon == null)
             return;
 
-        _weapon.TryStopReloading();
-        _weapon.transform.parent = null;
+        _weapon.Drop();
         _weapon = null;
+
         WeaponChanged?.Invoke(_weapon);
     }
 }

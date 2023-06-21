@@ -14,9 +14,6 @@ public class Weapon : ObjectPool<Bullet>
     private int _currentBulletsInClip;
     private int _bulletsLeft;
 
-    public int CurrentBulletsInClip => _currentBulletsInClip;
-    public int BulletsLeft => _bulletsLeft;
-
     public event UnityAction<int, int> BulletsChanged;
 
     protected virtual void Awake()
@@ -26,7 +23,6 @@ public class Weapon : ObjectPool<Bullet>
         _bulletsLeft = _data.BulletsLeft;
         _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip? _bulletsLeft : _data.MaxBulletsInClip;
         _bulletsLeft -= _currentBulletsInClip;
-        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
 
         Init(_data.Bullet);
     }
@@ -82,5 +78,19 @@ public class Weapon : ObjectPool<Bullet>
 
         StopCoroutine(_reloadingCoroutine);
         _reloadingCoroutine = null;
+    }
+
+    public void Setup(Transform newParent)
+    {
+        transform.parent = newParent;
+        transform.rotation = newParent.rotation;
+        transform.position = newParent.position;
+        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
+    }
+
+    public void Drop()
+    {
+        TryStopReloading();
+        transform.parent = null;
     }
 }
