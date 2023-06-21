@@ -35,8 +35,6 @@ public class Weapon : ObjectPool<Bullet>
 
     private IEnumerator Reloading(float reloadTimeReduceCoef)
     {
-        _currentBulletsInClip = 0;
-
         yield return new WaitForSeconds(_data.BaseReloadTime / reloadTimeReduceCoef);
 
         _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip ? _bulletsLeft : _data.MaxBulletsInClip;
@@ -53,6 +51,9 @@ public class Weapon : ObjectPool<Bullet>
             return;
 
         if (_internalReloadingCoroutine != null)
+            return;
+
+        if (_reloadingCoroutine != null)
             return;
 
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());
