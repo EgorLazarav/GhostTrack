@@ -4,10 +4,12 @@ using UnityEngine;
 public class Shotgun : Weapon
 {
     [SerializeField] private float _angleSpread = 15;
+    [SerializeField] private float _oneBulletReloadSpeed = 2;
 
     public override void TryShoot()
     {
         TryStopReloading();
+        OnBulletsChanged();
         base.TryShoot();
     }
 
@@ -26,14 +28,15 @@ public class Shotgun : Weapon
     protected override IEnumerator Reloading(float reloadTimeReduceCoef)
     {
         ReloadingCoroutine = null;
-        reloadTimeReduceCoef *= Data.MaxBulletsInClip;
+        reloadTimeReduceCoef *= _oneBulletReloadSpeed;
 
         while (BulletsLeft > 0 && CurrentBulletsInClip < Data.MaxBulletsInClip)
         {
             CurrentBulletsInClip++;
             BulletsLeft--;
-            yield return new WaitForSeconds(Data.BaseReloadTime / reloadTimeReduceCoef);
+            yield return new WaitForEndOfFrame();
             OnBulletsChanged();
+            yield return new WaitForSeconds(Data.BaseReloadTime / reloadTimeReduceCoef);
         }
     }
 }
