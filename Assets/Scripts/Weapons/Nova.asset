@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Nova
   m_EditorClassIdentifier: 
   _bullet: {fileID: 8973967628468324882, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
-  _maxBulletsInClip: 30
-  _maxClips: 3
-  _baseReloadTime: 3
+  _maxBulletsInClip: 6
+  _maxClips: 5
+  _baseReloadTime: 6
   _shotPower: 12
   _timeBetweenShots: 1

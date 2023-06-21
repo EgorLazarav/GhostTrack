@@ -8,11 +8,11 @@ public class Weapon : ObjectPool<Bullet>
     [SerializeField] private Transform _shootPoint;
 
     private Coroutine _internalReloadingCoroutine;
-    private Coroutine _reloadingCoroutine;
     private WaitForSeconds _shotsDelay;
 
-    private int _currentBulletsInClip;
-    private int _bulletsLeft;
+    protected Coroutine ReloadingCoroutine;
+    protected int CurrentBulletsInClip;
+    protected int BulletsLeft;
 
     protected WeaponData Data => _data;
     protected Transform ShootPoint => _shootPoint;
@@ -23,9 +23,9 @@ public class Weapon : ObjectPool<Bullet>
     {
         _shotsDelay = new WaitForSeconds(_data.TimeBetweenShots);
 
-        _bulletsLeft = _data.BulletsLeft;
-        _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip? _bulletsLeft : _data.MaxBulletsInClip;
-        _bulletsLeft -= _currentBulletsInClip;
+        BulletsLeft = _data.BulletsLeft;
+        CurrentBulletsInClip = BulletsLeft < _data.MaxBulletsInClip? BulletsLeft : _data.MaxBulletsInClip;
+        BulletsLeft -= CurrentBulletsInClip;
 
         Init(_data.Bullet);
     }
@@ -36,33 +36,38 @@ public class Weapon : ObjectPool<Bullet>
         _internalReloadingCoroutine = null;
     }
 
-    private IEnumerator Reloading(float reloadTimeReduceCoef)
+    protected virtual IEnumerator Reloading(float reloadTimeReduceCoef)
     {
         yield return new WaitForSeconds(_data.BaseReloadTime / reloadTimeReduceCoef);
 
-        _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip ? _bulletsLeft : _data.MaxBulletsInClip;
-        _bulletsLeft -= _currentBulletsInClip;
-        yield return new WaitForEndOfFrame();
-        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
+        CurrentBulletsInClip = BulletsLeft < _data.MaxBulletsInClip ? BulletsLeft : _data.MaxBulletsInClip;
+        BulletsLeft -= CurrentBulletsInClip;
 
-        _reloadingCoroutine = null;
+        yield return new WaitForEndOfFrame();
+        OnBulletsChanged();
+        ReloadingCoroutine = null;
+    }
+
+    protected void OnBulletsChanged()
+    {
+        BulletsChanged?.Invoke(CurrentBulletsInClip, BulletsLeft);
     }
 
     public virtual void TryShoot()
     {
-        if (_currentBulletsInClip <= 0)
+        if (CurrentBulletsInClip <= 0)
             return;
 
         if (_internalReloadingCoroutine != null)
             return;
 
-        if (_reloadingCoroutine != null)
+        if (ReloadingCoroutine != null)
             return;
 
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());
-        _currentBulletsInClip--;
-        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
+        CurrentBulletsInClip--;
 
+        OnBulletsChanged();
         CreateBullet();
     }
 
@@ -74,19 +79,19 @@ public class Weapon : ObjectPool<Bullet>
 
     public virtual void TryReload(float reloadTimeReduceCoef)
     {
-        if (_reloadingCoroutine != null)
+        if (ReloadingCoroutine != null)
             return;
 
-        _reloadingCoroutine = StartCoroutine(Reloading(reloadTimeReduceCoef));
+        ReloadingCoroutine = StartCoroutine(Reloading(reloadTimeReduceCoef));
     }
 
     public virtual void TryStopReloading()
     {
-        if (_reloadingCoroutine == null)
+        if (ReloadingCoroutine == null)
             return;
 
-        StopCoroutine(_reloadingCoroutine);
-        _reloadingCoroutine = null;
+        StopCoroutine(ReloadingCoroutine);
+        ReloadingCoroutine = null;
     }
 
     public void Setup(Transform newParent)
@@ -94,7 +99,7 @@ public class Weapon : ObjectPool<Bullet>
         transform.parent = newParent;
         transform.rotation = newParent.rotation;
         transform.position = newParent.position;
-        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
+        OnBulletsChanged();
     }
 
     public void Drop()
