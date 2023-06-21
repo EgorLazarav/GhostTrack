@@ -75,7 +75,7 @@ public class PlayerCombat : MonoBehaviour
         TryDropWeapon();
         _weapon = newWeapon;
         WeaponChanged?.Invoke(_weapon);
-        _weapon.Setup(_weaponPoint);
+        _weapon.OnPickUp(_weaponPoint);
     }
 
     private void TryDropWeapon()
@@ -83,7 +83,7 @@ public class PlayerCombat : MonoBehaviour
         if (_weapon == null)
             return;
 
-        _weapon.Drop();
+        _weapon.OnDrop();
         _weapon = null;
 
         WeaponChanged?.Invoke(_weapon);

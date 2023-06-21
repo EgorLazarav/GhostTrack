@@ -94,7 +94,7 @@ public class Weapon : ObjectPool<Bullet>
         ReloadingCoroutine = null;
     }
 
-    public void Setup(Transform newParent)
+    public virtual void OnPickUp(Transform newParent)
     {
         transform.parent = newParent;
         transform.rotation = newParent.rotation;
@@ -102,7 +102,7 @@ public class Weapon : ObjectPool<Bullet>
         OnBulletsChanged();
     }
 
-    public void Drop()
+    public virtual void OnDrop()
     {
         TryStopReloading();
         transform.parent = null;
