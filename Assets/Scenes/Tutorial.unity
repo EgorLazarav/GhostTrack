@@ -2647,7 +2647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2da97d1a341e84bbc1035e1911a5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 194346533056455629, guid: 047c118110cdbfc469b948af4fe61f93, type: 3}
+  _weapon: {fileID: -9114245724205686837, guid: 047c118110cdbfc469b948af4fe61f93, type: 3}
   _weaponPoint: {fileID: 742534339}
   _pickUpWeaponRange: 0.5
   _reloadSpeed: 1
@@ -6732,6 +6732,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9114245724205686837, guid: 047c118110cdbfc469b948af4fe61f93, type: 3}
+      propertyPath: _angleSpread
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 194346533056455628, guid: 047c118110cdbfc469b948af4fe61f93, type: 3}
       propertyPath: m_Name
       value: Nova

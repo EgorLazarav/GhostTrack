@@ -14,6 +14,9 @@ public class Weapon : ObjectPool<Bullet>
     private int _currentBulletsInClip;
     private int _bulletsLeft;
 
+    protected WeaponData Data => _data;
+    protected Transform ShootPoint => _shootPoint;
+
     public event UnityAction<int, int> BulletsChanged;
 
     protected virtual void Awake()
@@ -60,6 +63,11 @@ public class Weapon : ObjectPool<Bullet>
         _currentBulletsInClip--;
         BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
 
+        CreateBullet();
+    }
+
+    protected virtual void CreateBullet()
+    {
         var bullet = GetItem();
         bullet.Init(_shootPoint.transform.position, _shootPoint.transform.rotation, _data.ShotPower);
     }
