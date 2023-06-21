@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Weapon : ObjectPool<Bullet>
 {
@@ -13,6 +14,11 @@ public class Weapon : ObjectPool<Bullet>
     private int _currentBulletsInClip;
     private int _bulletsLeft;
 
+    public int CurrentBulletsInClip => _currentBulletsInClip;
+    public int BulletsLeft => _bulletsLeft;
+
+    public event UnityAction<int, int> BulletsChanged;
+
     protected virtual void Awake()
     {
         _shotsDelay = new WaitForSeconds(_data.TimeBetweenShots);
@@ -20,6 +26,7 @@ public class Weapon : ObjectPool<Bullet>
         _bulletsLeft = _data.BulletsLeft;
         _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip? _bulletsLeft : _data.MaxBulletsInClip;
         _bulletsLeft -= _currentBulletsInClip;
+        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
 
         Init(_data.Bullet);
     }
@@ -38,7 +45,8 @@ public class Weapon : ObjectPool<Bullet>
 
         _currentBulletsInClip = _bulletsLeft < _data.MaxBulletsInClip ? _bulletsLeft : _data.MaxBulletsInClip;
         _bulletsLeft -= _currentBulletsInClip;
-        print(_currentBulletsInClip);
+        yield return new WaitForEndOfFrame();
+        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
 
         _reloadingCoroutine = null;
     }
@@ -53,7 +61,7 @@ public class Weapon : ObjectPool<Bullet>
 
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());
         _currentBulletsInClip--;
-        print(_currentBulletsInClip);
+        BulletsChanged?.Invoke(_currentBulletsInClip, _bulletsLeft);
 
         var bullet = GetItem();
         bullet.Init(_shootPoint.transform.position, _shootPoint.transform.rotation, _data.ShotPower);

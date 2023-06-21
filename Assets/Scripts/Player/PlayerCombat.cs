@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private float _pickUpWeaponRange;
     [SerializeField] private float _reloadSpeed = 1;
+
+    public static event UnityAction<Weapon> WeaponChanged;
+
+    private void Awake()
+    {
+        var weapon = Instantiate(_weapon);
+        EquipWeapon(weapon);
+    }
 
     private void Update()
     {
@@ -70,6 +79,7 @@ public class PlayerCombat : MonoBehaviour
         newWeapon.transform.position = _weaponPoint.position;
 
         _weapon = newWeapon;
+        WeaponChanged?.Invoke(newWeapon);
     }
 
     private void TryDropWeapon()
@@ -80,5 +90,6 @@ public class PlayerCombat : MonoBehaviour
         _weapon.TryStopReloading();
         _weapon.transform.parent = null;
         _weapon = null;
+        WeaponChanged?.Invoke(_weapon);
     }
 }
