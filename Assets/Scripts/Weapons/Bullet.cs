@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
 
     public virtual void Init(Vector3 position, Quaternion rotation, float shotPower, float damage = 1)
     {
+        BaseDamage = damage;
         transform.rotation = rotation;
         transform.position = position;
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfb4b83e60f06e4cba94b584191ac68, type: 3}
   m_Name: AWM
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 8973967628468324882, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
+  _bullet: {fileID: 7777431130286160918, guid: d54ef93dc9967af4d94ae64f638a49ec, type: 3}
   _maxBulletsInClip: 10
   _maxClips: 3
   _baseReloadTime: 4

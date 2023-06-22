@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1749245694288787442}
   - component: {fileID: 5062493936640563092}
   m_Layer: 8
-  m_Name: HeavyBullet
+  m_Name: HeavyBulletAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
