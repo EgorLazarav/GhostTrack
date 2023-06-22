@@ -21,7 +21,7 @@ public class GrenadeLauncher : Weapon
             timer += Time.deltaTime;
             yield return null;
 
-            if (Input.GetKeyUp(KeyCode.Mouse0))
+            if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Q))
                 break;
         }
 

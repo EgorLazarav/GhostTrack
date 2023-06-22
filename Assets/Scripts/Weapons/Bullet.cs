@@ -5,11 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody;
+    protected Rigidbody2D Rigidbody;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void OnBecameInvisible()
@@ -17,18 +17,18 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         print(collision.collider.name);
         gameObject.SetActive(false);
     }
 
-    public void Init(Vector3 position, Quaternion rotation, float shotPower)
+    public virtual void Init(Vector3 position, Quaternion rotation, float shotPower)
     {
         transform.rotation = rotation;
         transform.position = position;
 
-        _rigidbody.velocity = Vector2.zero;
-        _rigidbody.velocity = transform.right * shotPower;
+        Rigidbody.velocity = Vector2.zero;
+        Rigidbody.velocity = transform.right * shotPower;
     }
 }
