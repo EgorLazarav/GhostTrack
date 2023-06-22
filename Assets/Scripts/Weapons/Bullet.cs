@@ -20,6 +20,12 @@ public class Bullet : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         print(collision.collider.name);
+
+        if (collision.collider.TryGetComponent(out Health health))
+        {
+            health.ApplyDamage();
+        }
+
         gameObject.SetActive(false);
     }
 
