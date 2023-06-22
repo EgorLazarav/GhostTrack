@@ -24,7 +24,7 @@ public class Grenade : Bullet
             Explode();
     }
 
-    public override void Init(Vector3 position, Quaternion rotation, float shotPower)
+    public override void Init(Vector3 position, Quaternion rotation, float shotPower, float damage = 1)
     {
         base.Init(position, rotation, shotPower);
 
@@ -58,7 +58,7 @@ public class Grenade : Bullet
         {
             if (obj.TryGetComponent(out Health health))
             {
-                health.ApplyDamage();
+                health.ApplyDamage(BaseDamage); // от радиуса взрыва урон менять
             }
         }
 

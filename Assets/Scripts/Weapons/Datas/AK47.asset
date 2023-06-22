@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfb4b83e60f06e4cba94b584191ac68, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 8973967628468324882, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
+  _bullet: {fileID: 5062493936640563092, guid: 87655caf053925d4db50014cd92ded05, type: 3}
   _maxBulletsInClip: 30
   _maxClips: 6
   _baseReloadTime: 2

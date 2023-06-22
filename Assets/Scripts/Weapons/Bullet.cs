@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     protected Rigidbody2D Rigidbody;
+    protected float BaseDamage = 1;
 
     private void Awake()
     {
@@ -19,17 +20,13 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.collider.name);
-
         if (collision.collider.TryGetComponent(out Health health))
-        {
-            health.ApplyDamage();
-        }
+            health.ApplyDamage(BaseDamage);
 
         gameObject.SetActive(false);
     }
 
-    public virtual void Init(Vector3 position, Quaternion rotation, float shotPower)
+    public virtual void Init(Vector3 position, Quaternion rotation, float shotPower, float damage = 1)
     {
         transform.rotation = rotation;
         transform.position = position;

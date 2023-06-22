@@ -70,10 +70,10 @@ public class Weapon : ObjectPool<Bullet>
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());
     }
 
-    protected virtual void CreateBullet(Quaternion rotation, float shotPower)
+    protected virtual void CreateBullet(Quaternion rotation, float shotPower, float bulletDamage = 1)
     {
         var bullet = GetItem();
-        bullet.Init(_shootPoint.transform.position, rotation, shotPower);
+        bullet.Init(_shootPoint.transform.position, rotation, shotPower, bulletDamage);
     }
 
     public virtual void TryReload(float reloadTimeReduceCoef)

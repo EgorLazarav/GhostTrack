@@ -2,8 +2,13 @@
 
 public class Health : MonoBehaviour
 {
-    public void ApplyDamage()
+    [SerializeField] private float _current = 1;
+
+    public void ApplyDamage(float amount)
     {
-        Destroy(gameObject);
+        _current = Mathf.Clamp(_current - amount, 0, _current);
+
+        if (_current <= 0)
+            Destroy(gameObject);
     }
 }

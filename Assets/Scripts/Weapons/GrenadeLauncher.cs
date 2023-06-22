@@ -6,7 +6,7 @@ public class GrenadeLauncher : Weapon
     [SerializeField] private float _minHoldingTime = 1;
     [SerializeField] private float _maxHoldingTime = 3;
 
-    protected override void CreateBullet(Quaternion rotation, float shotPower)
+    protected override void CreateBullet(Quaternion rotation, float shotPower, float bulletDamage = 1)
     {
         print("charging");
         StartCoroutine(Charging(rotation, shotPower));
