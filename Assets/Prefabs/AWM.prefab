@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7531985522518755038}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7531985522815080090}
   - component: {fileID: 5920914762372672408}
   - component: {fileID: 7802271951954384825}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AWM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,3 +158,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 775ea8a793d19a445ac394705eda8320, type: 2}
   _shootPoint: {fileID: 7531985522518755038}
+  _bonusZoomOutRange: 2

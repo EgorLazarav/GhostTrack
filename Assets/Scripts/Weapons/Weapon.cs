@@ -64,17 +64,16 @@ public class Weapon : ObjectPool<Bullet>
         if (ReloadingCoroutine != null)
             return;
 
-        _internalReloadingCoroutine = StartCoroutine(InternalReloading());
+        CreateBullet(_shootPoint.transform.rotation, _data.ShotPower);
         CurrentBulletsInClip--;
-
         OnBulletsChanged();
-        CreateBullet(_shootPoint.transform.rotation);
+        _internalReloadingCoroutine = StartCoroutine(InternalReloading());
     }
 
-    protected virtual void CreateBullet(Quaternion rotation)
+    protected virtual void CreateBullet(Quaternion rotation, float shotPower)
     {
         var bullet = GetItem();
-        bullet.Init(_shootPoint.transform.position, rotation, _data.ShotPower);
+        bullet.Init(_shootPoint.transform.position, rotation, shotPower);
     }
 
     public virtual void TryReload(float reloadTimeReduceCoef)

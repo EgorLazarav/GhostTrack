@@ -17,6 +17,9 @@ public class BulletsDisplay : MonoBehaviour
     private void OnEnable()
     {
         PlayerCombat.WeaponChanged += OnPlayerWeaponChanged;
+
+        if (_currentWeapon != null)
+            _currentWeapon.BulletsChanged += OnBulletsChanged;
     }
 
     private void OnDisable()
@@ -24,26 +27,23 @@ public class BulletsDisplay : MonoBehaviour
         PlayerCombat.WeaponChanged -= OnPlayerWeaponChanged;
 
         if (_currentWeapon != null)
-            _currentWeapon.BulletsChanged -= OnPlayerCurrentWeaponBulletsChanged;
+            _currentWeapon.BulletsChanged -= OnBulletsChanged;
     }
 
     private void OnPlayerWeaponChanged(Weapon newWeapon)
     {
         if (_currentWeapon != null)
-            _currentWeapon.BulletsChanged -= OnPlayerCurrentWeaponBulletsChanged;
+            _currentWeapon.BulletsChanged -= OnBulletsChanged;
+
+        _currentWeapon = newWeapon;
 
         if (newWeapon == null)
-        {
             _text.text = "NO WEAPON";
-        }
         else
-        {
-            _currentWeapon = newWeapon;
-            _currentWeapon.BulletsChanged += OnPlayerCurrentWeaponBulletsChanged;
-        }
+            newWeapon.BulletsChanged += OnBulletsChanged;
     }
 
-    private void OnPlayerCurrentWeaponBulletsChanged(int currentBulletsInClip, int bulletsLeft)
+    private void OnBulletsChanged(int currentBulletsInClip, int bulletsLeft)
     {
         _text.text = $"{currentBulletsInClip}/{bulletsLeft}";
     }

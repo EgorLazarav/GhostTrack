@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194346531777819542}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 194346533056455634}
   - component: {fileID: 4044189936654048976}
   - component: {fileID: -9114245724205686837}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Nova
   m_TagString: Untagged
   m_Icon: {fileID: 0}

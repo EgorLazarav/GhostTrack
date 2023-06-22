@@ -17,9 +17,9 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.name);
+        print(collision.collider.name);
         gameObject.SetActive(false);
     }
 

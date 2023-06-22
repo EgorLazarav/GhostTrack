@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 342768273431040353}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 342768273764057381}
   - component: {fileID: 4498090643237305383}
   - component: {fileID: 4228225249027225536}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AK47
   m_TagString: Untagged
   m_Icon: {fileID: 0}

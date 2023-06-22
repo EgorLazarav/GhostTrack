@@ -13,11 +13,11 @@ public class Shotgun : Weapon
         base.TryShoot();
     }
 
-    protected override void CreateBullet(Quaternion rotation)
+    protected override void CreateBullet(Quaternion rotation, float shotPower)
     {
         for (int i = -1; i <= 1; i++)
         {
-            base.CreateBullet(Quaternion.Euler(0, 0, ShootPoint.transform.eulerAngles.z + _angleSpread * i));
+            base.CreateBullet(Quaternion.Euler(0, 0, ShootPoint.transform.eulerAngles.z + _angleSpread * i), shotPower);
         }
     }
 
