@@ -13,30 +13,25 @@ public class Shotgun : Weapon
         base.TryShoot();
     }
 
-    protected override void CreateBullet()
+    protected override void CreateBullet(Quaternion rotation)
     {
-        base.CreateBullet();
-        print("pah");
-
-        for (int i = -1; i <= 1; i += 2)
+        for (int i = -1; i <= 1; i++)
         {
-            var bullet = GetItem();
-            bullet.Init(ShootPoint.transform.position, Quaternion.Euler(0, 0, ShootPoint.transform.eulerAngles.z + _angleSpread * i), Data.ShotPower);
+            base.CreateBullet(Quaternion.Euler(0, 0, ShootPoint.transform.eulerAngles.z + _angleSpread * i));
         }
     }
 
     protected override IEnumerator Reloading(float reloadTimeReduceCoef)
     {
         ReloadingCoroutine = null;
-        reloadTimeReduceCoef *= _oneBulletReloadSpeed;
 
         while (BulletsLeft > 0 && CurrentBulletsInClip < Data.MaxBulletsInClip)
         {
+            yield return new WaitForSeconds(_oneBulletReloadSpeed / reloadTimeReduceCoef);
             CurrentBulletsInClip++;
             BulletsLeft--;
             yield return new WaitForEndOfFrame();
             OnBulletsChanged();
-            yield return new WaitForSeconds(Data.BaseReloadTime / reloadTimeReduceCoef);
         }
     }
 }

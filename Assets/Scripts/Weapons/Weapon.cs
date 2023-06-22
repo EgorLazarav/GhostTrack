@@ -68,13 +68,13 @@ public class Weapon : ObjectPool<Bullet>
         CurrentBulletsInClip--;
 
         OnBulletsChanged();
-        CreateBullet();
+        CreateBullet(_shootPoint.transform.rotation);
     }
 
-    protected virtual void CreateBullet()
+    protected virtual void CreateBullet(Quaternion rotation)
     {
         var bullet = GetItem();
-        bullet.Init(_shootPoint.transform.position, _shootPoint.transform.rotation, _data.ShotPower);
+        bullet.Init(_shootPoint.transform.position, rotation, _data.ShotPower);
     }
 
     public virtual void TryReload(float reloadTimeReduceCoef)
@@ -94,7 +94,7 @@ public class Weapon : ObjectPool<Bullet>
         ReloadingCoroutine = null;
     }
 
-    public virtual void OnPickUp(Transform newParent)
+    public virtual void PickUp(Transform newParent)
     {
         transform.parent = newParent;
         transform.rotation = newParent.rotation;
@@ -102,7 +102,7 @@ public class Weapon : ObjectPool<Bullet>
         OnBulletsChanged();
     }
 
-    public virtual void OnDrop()
+    public virtual void Drop()
     {
         TryStopReloading();
         transform.parent = null;

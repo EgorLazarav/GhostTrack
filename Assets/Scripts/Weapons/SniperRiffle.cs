@@ -2,15 +2,17 @@
 
 public class SniperRiffle : Weapon
 {
-    public override void OnPickUp(Transform newParent)
+    [SerializeField] private float _bonusZoomOutRange = 2;
+
+    public override void PickUp(Transform newParent)
     {
-        base.OnPickUp(newParent);
-        Camera.main.orthographicSize *= 2;
+        base.PickUp(newParent);
+        Camera.main.orthographicSize += _bonusZoomOutRange;
     }
 
-    public override void OnDrop()
+    public override void Drop()
     {
-        base.OnDrop();
-        Camera.main.orthographicSize /= 2;
+        base.Drop();
+        Camera.main.orthographicSize -= _bonusZoomOutRange;
     }
 }

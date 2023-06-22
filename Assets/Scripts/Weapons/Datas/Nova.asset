@@ -15,6 +15,6 @@ MonoBehaviour:
   _bullet: {fileID: 8973967628468324882, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
   _maxBulletsInClip: 6
   _maxClips: 5
-  _baseReloadTime: 12
+  _baseReloadTime: 1
   _shotPower: 12
   _timeBetweenShots: 1

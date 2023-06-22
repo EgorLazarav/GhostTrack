@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Weapon _weapon;
     [SerializeField] private Transform _weaponPoint;
-    [SerializeField] private float _pickUpWeaponRange;
+    [SerializeField] private float _pickUpWeaponRange = 0.5f;
     [SerializeField] private float _reloadSpeed = 1;
 
     public static event UnityAction<Weapon> WeaponChanged;
@@ -73,9 +73,10 @@ public class PlayerCombat : MonoBehaviour
     private void EquipWeapon(Weapon newWeapon)
     {
         TryDropWeapon();
+
         _weapon = newWeapon;
         WeaponChanged?.Invoke(_weapon);
-        _weapon.OnPickUp(_weaponPoint);
+        _weapon.PickUp(_weaponPoint);
     }
 
     private void TryDropWeapon()
@@ -83,7 +84,7 @@ public class PlayerCombat : MonoBehaviour
         if (_weapon == null)
             return;
 
-        _weapon.OnDrop();
+        _weapon.Drop();
         _weapon = null;
 
         WeaponChanged?.Invoke(_weapon);
