@@ -16,5 +16,5 @@ MonoBehaviour:
   _maxBulletsInClip: 1
   _maxClips: 8
   _baseReloadTime: 3
-  _shotPower: 3
+  _shotPower: 6
   _timeBetweenShots: 2

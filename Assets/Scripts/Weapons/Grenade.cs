@@ -8,7 +8,8 @@ public class Grenade : Bullet
     [SerializeField] private float _explosionTimer = 3;
     [SerializeField] private float _explosionRange = 2;
 
-    private float _velocityReduceCoeff = 1.5f;
+    private float _velocityReduceCoeff = 1.2f;
+    private int _currentDurability;
     private Coroutine _launchingCoroutine;
 
     protected override void OnCollisionEnter2D(Collision2D collision)
@@ -17,9 +18,9 @@ public class Grenade : Bullet
             Explode();
 
         Rigidbody.velocity /= _velocityReduceCoeff;
-        _durability--;
+        _currentDurability--;
 
-        if (_durability <= 0)
+        if (_currentDurability <= 0)
             Explode();
     }
 
@@ -31,6 +32,7 @@ public class Grenade : Bullet
             StopCoroutine(_launchingCoroutine);
 
         _launchingCoroutine = StartCoroutine(Launching());
+        _currentDurability = _durability;
     }
 
     private IEnumerator Launching()
@@ -40,7 +42,7 @@ public class Grenade : Bullet
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            Rigidbody.velocity /= _velocityReduceCoeff;
+            Rigidbody.velocity /= (1 + Time.deltaTime * _velocityReduceCoeff);
             yield return null;
         }
 
