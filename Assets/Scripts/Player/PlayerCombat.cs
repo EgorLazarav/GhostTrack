@@ -53,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
         if (_currentWeapon == null)
             return;
 
-        _currentWeapon.transform.parent = null;
+        _currentWeapon.Throw();
         _currentWeapon = null;
 
         WeaponChanged?.Invoke(_currentWeapon);
@@ -73,8 +73,7 @@ public class PlayerCombat : MonoBehaviour
         TryDropWeapon();
 
         _currentWeapon = newWeapon;
-        _currentWeapon.transform.parent = _weaponPoint.transform;
-        _currentWeapon.transform.SetParentTransform();
+        _currentWeapon.PickUp(_weaponPoint);
 
         WeaponChanged?.Invoke(newWeapon);
     }

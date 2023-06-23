@@ -2,35 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : ObjectPool<Bullet>
+public class Weapon : ObjectPool<Bullet>
 {
-    [SerializeField] protected WeaponData Data;
-    [SerializeField] protected Transform ShootPoint;
+    [SerializeField] private WeaponData _data;
+    [SerializeField] private Transform _shootPoint;
 
-    protected Coroutine InternalReloadingCoroutine = null;
-    protected WaitForSeconds InternalReloadingDelay;
+    private Coroutine _internalReloadingCoroutine = null;
+    private WaitForSeconds _internalReloadingDelay;
+    private int _currentBulletsCount;
 
-    protected int CurrentBulletsCount;
+    protected WeaponData Data => _data;
+    protected Transform ShootPoint => _shootPoint;
 
     private void Start()
     {
-        InitPool(Data.Bullet);
+        InitPool(_data.Bullet);
 
-        InternalReloadingDelay = new WaitForSeconds(Data.TimeBetweenShots);
-        CurrentBulletsCount = Data.BulletsCount;
+        _internalReloadingDelay = new WaitForSeconds(_data.TimeBetweenShots);
+        _currentBulletsCount = _data.BulletsCount;
     }
 
-    protected IEnumerator InternalReloading()
+    private IEnumerator InternalReloading()
     {
-        yield return InternalReloadingDelay;
-        InternalReloadingCoroutine = null;
+        yield return _internalReloadingDelay;
+        _internalReloadingCoroutine = null;
     }
 
-    protected virtual void Shoot(Quaternion rotation)
+    public virtual bool TryShoot()
+    {
+        if (_internalReloadingCoroutine != null)
+            return false;
+
+        if (_currentBulletsCount <= 0)
+            return false;
+
+        _currentBulletsCount--;
+        _internalReloadingCoroutine = StartCoroutine(InternalReloading());
+
+        return true;
+    }
+
+    protected virtual void Shoot(Quaternion rotation, float shotPower, int damagePercent)
     {
         var bullet = GetItem();
-        bullet.Init(ShootPoint.position, rotation, Data.ShotPower, Data.DamagePercent);
+        bullet.Init(_shootPoint.position, rotation, shotPower, damagePercent);
     }
 
-    public abstract void TryShoot();
+    public virtual void PickUp(Transform newParent)
+    {
+        transform.parent = newParent;
+        transform.rotation = newParent.rotation;
+        transform.position = newParent.position;
+    }
+
+    public virtual void Throw()
+    {
+        transform.parent = null;
+    }
 }

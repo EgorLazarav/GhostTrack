@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] protected Rigidbody2D Rigidbody;
 
-    private int _damagePercent;
+    protected int DamagePercent;
 
     private void OnBecameInvisible()
     {
@@ -19,13 +19,13 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Init(Vector3 position, Quaternion rotation, float shotPower, int damagePercent)
+    public virtual void Init(Vector3 position, Quaternion rotation, float shotPower, int damagePercent)
     {
-        _damagePercent = damagePercent;
+        DamagePercent = damagePercent;
         transform.rotation = rotation;
         transform.position = position;
 
-        _rigidbody.velocity = Vector2.zero;
-        _rigidbody.velocity = transform.right * shotPower;
+        Rigidbody.velocity = Vector2.zero;
+        Rigidbody.velocity = transform.right * shotPower;
     }
 }

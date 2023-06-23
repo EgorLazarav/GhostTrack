@@ -6,22 +6,19 @@ public class ShotgunWeapon : Weapon
 {
     [SerializeField] private float _angleSpread = 5;
 
-    public override void TryShoot()
+    public override bool TryShoot()
     {
-        if (InternalReloadingCoroutine != null)
-            return;
-
-        if (CurrentBulletsCount <= 0)
-            return;
-
-        CurrentBulletsCount--;
-
-        for (int i = -1; i <= 1; i++)
+        if (base.TryShoot())
         {
-            Quaternion rotation = Quaternion.Euler(ShootPoint.eulerAngles + new Vector3(0, 0, _angleSpread * i));
-            Shoot(rotation);
+            for (int i = -1; i <= 1; i++)
+            {
+                Quaternion rotation = Quaternion.Euler(ShootPoint.eulerAngles + new Vector3(0, 0, _angleSpread * i));
+                Shoot(rotation, Data.ShotPower, Data.DamagePercent / 3);
+            }
+
+            return true;
         }
 
-        InternalReloadingCoroutine = StartCoroutine(InternalReloading());
+       return false;
     }
 }

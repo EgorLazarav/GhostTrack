@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class SimpleWeapon : Weapon
 {
-    public override void TryShoot()
+    public override bool TryShoot()
     {
-        if (InternalReloadingCoroutine != null)
-            return;
+        if (base.TryShoot())
+        {
+            Shoot(ShootPoint.rotation, Data.ShotPower, Data.DamagePercent);
+            return true;
+        }
 
-        if (CurrentBulletsCount <= 0)
-            return;
-
-        CurrentBulletsCount--;
-        Shoot(ShootPoint.rotation);
-
-        InternalReloadingCoroutine = StartCoroutine(InternalReloading());
+        return false;
     }
 }

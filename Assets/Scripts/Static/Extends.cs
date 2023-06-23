@@ -44,13 +44,4 @@ public static class Extends
     {
         transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + value), time);
     }
-
-    public static void SetParentTransform(this Transform transform)
-    {
-        if (transform.parent == null)
-            throw new System.NullReferenceException("no parent");
-
-        transform.position = transform.parent.position;
-        transform.rotation = transform.parent.rotation;
-    }
 }
