@@ -1670,7 +1670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
-  _frequency: 5.72
+  _frequency: 3.05
   _minAlpha: 0.208
   _maxAlpha: 0.33
 --- !u!1 &1084065974
@@ -1909,7 +1909,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 99
   m_TargetDisplay: 0
@@ -3252,6 +3252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
+  _minChangingTime: 1
+  _maxChangingTime: 3
 --- !u!114 &2029251544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3418,6 +3420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
+  _minChangingTime: 1
+  _maxChangingTime: 3
 --- !u!114 &2093045161
 MonoBehaviour:
   m_ObjectHideFlags: 0

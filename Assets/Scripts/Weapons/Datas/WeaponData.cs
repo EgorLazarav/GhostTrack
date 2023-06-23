@@ -7,37 +7,17 @@ public class WeaponData : ScriptableObject
 {
     [Header("Bullets")]
     [SerializeField] private Bullet _bullet;
-    [SerializeField] private int _maxBulletsInClip;
-    [SerializeField] private int _maxClips;
+    [SerializeField][Min(1)] private int _bulletsCount = 30;
 
     [Header("Shot")]
-    [SerializeField] private float _baseReloadTime = 1;
-    [SerializeField] private float _shotPower;
-    [SerializeField] private float _timeBetweenShots;
+    [SerializeField][Range(0, 100)] private int _damagePercent = 100;
+    [SerializeField][Min(0.1f)] private float _shotPower = 10;
+    [SerializeField][Min(0.01f)] private float _timeBetweenShots = 1;
 
     public Bullet Bullet => _bullet;
-    public int MaxBulletsInClip => _maxBulletsInClip;
-    public int BulletsLeft => _maxClips * _maxBulletsInClip;
+    public int BulletsCount => _bulletsCount;
 
-    public float BaseReloadTime => _baseReloadTime;
+    public int DamagePercent => _damagePercent;
     public float ShotPower => _shotPower;
     public float TimeBetweenShots => _timeBetweenShots;
-
-    private void OnValidate()
-    {
-        if (_maxBulletsInClip < 0)
-            _maxBulletsInClip = 0;
-
-        if (_maxClips < 0)
-            _maxClips = 0;
-
-        if (_baseReloadTime < 0)
-            _baseReloadTime = 0;
-
-        if (_shotPower < 0)
-            _shotPower = 0;
-
-        if (_timeBetweenShots < 0)
-            _timeBetweenShots = 0;
-    }
 }

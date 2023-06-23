@@ -13,22 +13,22 @@ public class BlinkingImageAnimator : AnimatedUI
     private Image _image;
     private float _baseAlpha;
 
-    protected override void OnEnable()
+    private void Awake()
     {
         _image = GetComponent<Image>();
         _baseAlpha = _image.color.a;
-
-        base.OnEnable();
     }
 
     protected override IEnumerator Animating()
     {
+        _image.color.SetAlpha(_baseAlpha);
+
         while (true)
         {
             _image.color = _image.color.SetAlpha(Random.Range(_minAlpha, _maxAlpha));
             Color newColor = _image.color.SetAlpha(_baseAlpha);
 
-            float timer = _frequency / (Random.Range(_frequency / 2, _frequency) * AnimationSpeed);
+            float timer = 1 / _frequency;
 
             while (timer > 0)
             {
@@ -37,12 +37,5 @@ public class BlinkingImageAnimator : AnimatedUI
                 yield return null;
             }
         }
-    }
-
-    public override void StartAnimation()
-    {
-        _image.color.SetAlpha(_baseAlpha);
-
-        base.StartAnimation();
     }
 }

@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class BackgroundChangeAnimator : AnimatedUI
+public class BackgroundImageAnimator : AnimatedUI
 {
     [SerializeField] private Sprite[] _frames;
 
     private Image _image;
 
-    protected override void OnEnable()
+    private void Awake()
     {
         _image = GetComponent<Image>();
-        base.OnEnable();
     }
 
     protected override IEnumerator Animating()

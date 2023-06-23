@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 758849803}
   - component: {fileID: 758849804}
   m_Layer: 5
-  m_Name: FilledImage
+  m_Name: Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 2
-  _frequency: 10
+  _frequency: 5.58
   _minAlpha: 0.65
   _maxAlpha: 0.9
 --- !u!1 &843806472
@@ -473,8 +473,8 @@ GameObject:
   - component: {fileID: 1098077139}
   - component: {fileID: 1098077137}
   - component: {fileID: 1098077136}
-  - component: {fileID: 1098077142}
   - component: {fileID: 1098077143}
+  - component: {fileID: 1098077144}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -532,6 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
+  _minChangingTime: 1
+  _maxChangingTime: 3
 --- !u!114 &1098077139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +675,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098077134}
   m_CullTransparentMesh: 1
---- !u!114 &1098077142
+--- !u!114 &1098077143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098077134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33486f650c1ac3d409d6bc598ad45d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1098077144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -688,18 +702,6 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
---- !u!114 &1098077143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098077134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33486f650c1ac3d409d6bc598ad45d88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1279970270
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,10 +778,10 @@ GameObject:
   - component: {fileID: 1538514513}
   - component: {fileID: 1538514512}
   - component: {fileID: 1538514514}
-  - component: {fileID: 1538514518}
   - component: {fileID: 1538514517}
   - component: {fileID: 1538514516}
   - component: {fileID: 1538514519}
+  - component: {fileID: 1538514520}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -980,7 +982,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
---- !u!114 &1538514518
+  _minChangingTime: 1
+  _maxChangingTime: 3
+--- !u!114 &1538514519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538514508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e7c8d918a18d44bb228b80d4ba3f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1538514520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -995,18 +1011,6 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
---- !u!114 &1538514519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1538514508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31e7c8d918a18d44bb228b80d4ba3f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1541225496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,10 +1194,10 @@ GameObject:
   - component: {fileID: 1795415368}
   - component: {fileID: 1795415367}
   - component: {fileID: 1795415369}
-  - component: {fileID: 1795415373}
   - component: {fileID: 1795415372}
   - component: {fileID: 1795415371}
   - component: {fileID: 1795415374}
+  - component: {fileID: 1795415375}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1392,7 +1396,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
---- !u!114 &1795415373
+  _minChangingTime: 1
+  _maxChangingTime: 3
+--- !u!114 &1795415374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795415363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58eca316d00de4e82398eb8644380e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1795415375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1407,18 +1425,6 @@ MonoBehaviour:
   _isPlayingOnAwake: 1
   _animationSpeed: 1
   _floatingDelta: 4
---- !u!114 &1795415374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795415363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f58eca316d00de4e82398eb8644380e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1844984017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,11 +1437,11 @@ GameObject:
   - component: {fileID: 1844984021}
   - component: {fileID: 1844984019}
   - component: {fileID: 1844984022}
-  - component: {fileID: 1844984026}
   - component: {fileID: 1844984025}
   - component: {fileID: 1844984024}
   - component: {fileID: 1844984027}
   - component: {fileID: 1844984028}
+  - component: {fileID: 1844984029}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -1636,21 +1642,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
   _animationSpeed: 1
---- !u!114 &1844984026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844984017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31d373b981307d449b218a911929e43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isPlayingOnAwake: 1
-  _animationSpeed: 1
-  _floatingDelta: 4
+  _minChangingTime: 1
+  _maxChangingTime: 3
 --- !u!114 &1844984027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1683,6 +1676,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1844984029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844984017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d373b981307d449b218a911929e43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPlayingOnAwake: 1
+  _animationSpeed: 1
+  _floatingDelta: 4
 --- !u!1 &2088718407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1703,7 @@ GameObject:
   - component: {fileID: 2088718410}
   - component: {fileID: 2088718409}
   m_Layer: 5
-  m_Name: Header
+  m_Name: HeaderPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

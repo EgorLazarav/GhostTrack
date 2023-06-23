@@ -9,7 +9,7 @@ public class MainCameraController : MonoBehaviour
 
     private Camera _camera;
 
-    private void Start()
+    public void Init()
     {
         _camera = GetComponent<Camera>();
         StartCoroutine(Following());
@@ -19,7 +19,7 @@ public class MainCameraController : MonoBehaviour
     {
         while (true)
         {
-            _camera.transform.position = new Vector3(_followTarget.position.x, _followTarget.position.y, _camera.transform.position.z);
+            _camera.transform.FollowTargetXY(_followTarget);
             yield return null;
         }
     }

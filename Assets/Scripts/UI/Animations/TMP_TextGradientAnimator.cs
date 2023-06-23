@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Collections;
 
 [RequireComponent(typeof(TMP_Text))]
-public class TextGradientAnimator : AnimatedUI
+public class TMP_TextGradientAnimator : AnimatedUI
 {
+    [SerializeField] private float _minChangingTime = 1;
+    [SerializeField] private float _maxChangingTime = 3;
+
     private TMP_Text _text;
     private Color[] _vertexColors;
 
-    protected override void OnEnable()
+    private void Awake()
     {
         _text = GetComponent<TMP_Text>();
         _vertexColors = new Color[4];
@@ -18,8 +21,6 @@ public class TextGradientAnimator : AnimatedUI
         _vertexColors[1] = _text.colorGradient.topRight;
         _vertexColors[2] = _text.colorGradient.bottomLeft;
         _vertexColors[3] = _text.colorGradient.bottomRight;
-
-        base.OnEnable();
     }
 
     protected override IEnumerator Animating()
@@ -29,7 +30,7 @@ public class TextGradientAnimator : AnimatedUI
             _vertexColors.ShiftArrayToRight();
 
             float timer = 0;
-            float randomDuration = Random.Range(1, 3);
+            float randomDuration = Random.Range(_minChangingTime, _maxChangingTime);
 
             while (timer < randomDuration)
             {

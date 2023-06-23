@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 
 [RequireComponent(typeof(TMP_Text))]
-public class TMPTextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
+public class TMP_TextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float _hoverScaleSize = 1.1f;
     [SerializeField] private Color _hoverColor = Color.white;
@@ -17,15 +17,13 @@ public class TMPTextHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerEx
     private VertexGradient _baseColor;
     private Vector3 _baseScale;
 
-    protected override void OnEnable()
+    private void Awake()
     {
         _text = GetComponent<TMP_Text>();
 
         _baseColor = _text.colorGradient;
         _baseScale = _text.transform.localScale;
         _vertexHoverColor = new VertexGradient(_hoverColor);
-
-        base.OnEnable();
     }
 
     protected override IEnumerator Animating()

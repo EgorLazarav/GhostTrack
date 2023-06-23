@@ -12,7 +12,7 @@ public class ConfirmModalWindow : MonoBehaviour
     [SerializeField] private Button _acceptButton;
     [SerializeField] private Button _declineButton;
 
-    public static ConfirmModalWindow Instance { get; private set; }
+    public static ConfirmModalWindow Instance { get; private set; } = null;
 
     private void Awake()
     {
@@ -26,27 +26,20 @@ public class ConfirmModalWindow : MonoBehaviour
 
     private void OnEnable()
     {
-        _acceptButton.onClick.AddListener(OnAcceptButtonClicked);
-        _declineButton.onClick.AddListener(OnDeclineButtonClicked);
+        _acceptButton.onClick.AddListener(OnButtonClicked);
+        _declineButton.onClick.AddListener(OnButtonClicked);
     }
 
     private void OnDisable()
     {
-        _acceptButton.onClick.RemoveListener(OnAcceptButtonClicked);
-        _declineButton.onClick.RemoveListener(OnDeclineButtonClicked);
+        _acceptButton.onClick.RemoveListener(OnButtonClicked);
+        _declineButton.onClick.RemoveListener(OnButtonClicked);
     }
     
-    private void OnAcceptButtonClicked()
+    private void OnButtonClicked()
     {
         _acceptButton.onClick.RemoveAllListeners();
-        _acceptButton.onClick.AddListener(OnAcceptButtonClicked);
-        _blurPanel.gameObject.SetActive(false);
-    }
-
-    private void OnDeclineButtonClicked()
-    {
-        _acceptButton.onClick.RemoveAllListeners();
-        _acceptButton.onClick.AddListener(OnAcceptButtonClicked);
+        _acceptButton.onClick.AddListener(OnButtonClicked);
         _blurPanel.gameObject.SetActive(false);
     }
 

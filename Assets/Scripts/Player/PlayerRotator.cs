@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerRotator : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
 
-    private void Start()
+    public void Init()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }

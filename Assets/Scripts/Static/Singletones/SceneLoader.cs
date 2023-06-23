@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum SceneNames
+{
+    MainMenu,
+    Tutorial
+}
+
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance { get; private set; } = null;
@@ -24,11 +30,11 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadSceneAsync("MainMenu");
+        SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
     }
 
     public void LoadNewGame()
     {
-        SceneManager.LoadSceneAsync("Tutorial");
+        SceneManager.LoadSceneAsync(SceneNames.Tutorial.ToString());
     }
 }

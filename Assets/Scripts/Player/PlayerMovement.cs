@@ -9,15 +9,35 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
 
-    private void Start()
+    public void Init()
     {
         _rigidbody = GetComponent<Rigidbody2D>();   
     }
 
     private void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        _rigidbody.velocity = new Vector2(horizontalInput, verticalInput) * _speed; 
+        Vector2 moveVector = Vector2.zero;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveVector += Vector2.up;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveVector += Vector2.left;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            moveVector += Vector2.down;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveVector += Vector2.right;
+        }
+
+        _rigidbody.velocity = moveVector * _speed; 
     }
 }

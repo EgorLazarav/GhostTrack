@@ -7,16 +7,18 @@ using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private Weapon _weapon;
+    [SerializeField] private Weapon _currentWeapon;
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private float _pickUpWeaponRange = 0.5f;
-    [SerializeField] private float _reloadSpeed = 1;
 
     public static event UnityAction<Weapon> WeaponChanged;
 
-    private void Awake()
+    public void Init()
     {
-        var weapon = Instantiate(_weapon);
+        if (_currentWeapon == null)
+            return;
+
+        var weapon = Instantiate(_currentWeapon);
         EquipWeapon(weapon);
     }
 
@@ -32,28 +34,32 @@ public class PlayerCombat : MonoBehaviour
             TryDropWeapon();
         }
 
-
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TryEquipWeapon();
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            TryReloadWeapon();
+            TryEquipClosestWeapon();
         }
     }
 
-    private void TryReloadWeapon()
+    private void TryShoot()
     {
-        if (_weapon == null)
+        if (_currentWeapon == null)
             return;
 
-        _weapon.TryReload(_reloadSpeed);
+        _currentWeapon.TryShoot();
     }
 
-    private void TryEquipWeapon()
+    private void TryDropWeapon()
+    {
+        if (_currentWeapon == null)
+            return;
+
+        _currentWeapon.transform.parent = null;
+        _currentWeapon = null;
+
+        WeaponChanged?.Invoke(_currentWeapon);
+    }
+
+    private void TryEquipClosestWeapon()
     {
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _pickUpWeaponRange);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
@@ -62,31 +68,14 @@ public class PlayerCombat : MonoBehaviour
             EquipWeapon(closestWeapon.GetComponent<Weapon>());
     }
 
-    private void TryShoot()
-    {
-        if (_weapon == null)
-            return;
-
-        _weapon.TryShoot();
-    }
-
     private void EquipWeapon(Weapon newWeapon)
     {
         TryDropWeapon();
 
-        _weapon = newWeapon;
-        WeaponChanged?.Invoke(_weapon);
-        _weapon.PickUp(_weaponPoint);
-    }
+        _currentWeapon = newWeapon;
+        _currentWeapon.transform.parent = _weaponPoint.transform;
+        _currentWeapon.transform.SetParentTransform();
 
-    private void TryDropWeapon()
-    {
-        if (_weapon == null)
-            return;
-
-        _weapon.Drop();
-        _weapon = null;
-
-        WeaponChanged?.Invoke(_weapon);
+        WeaponChanged?.Invoke(newWeapon);
     }
 }

@@ -16,14 +16,12 @@ public class ImageHoverAnimator : AnimatedUI, IPointerEnterHandler, IPointerExit
     private Color _baseColor;
     private Vector3 _baseScale;
 
-    protected override void OnEnable()
+    private void Awake()
     {
         _image = GetComponent<Image>();
 
         _baseColor = _image.color;
         _baseScale = _image.transform.localScale;
-
-        base.OnEnable();
     }
 
     protected override IEnumerator Animating()

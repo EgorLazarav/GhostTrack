@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7531985522815080091}
   - component: {fileID: 7531985522815080090}
   - component: {fileID: 5920914762372672408}
-  - component: {fileID: 7802271951954384825}
   m_Layer: 11
   m_Name: AWM
   m_TagString: Untagged
@@ -144,18 +143,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &7802271951954384825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7531985522815080068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461627ef6a340ce41b7eb8702987cb1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 775ea8a793d19a445ac394705eda8320, type: 2}
-  _shootPoint: {fileID: 7531985522518755038}
-  _bonusZoomOutRange: 2

@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
     private T _itemPrefab;
+
     private List<T> _items = new List<T>();
 
-    protected void Init(T itemprefab)
+    protected void InitPool(T itemprefab)
     {
         _itemPrefab = itemprefab;
     }

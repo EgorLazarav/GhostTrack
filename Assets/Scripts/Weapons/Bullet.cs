@@ -5,34 +5,27 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    protected Rigidbody2D Rigidbody;
-    protected float BaseDamage = 1;
+    [SerializeField] private Rigidbody2D _rigidbody;
 
-    private void Awake()
-    {
-        Rigidbody = GetComponent<Rigidbody2D>();
-    }
+    private int _damagePercent;
 
     private void OnBecameInvisible()
     {
         gameObject.SetActive(false);
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.TryGetComponent(out Health health))
-            health.ApplyDamage(BaseDamage);
-
         gameObject.SetActive(false);
     }
 
-    public virtual void Init(Vector3 position, Quaternion rotation, float shotPower, float damage = 1)
+    public void Init(Vector3 position, Quaternion rotation, float shotPower, int damagePercent)
     {
-        BaseDamage = damage;
+        _damagePercent = damagePercent;
         transform.rotation = rotation;
         transform.position = position;
 
-        Rigidbody.velocity = Vector2.zero;
-        Rigidbody.velocity = transform.right * shotPower;
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.velocity = transform.right * shotPower;
     }
 }
