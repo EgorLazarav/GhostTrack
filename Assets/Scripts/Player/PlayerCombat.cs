@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Transform _weaponPoint;
-    [SerializeField] private float _pickUpWeaponRange = 0.5f;
+    [SerializeField] private float _handsLength = 0.5f;
 
     private Weapon _currentWeapon;
 
@@ -27,7 +27,8 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            TryShoot();
+            if (TryShoot() == false)
+                Punch();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -41,13 +42,29 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private void TryShoot()
+    private void Punch()
+    {
+        print("Punch");
+        var objects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
+
+        foreach (var obj in objects)
+        {
+            if (obj.TryGetComponent(out Health health) && obj.TryGetComponent(out Player player) == false)
+            {
+                health.ApplyDamage();
+            }
+        }
+    }
+
+    private bool TryShoot()
     {
         if (_currentWeapon == null)
-            return;
+            return false;
 
         if (_currentWeapon.TryShoot())
             BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
+
+        return true;
     }
 
     private void TryDropWeapon()
@@ -63,7 +80,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void TryEquipClosestWeapon()
     {
-        var closestObjects = Physics2D.OverlapCircleAll(transform.position, _pickUpWeaponRange);
+        var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
 
         if (closestWeapon != null)

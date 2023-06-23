@@ -2,13 +2,23 @@
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float _current = 1;
+    private int _currentPercent = 100;
+    private DamageReducer _damageReducer;
 
-    public void ApplyDamage(float amount)
+    private void Start()
     {
-        _current = Mathf.Clamp(_current - amount, 0, _current);
+        if (TryGetComponent(out DamageReducer damageReducer))
+            _damageReducer = damageReducer;
+    }
 
-        if (_current <= 0)
+    public void ApplyDamage(int amount = 100)
+    {
+        if (_damageReducer != null)
+            amount = _damageReducer.Reduce(amount);
+
+        _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
+
+        if (_currentPercent <= 0)
             Destroy(gameObject);
     }
 }
