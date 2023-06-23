@@ -7,19 +7,20 @@ using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private Weapon _currentWeapon;
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private float _pickUpWeaponRange = 0.5f;
 
-    public static event UnityAction<Weapon> WeaponChanged;
+    private Weapon _currentWeapon;
 
-    public void Init()
+    public static event UnityAction<int> BulletsChanged;
+
+    public void Init(Weapon startWeapon = null)
     {
         if (_currentWeapon == null)
             return;
 
-        var weapon = Instantiate(_currentWeapon);
-        EquipWeapon(weapon);
+        _currentWeapon = Instantiate(startWeapon);
+        EquipWeapon(_currentWeapon);
     }
 
     private void Update()
@@ -45,7 +46,8 @@ public class PlayerCombat : MonoBehaviour
         if (_currentWeapon == null)
             return;
 
-        _currentWeapon.TryShoot();
+        if (_currentWeapon.TryShoot())
+            BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
     }
 
     private void TryDropWeapon()
@@ -56,7 +58,7 @@ public class PlayerCombat : MonoBehaviour
         _currentWeapon.Throw();
         _currentWeapon = null;
 
-        WeaponChanged?.Invoke(_currentWeapon);
+        BulletsChanged?.Invoke(0);
     }
 
     private void TryEquipClosestWeapon()
@@ -75,6 +77,6 @@ public class PlayerCombat : MonoBehaviour
         _currentWeapon = newWeapon;
         _currentWeapon.PickUp(_weaponPoint);
 
-        WeaponChanged?.Invoke(newWeapon);
+        BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
     }
 }

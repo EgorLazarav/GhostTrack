@@ -11,6 +11,7 @@ public class Weapon : ObjectPool<Bullet>
     private WaitForSeconds _internalReloadingDelay;
     private int _currentBulletsCount;
 
+    public int CurrentBulletsCount => _currentBulletsCount;
     protected WeaponData Data => _data;
     protected Transform ShootPoint => _shootPoint;
 

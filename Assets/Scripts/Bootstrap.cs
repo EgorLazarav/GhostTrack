@@ -9,10 +9,8 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private PlayerRotator _playerRotator;
 
-    /*
     [Header("UI")]
     [SerializeField] private BulletsDisplay _bulletsDisplay;
-    */
 
     [Header("Camera")]
     [SerializeField] private MainCameraController _mainCameraController;
@@ -21,7 +19,7 @@ public class Bootstrap : MonoBehaviour
     {
         _mainCameraController.Init();
 
-        // _bulletsDisplay.Init();
+        _bulletsDisplay.Init();
 
         _playerCombat.Init();
         _playerMovement.Init();
