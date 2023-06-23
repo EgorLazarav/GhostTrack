@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 194346533056455635}
   - component: {fileID: 194346533056455634}
   - component: {fileID: 4044189936654048976}
+  - component: {fileID: -1398422719830060170}
   m_Layer: 11
   m_Name: Nova
   m_TagString: Untagged
@@ -143,3 +144,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9349942, y: 0.18163133}
   m_EdgeRadius: 0
+--- !u!114 &-1398422719830060170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194346533056455628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01936fdb5cf3894a9d9e24c16a7c9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: 4eb01c1603bac664d9be3cd612803e91, type: 2}
+  ShootPoint: {fileID: 194346531777819542}
+  _angleSpread: 5

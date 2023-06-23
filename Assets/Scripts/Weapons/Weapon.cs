@@ -20,5 +20,17 @@ public abstract class Weapon : ObjectPool<Bullet>
         CurrentBulletsCount = Data.BulletsCount;
     }
 
+    protected IEnumerator InternalReloading()
+    {
+        yield return InternalReloadingDelay;
+        InternalReloadingCoroutine = null;
+    }
+
+    protected virtual void Shoot(Quaternion rotation)
+    {
+        var bullet = GetItem();
+        bullet.Init(ShootPoint.position, rotation, Data.ShotPower, Data.DamagePercent);
+    }
+
     public abstract void TryShoot();
 }

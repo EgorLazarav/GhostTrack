@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2da97d1a341e84bbc1035e1911a5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentWeapon: {fileID: 160849015964691011, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}
+  _currentWeapon: {fileID: -1398422719830060170, guid: 047c118110cdbfc469b948af4fe61f93, type: 3}
   _weaponPoint: {fileID: 742534339}
   _pickUpWeaponRange: 0.5
 --- !u!114 &949360834
