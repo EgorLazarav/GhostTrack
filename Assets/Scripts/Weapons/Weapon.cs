@@ -12,8 +12,8 @@ public class Weapon : ObjectPool<Bullet>
     private int _currentBulletsCount;
 
     public int CurrentBulletsCount => _currentBulletsCount;
-    protected WeaponData Data => _data;
-    protected Transform ShootPoint => _shootPoint;
+    public WeaponData Data => _data;
+    public Transform ShootPoint => _shootPoint;
 
     private void Start()
     {

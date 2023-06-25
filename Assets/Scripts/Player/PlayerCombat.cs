@@ -10,25 +10,27 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private float _handsLength = 0.5f;
 
-    private Weapon _currentWeapon;
+    private Weapon _currentWeapon = null;
 
     public static event UnityAction<int> BulletsChanged;
 
     public void Init(Weapon startWeapon = null)
     {
-        if (_currentWeapon == null)
+        if (startWeapon == null)
             return;
 
-        _currentWeapon = Instantiate(startWeapon);
-        EquipWeapon(_currentWeapon);
+        var weapon = Instantiate(startWeapon);
+        EquipWeapon(weapon);
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (TryShoot() == false)
+            if (_currentWeapon == null)
                 Punch();
+            else
+                TryShoot();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -63,28 +65,34 @@ public class PlayerCombat : MonoBehaviour
 
         if (_currentWeapon.TryShoot())
             BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
+        else
+            return false;
 
         return true;
     }
 
-    private void TryDropWeapon()
+    private bool TryDropWeapon()
     {
         if (_currentWeapon == null)
-            return;
+            return false;
 
         _currentWeapon.Throw();
         _currentWeapon = null;
 
         BulletsChanged?.Invoke(0);
+
+        return true;
     }
 
-    private void TryEquipClosestWeapon()
+    private bool TryEquipClosestWeapon()
     {
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
 
         if (closestWeapon != null)
             EquipWeapon(closestWeapon.GetComponent<Weapon>());
+
+        return closestWeapon != null;
     }
 
     private void EquipWeapon(Weapon newWeapon)

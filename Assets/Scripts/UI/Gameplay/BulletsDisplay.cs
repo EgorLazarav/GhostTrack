@@ -8,18 +8,19 @@ public class BulletsDisplay : MonoBehaviour
 {
     private Text _text;
 
-    public void Init()
+    public void Init(int startWeaponBulletsCount)
     {
         _text = GetComponent<Text>();
-        _text.text = "NO AMMO";
-    }
 
-    private void OnEnable()
-    {
+        if (startWeaponBulletsCount == 0)
+            _text.text = "NO AMMO";
+        else
+            _text.text = "||| " + startWeaponBulletsCount;
+
         PlayerCombat.BulletsChanged += OnPlayerBulletsChanged;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerCombat.BulletsChanged -= OnPlayerBulletsChanged;
     }

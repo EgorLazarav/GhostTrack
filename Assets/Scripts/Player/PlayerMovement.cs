@@ -9,12 +9,17 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
 
-    public void Init()
+    private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();   
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         Vector2 moveVector = Vector2.zero;
 
@@ -38,6 +43,6 @@ public class PlayerMovement : MonoBehaviour
             moveVector += Vector2.right;
         }
 
-        _rigidbody.velocity = moveVector * _speed; 
+        _rigidbody.velocity = moveVector * _speed;
     }
 }

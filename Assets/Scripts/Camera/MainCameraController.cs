@@ -5,21 +5,22 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class MainCameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _followTarget;
-
+    private Transform _followTarget;
     private Camera _camera;
 
-    public void Init()
+    public void Init(Transform followTarget)
     {
         _camera = GetComponent<Camera>();
-        StartCoroutine(Following());
+
+        _followTarget = followTarget;
+        StartCoroutine(Following(_followTarget));
     }
 
-    private IEnumerator Following()
+    private IEnumerator Following(Transform target)
     {
         while (true)
         {
-            _camera.transform.FollowTargetXY(_followTarget);
+            _camera.transform.FollowTargetXY(target);
             yield return null;
         }
     }
