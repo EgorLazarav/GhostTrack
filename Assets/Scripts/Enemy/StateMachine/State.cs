@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class State : MonoBehaviour
 {
@@ -38,4 +38,9 @@ public class State : MonoBehaviour
 
         return null;
     }
+}
+
+public class CombatState : State
+{
+
 }

@@ -14,3 +14,8 @@ public class Transition : MonoBehaviour
         NeedTransit = false;
     }
 }
+
+public class CombatTransition : Transition
+{
+
+}

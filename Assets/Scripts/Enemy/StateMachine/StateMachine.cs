@@ -8,8 +8,6 @@ public class StateMachine : MonoBehaviour
 
     private State _currentState;
 
-    public State CurrentState => _currentState;
-
     private void Start()
     {
         _currentState = _startState;
@@ -27,7 +25,6 @@ public class StateMachine : MonoBehaviour
 
         if (nextState != null)
             Transit(nextState);
-
     }
 
     private void Transit(State nextState)

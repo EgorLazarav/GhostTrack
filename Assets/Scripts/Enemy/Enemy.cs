@@ -5,18 +5,11 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private NavMeshAgent _agent;
 
-    private NavMeshAgent _agent;
-
-    private void Start()
+    private void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
-    }
-
-    private void Update()
-    {
-        _agent.SetDestination(_player.transform.position);
+        _agent.updateUpAxis = false;
     }
 }

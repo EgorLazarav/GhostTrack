@@ -7436,10 +7436,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546310575}
     m_Modifications:
-    - target: {fileID: 1977911552626433264, guid: f23d355a23f484e49b0ea579a5bd19da, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 1977911551319215003}
     - target: {fileID: 7516994521962347579, guid: f23d355a23f484e49b0ea579a5bd19da, type: 3}
       propertyPath: m_Name
       value: SimpleEnemy
