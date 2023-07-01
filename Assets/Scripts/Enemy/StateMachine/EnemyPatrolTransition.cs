@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class PatrolTransition : Transition
+public class EnemyPatrolTransition : EnemyTransition
 {
     private void OnEnable()
     {

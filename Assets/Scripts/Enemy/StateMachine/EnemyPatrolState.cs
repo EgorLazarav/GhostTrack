@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
-using DG.Tweening;
 
-public class PatrolState : State
+public class EnemyPatrolState : EnemyState
 {
     private Rect _patrolArea;
     private Coroutine _coroutine;
@@ -20,22 +18,19 @@ public class PatrolState : State
 
     private void Start()
     {
-        _patrolArea = new Rect(transform.position.x, transform.position.y, Enemy.PatrolRangeX, Enemy.PatrolRangeY);
+        _patrolArea = new Rect(transform.position.x, transform.position.y, EnemyController.PatrolRangeX, EnemyController.PatrolRangeY);
     }
 
     private IEnumerator Patroling()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(0, Enemy.MaxStopTime));
+            yield return new WaitForSeconds(Random.Range(0, EnemyController.MaxStopTime));
 
             Vector3 newDestination = GetRandomPointInArea(_patrolArea);
-            Vector3 lookDirection = newDestination - transform.position;
-            float turnRate = 0.1f;
-            float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            transform.DORotate(new Vector3(0, 0, lookAngle), turnRate);
-            Enemy.Agent.SetDestination(newDestination);
+            EnemyController.TurnToTarget(newDestination);
+            EnemyController.Agent.SetDestination(newDestination);
         }
     }
 

@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Enemy))]
-public class State : MonoBehaviour
+[RequireComponent(typeof(EnemyController))]
+public class EnemyState : MonoBehaviour
 {
-    [SerializeField] private List<Transition> _transitions;
+    [SerializeField] private List<EnemyTransition> _transitions;
 
-    protected Enemy Enemy;
+    protected EnemyController EnemyController;
 
     private void Awake()
     {
-        Enemy = GetComponent<Enemy>();
+        EnemyController = GetComponent<EnemyController>();
     }
 
     public void Enter()
@@ -35,7 +35,7 @@ public class State : MonoBehaviour
         }
     }
 
-    public State TryGetNextState()
+    public EnemyState TryGetNextState()
     {
         foreach (var transition in _transitions)
         {
@@ -45,9 +45,4 @@ public class State : MonoBehaviour
 
         return null;
     }
-}
-
-public class CombatState : State
-{
-
 }

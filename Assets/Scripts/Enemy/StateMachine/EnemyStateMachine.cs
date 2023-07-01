@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+[RequireComponent(typeof(EnemyController))]
+public class EnemyStateMachine : MonoBehaviour
 {
-    [SerializeField] private State _startState;
+    [SerializeField] private EnemyState _startState;
 
-    private State _currentState;
+    private EnemyState _currentState;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class StateMachine : MonoBehaviour
             Transit(nextState);
     }
 
-    private void Transit(State nextState)
+    private void Transit(EnemyState nextState)
     {
         if (_currentState != null)
             _currentState.Exit();
