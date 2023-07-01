@@ -5,8 +5,9 @@
         EnemyController.DetectionSystem.PlayerDetected += OnPlayerDetected;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         EnemyController.DetectionSystem.PlayerDetected -= OnPlayerDetected;
     }
 

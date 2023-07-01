@@ -8,8 +8,9 @@ public class EnemyPatrolTransition : EnemyTransition
         Player.Died += OnPlayerDied;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         Player.Died -= OnPlayerDied;
     }
 

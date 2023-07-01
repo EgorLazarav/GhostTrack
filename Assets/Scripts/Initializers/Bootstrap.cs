@@ -7,7 +7,6 @@ public class Bootstrap : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private Player _player;
-    [SerializeField] private PlayerCombat _playerCombat;
 
     [Header("UI")]
     [SerializeField] private BulletsDisplay _bulletsDisplay;
@@ -21,7 +20,6 @@ public class Bootstrap : MonoBehaviour
     private void Awake()
     {
         _player.Init();
-        _playerCombat.Init(_player.StartWeapon);
 
         _mainCameraController.Init(_player.transform);
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyController))]
+[RequireComponent(typeof(EnemyStateMachine))]
 public class EnemyState : MonoBehaviour
 {
     [SerializeField] private List<EnemyTransition> _transitions;

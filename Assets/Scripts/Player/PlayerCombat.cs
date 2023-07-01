@@ -10,16 +10,13 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private float _handsLength = 0.5f;
 
-    private Weapon _currentWeapon = null;
+    private Weapon _currentWeapon;
 
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon = null)
+    public void Init(Weapon startWeapon)
     {
-        if (startWeapon == null)
-            return;
-
         var weapon = Instantiate(startWeapon);
         EquipWeapon(weapon);
     }

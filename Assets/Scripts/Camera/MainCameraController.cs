@@ -20,6 +20,9 @@ public class MainCameraController : MonoBehaviour
     {
         while (true)
         {
+            if (target == null)
+                break;
+
             _camera.transform.FollowTargetXY(target);
             yield return null;
         }

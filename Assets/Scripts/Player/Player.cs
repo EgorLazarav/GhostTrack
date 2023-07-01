@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Weapon _startWeapon;
+    [SerializeField] private PlayerCombat _playerCombat;
 
     public Weapon StartWeapon => _startWeapon;
 
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
 
     public void Init()
     {
-
+        _playerCombat.Init(_startWeapon);
     }
 
     private void OnDisable()

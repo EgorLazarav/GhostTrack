@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyController))]
+[RequireComponent(typeof(EnemyStateMachine))]
 public class EnemyTransition : MonoBehaviour
 {
     [SerializeField] private EnemyState _targetState;
@@ -17,7 +17,7 @@ public class EnemyTransition : MonoBehaviour
         EnemyController = GetComponent<EnemyController>();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         NeedTransit = false;
     }
