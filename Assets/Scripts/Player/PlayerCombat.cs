@@ -13,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     private Weapon _currentWeapon = null;
 
     public static event UnityAction<int> BulletsChanged;
+    public static event UnityAction Shooted;
 
     public void Init(Weapon startWeapon = null)
     {
@@ -64,9 +65,14 @@ public class PlayerCombat : MonoBehaviour
             return false;
 
         if (_currentWeapon.TryShoot())
+        {
+            Shooted?.Invoke();
             BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
+        }
         else
+        {
             return false;
+        }
 
         return true;
     }

@@ -3,15 +3,47 @@ using UnityEngine.Events;
 
 public class EnemyDetectionSystem : MonoBehaviour
 {
-    [SerializeField] private LayerMask _playerMask;
-    [SerializeField] private LayerMask _obstacleMask;
-    [SerializeField][Range(0, 360)] private int _viewAngle = 180;
-    [SerializeField] private float _viewRange = 10;
+    private LayerMask _playerMask;
+    private LayerMask _obstacleMask;
+    private float _viewAngle;
+    private float _viewRange;
+
+    private bool _isPlayerDetected;
 
     public event UnityAction PlayerDetected;
 
+    public void Init(LayerMask playerMask, LayerMask obstacleMask, float viewAngle, float viewRange)
+    {
+        _playerMask = playerMask;
+        _obstacleMask = obstacleMask;
+        _viewAngle = viewAngle;
+        _viewRange = viewRange;
+    }
+
+    private void OnBecameVisible()
+    {
+        if (_isPlayerDetected)
+            return;
+
+        enabled = true;
+        PlayerCombat.Shooted += OnPlayerShooted;
+    }
+
+    private void OnBecameInvisible()
+    {
+        enabled = false;
+        PlayerCombat.Shooted -= OnPlayerShooted;
+    }
+
+    private void OnDisable()
+    {
+        PlayerCombat.Shooted -= OnPlayerShooted;
+    }
+
     private void Update()
     {
+        return;
+
         DetectPlayer();
     }
 
@@ -30,8 +62,15 @@ public class EnemyDetectionSystem : MonoBehaviour
                 if (Physics2D.Raycast(transform.position, directionToTarget, distantionToTarget, _obstacleMask) == false)
                 {
                     PlayerDetected?.Invoke();
+                    _isPlayerDetected = true;
+                    enabled = false;
                 }
             }
         }
+    }
+
+    private void OnPlayerShooted()
+    {
+        PlayerDetected?.Invoke();
     }
 }

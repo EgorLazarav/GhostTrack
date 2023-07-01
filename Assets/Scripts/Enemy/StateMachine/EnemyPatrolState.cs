@@ -14,7 +14,6 @@ public class EnemyPatrolState : EnemyState
     private void OnDisable()
     {
         StopCoroutine(_coroutine);
-        EnemyController.Agent.SetDestination(transform.position);
     }
 
     private void Start()

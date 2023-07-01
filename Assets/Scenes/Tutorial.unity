@@ -7654,6 +7654,14 @@ MonoBehaviour:
   _patrolRangeX: 4
   _patrolRangeY: 4
   _maxStopTime: 6
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _viewAngle: 180
+  _viewRange: 10
 --- !u!195 &7516994521962347576
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7688,14 +7696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c6718e0e5b0c042805ccae93c8a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _viewAngle: 180
-  _viewRange: 10
 --- !u!114 &7516994521962347578
 MonoBehaviour:
   m_ObjectHideFlags: 0

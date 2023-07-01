@@ -8,4 +8,9 @@ public class EnemyCombatState : EnemyState
     {
         print("COMBAT!");
     }
+
+    private void Update()
+    {
+        EnemyController.TurnToTarget(EnemyController.Player.transform.position);
+    }
 }

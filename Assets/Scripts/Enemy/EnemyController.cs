@@ -14,6 +14,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _patrolRangeY = 4;
     [SerializeField] private float _maxStopTime = 6;
 
+    [Header("Combat State Settings")]
+    [SerializeField] private LayerMask _playerMask;
+    [SerializeField] private LayerMask _obstacleMask;
+    [SerializeField][Range(0, 360)] private int _viewAngle = 180;
+    [SerializeField] private float _viewRange = 10;
+
     private NavMeshAgent _agent;
     private EnemyDetectionSystem _detectionSystem;
     private Player _player;
@@ -28,9 +34,11 @@ public class EnemyController : MonoBehaviour
     public void Init(Player player)
     {
         _player = player;
-        _detectionSystem = GetComponent<EnemyDetectionSystem>();
-        _agent = GetComponent<NavMeshAgent>();
 
+        _detectionSystem = GetComponent<EnemyDetectionSystem>();
+        _detectionSystem.Init(_playerMask, _obstacleMask, _viewAngle, _viewRange);
+
+        _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = _movementSpeed;
