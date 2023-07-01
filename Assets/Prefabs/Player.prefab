@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1977911551714136922}
   - component: {fileID: 1977911551714136923}
   - component: {fileID: 1977911551714136920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b798c2b5dbddd54995ee3f7d740361f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startWeapon: {fileID: -5129856524738425369, guid: 400dd2131086fce4ea9827d5f11ef2b9, type: 3}
 --- !u!1 &1977911551927265112
 GameObject:
   m_ObjectHideFlags: 0
