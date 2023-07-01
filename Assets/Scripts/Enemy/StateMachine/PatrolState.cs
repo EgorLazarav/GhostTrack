@@ -5,11 +5,6 @@ using DG.Tweening;
 
 public class PatrolState : State
 {
-    [SerializeField] private NavMeshAgent _agent;
-    [SerializeField] private float _patrolRangeX = 4;
-    [SerializeField] private float _patrolRangeY = 4;
-    [SerializeField] private float _maxStopTime = 6;
-
     private Rect _patrolArea;
     private Coroutine _coroutine;
 
@@ -25,14 +20,14 @@ public class PatrolState : State
 
     private void Start()
     {
-        _patrolArea = new Rect(transform.position.x, transform.position.y, _patrolRangeX, _patrolRangeY);
+        _patrolArea = new Rect(transform.position.x, transform.position.y, Enemy.PatrolRangeX, Enemy.PatrolRangeY);
     }
 
     private IEnumerator Patroling()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(0, _maxStopTime));
+            yield return new WaitForSeconds(Random.Range(0, Enemy.MaxStopTime));
 
             Vector3 newDestination = GetRandomPointInArea(_patrolArea);
             Vector3 lookDirection = newDestination - transform.position;
@@ -40,7 +35,7 @@ public class PatrolState : State
             float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
             transform.DORotate(new Vector3(0, 0, lookAngle), turnRate);
-            _agent.SetDestination(newDestination);
+            Enemy.Agent.SetDestination(newDestination);
         }
     }
 

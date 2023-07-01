@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -6,8 +7,15 @@ public class Player : MonoBehaviour
 
     public Weapon StartWeapon => _startWeapon;
 
+    public static event UnityAction Died;
+
     public void Init()
     {
 
+    }
+
+    private void OnDisable()
+    {
+        Died?.Invoke();
     }
 }

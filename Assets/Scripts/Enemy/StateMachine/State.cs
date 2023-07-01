@@ -1,10 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
+[RequireComponent(typeof(Enemy))]
 public class State : MonoBehaviour
 {
     [SerializeField] private List<Transition> _transitions;
+
+    protected Enemy Enemy;
+
+    private void Awake()
+    {
+        Enemy = GetComponent<Enemy>();
+    }
 
     public void Enter()
     {
