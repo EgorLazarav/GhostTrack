@@ -15,6 +15,9 @@ public class Bootstrap : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private MainCameraController _mainCameraController;
 
+    [Header("Enemies")]
+    [SerializeField] private EnemyController[] _enemies;
+
     private void Awake()
     {
         _player.Init();
@@ -24,7 +27,6 @@ public class Bootstrap : MonoBehaviour
 
         _bulletsDisplay.Init(_player.StartWeapon.Data.BulletsCount);
 
-        var enemies = FindObjectsOfType<EnemyController>();
-        enemies.ToList().ForEach(e => e.Init(_player));
+        _enemies.ToList().ForEach(e => e.Init(_player));
     }
 }

@@ -2528,7 +2528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &625717013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7264,6 +7264,8 @@ MonoBehaviour:
   _playerCombat: {fileID: 949360833}
   _bulletsDisplay: {fileID: 235382205}
   _mainCameraController: {fileID: 891807400}
+  _enemies:
+  - {fileID: 5975758983170210953}
 --- !u!4 &1489492810
 Transform:
   m_ObjectHideFlags: 0
@@ -7649,9 +7651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6540a539384f9458121c0a36a7f230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 7516994521962347576}
-  _detectionSystem: {fileID: 7516994521962347577}
-  _player: {fileID: 1977911551319215003}
+  _movementSpeed: 3
   _patrolRangeX: 4
   _patrolRangeY: 4
   _maxStopTime: 6
