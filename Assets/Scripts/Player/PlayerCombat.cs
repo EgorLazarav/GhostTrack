@@ -7,16 +7,18 @@ using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private Transform _weaponPoint;
-    [SerializeField] private float _handsLength = 0.5f;
-
+    private Transform _weaponPoint;
+    private float _handsLength = 0.5f;
     private Weapon _currentWeapon;
 
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon)
+    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength)
     {
+        _weaponPoint = weaponPoint;
+        _handsLength = handsLength;
+
         var weapon = Instantiate(startWeapon);
         EquipWeapon(weapon);
     }
@@ -49,7 +51,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (var obj in objects)
         {
-            if (obj.TryGetComponent(out Health health) && obj.TryGetComponent(out Player player) == false)
+            if (obj.TryGetComponent(out Health health) && obj.TryGetComponent(out PlayerController player) == false)
             {
                 health.ApplyDamage();
             }

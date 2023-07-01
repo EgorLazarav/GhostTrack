@@ -6,7 +6,10 @@ using UnityEngine;
 public class Bootstrap : MonoBehaviour
 {
     [Header("Player")]
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerController _player;
+
+    [Header("Handlers")]
+    [SerializeField] private LevelHandler _levelHandler;
 
     [Header("Camera")]
     [SerializeField] private MainCameraController _mainCameraController;
@@ -20,6 +23,8 @@ public class Bootstrap : MonoBehaviour
     private void Awake()
     {
         _player.Init();
+
+        _levelHandler.Init(_enemies.Length);
 
         _mainCameraController.Init(_player.transform);
 

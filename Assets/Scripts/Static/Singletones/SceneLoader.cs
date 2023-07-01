@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,5 +37,10 @@ public class SceneLoader : MonoBehaviour
     public void LoadNewGame()
     {
         SceneManager.LoadSceneAsync(SceneNames.Tutorial.ToString());
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

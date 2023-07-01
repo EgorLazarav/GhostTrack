@@ -26,6 +26,6 @@ public class EnemyCombatState : EnemyState
 
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
-        return (hit.collider != null && hit.collider.TryGetComponent(out Player player));
+        return (hit.collider != null && hit.collider.TryGetComponent(out PlayerController player));
     }
 }

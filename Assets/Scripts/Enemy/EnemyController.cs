@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyDetectionSystem))]
@@ -23,17 +24,20 @@ public class EnemyController : MonoBehaviour
 
     private NavMeshAgent _agent;
     private EnemyDetectionSystem _detectionSystem;
-    private Player _player;
+    private PlayerController _player;
+    private Health _health;
 
     public NavMeshAgent Agent => _agent;
     public EnemyDetectionSystem DetectionSystem => _detectionSystem;
-    public Player Player => _player;
+    public PlayerController Player => _player;
     public Weapon Weapon => _weapon;
     public float MaxStopTime => _maxStopTime;
     public float PatrolRangeX => _patrolRangeX;
     public float PatrolRangeY => _patrolRangeY;
 
-    public void Init(Player player)
+    public static event UnityAction<EnemyController> Died;
+
+    public void Init(PlayerController player)
     {
         _player = player;
 
@@ -44,6 +48,22 @@ public class EnemyController : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = _movementSpeed;
+    }
+
+    private void OnEnable()
+    {
+        _health.Over += OnHealthOver;
+    }
+
+    private void OnDisable()
+    {
+        _health.Over -= OnHealthOver;
+    }
+
+    private void OnHealthOver()
+    {
+        Died?.Invoke(this);
+        gameObject.SetActive(false);
     }
 
     public void TurnToTarget(Vector3 target)

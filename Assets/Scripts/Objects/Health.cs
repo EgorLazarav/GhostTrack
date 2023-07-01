@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
     private int _currentPercent = 100;
     private DamageReducer _damageReducer;
 
+    public event UnityAction Over;
+
     private void Start()
     {
         if (TryGetComponent(out DamageReducer damageReducer))
@@ -20,6 +22,6 @@ public class Health : MonoBehaviour
         _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
 
         if (_currentPercent <= 0)
-            Destroy(gameObject);
+            Over?.Invoke();
     }
 }

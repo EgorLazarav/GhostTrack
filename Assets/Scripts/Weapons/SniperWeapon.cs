@@ -35,7 +35,7 @@ public class SniperWeapon : SimpleWeapon
 
         while (currentParent != null)
         {
-            if (currentParent.TryGetComponent(out Player player))
+            if (currentParent.TryGetComponent(out PlayerController player))
                 return true;
 
             currentParent = currentParent.parent;

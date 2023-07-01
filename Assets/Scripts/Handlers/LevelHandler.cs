@@ -7,20 +7,48 @@ public class LevelHandler : MonoBehaviour
 {
     [SerializeField] private LevelInfoDisplay _levelInfoDisplay;
 
-    private Player _player;
+    private int _enemiesCountOnLevel;
+
+    public void Init(int enemiesCountOnLevel)
+    {
+        _enemiesCountOnLevel = enemiesCountOnLevel;
+    }
 
     private void OnEnable()
     {
-        Player.Died += OnPlayerDied;
+        PlayerController.Died += OnPlayerDied;
+        EnemyController.Died += OnEnemyDied;
     }
 
     private void OnDisable()
     {
-        Player.Died -= OnPlayerDied;
+        PlayerController.Died -= OnPlayerDied;
+        EnemyController.Died -= OnEnemyDied;
     }
 
     private void OnPlayerDied()
     {
         _levelInfoDisplay.Show("'R' TO RESTART");
+
+        StartCoroutine(WaitingForRestart());
+    }
+
+    private void OnEnemyDied(EnemyController enemy)
+    {
+        _enemiesCountOnLevel--;
+
+        if (_enemiesCountOnLevel == 0)
+            _levelInfoDisplay.Show("GO TO CAR");
+    }
+
+    private IEnumerator WaitingForRestart()
+    {
+        while (true)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneLoader.Instance.ReloadLevel();
+
+            yield return null;
+        }
     }
 }
