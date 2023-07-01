@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _maxStopTime = 6;
 
     [Header("Combat State Settings")]
+    [SerializeField]private Health _health;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private LayerMask _playerMask;
     [SerializeField] private LayerMask _obstacleMask;
@@ -25,7 +26,6 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent _agent;
     private EnemyDetectionSystem _detectionSystem;
     private PlayerController _player;
-    private Health _health;
 
     public NavMeshAgent Agent => _agent;
     public EnemyDetectionSystem DetectionSystem => _detectionSystem;

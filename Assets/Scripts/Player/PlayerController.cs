@@ -8,12 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Weapon _startWeapon;
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private float _handsLength = 0.5f;
+    [SerializeField] private Health _health;
 
     [Header("Movement")]
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private float _speed = 5;
-
-    private Health _health;
 
     public Weapon StartWeapon => _startWeapon;
 
