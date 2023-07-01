@@ -42,8 +42,6 @@ public class EnemyDetectionSystem : MonoBehaviour
 
     private void Update()
     {
-        return;
-
         DetectPlayer();
     }
 

@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _maxStopTime = 6;
 
     [Header("Combat State Settings")]
+    [SerializeField] private Weapon _weapon;
     [SerializeField] private LayerMask _playerMask;
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField][Range(0, 360)] private int _viewAngle = 180;
@@ -27,6 +28,7 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent Agent => _agent;
     public EnemyDetectionSystem DetectionSystem => _detectionSystem;
     public Player Player => _player;
+    public Weapon Weapon => _weapon;
     public float MaxStopTime => _maxStopTime;
     public float PatrolRangeX => _patrolRangeX;
     public float PatrolRangeY => _patrolRangeY;
