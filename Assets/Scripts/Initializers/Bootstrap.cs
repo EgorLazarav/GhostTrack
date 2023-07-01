@@ -8,11 +8,11 @@ public class Bootstrap : MonoBehaviour
     [Header("Player")]
     [SerializeField] private Player _player;
 
-    [Header("UI")]
-    [SerializeField] private BulletsDisplay _bulletsDisplay;
-
     [Header("Camera")]
     [SerializeField] private MainCameraController _mainCameraController;
+
+    [Header("UI")]
+    [SerializeField] private BulletsDisplay _bulletsDisplay;
 
     [Header("Enemies")]
     [SerializeField] private EnemyController[] _enemies;
