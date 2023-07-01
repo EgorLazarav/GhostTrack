@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private bool _isInvulnerable = false;
+
     private int _currentPercent = 100;
     private DamageReducer _damageReducer;
 
@@ -16,6 +18,9 @@ public class Health : MonoBehaviour
 
     public void ApplyDamage(int amount = 100)
     {
+        if (_isInvulnerable)
+            return;
+
         if (_damageReducer != null)
             amount = _damageReducer.Reduce(amount);
 
