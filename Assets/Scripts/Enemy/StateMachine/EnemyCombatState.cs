@@ -14,9 +14,14 @@ public class EnemyCombatState : EnemyState
         EnemyController.TurnToTarget(EnemyController.Player.transform.position);
 
         if (CheckShootingPossibility())
+        {
+            EnemyController.Agent.SetDestination(transform.position);
             EnemyController.Weapon.TryShoot();
+        }
         else
+        {
             EnemyController.Agent.SetDestination(EnemyController.Player.transform.position);
+        }
     }
 
     private bool CheckShootingPossibility()
