@@ -15,6 +15,7 @@ public class ButtonBackToMainMenu : ButtonClickHandler
 
     private void BackToMenu()
     {
+        Time.timeScale = 1;
         SettingsModalWindow.Instance.Close();
         SceneLoader.Instance.LoadMainMenu();
     }
