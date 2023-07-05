@@ -8,15 +8,17 @@ using UnityEngine.Events;
 public class PlayerCombat : MonoBehaviour
 {
     private Transform _weaponPoint;
+    private Transform _punchPoint;
     private float _handsLength = 0.5f;
     private Weapon _currentWeapon;
 
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength)
+    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint)
     {
         _weaponPoint = weaponPoint;
+        _punchPoint = punchPoint;
         _handsLength = handsLength;
 
         var weapon = Instantiate(startWeapon);
@@ -27,10 +29,12 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (_currentWeapon == null)
-                Punch();
-            else
-                TryShoot();
+            TryShoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            TryPunch();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -44,18 +48,17 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private void Punch()
+    private void TryPunch()
     {
         print("Punch");
-        var objects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
 
-        foreach (var obj in objects)
-        {
-            if (obj.TryGetComponent(out Health health) && obj.TryGetComponent(out PlayerController player) == false)
-            {
-                health.ApplyDamage();
-            }
-        }
+        var hit = Physics2D.Raycast(_punchPoint.position, Vector2.right, _handsLength);
+
+        if (!hit)
+            return;
+
+        if (hit.collider.TryGetComponent(out Health health))
+            health.ApplyDamage();
     }
 
     private bool TryShoot()
