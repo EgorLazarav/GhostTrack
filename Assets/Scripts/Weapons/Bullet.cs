@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
     protected Rigidbody2D Rigidbody;
     protected Collider2D Collider;
-    protected int DamagePercent;
+    protected float DamagePercent;
 
     protected virtual void Awake()
     {
@@ -27,8 +27,14 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Health health))
-            health.ApplyDamage(DamagePercent);
+            DealDamage(health);
+        else
+            gameObject.SetActive(false);
+    }
 
+    protected virtual void DealDamage(Health health)
+    {
+        health.ApplyDamage(DamagePercent);
         gameObject.SetActive(false);
     }
 

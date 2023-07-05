@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private bool _isInvulnerable = false;
 
-    private int _currentPercent = 100;
+    private float _currentPercent = 100;
     private DamageReducer _damageReducer;
 
     public event UnityAction Over;
@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
             _damageReducer = damageReducer;
     }
 
-    public void ApplyDamage(int amount = 100, bool ignoreArmor = false)
+    public void ApplyDamage(float amount = 100, bool ignoreArmor = false)
     {
         if (_isInvulnerable)
             return;

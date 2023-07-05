@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfb4b83e60f06e4cba94b584191ac68, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  _bullet: {fileID: -3065285143322720861, guid: 74836d560b33ec446af9e57e6a00804b, type: 3}
+  _bullet: {fileID: 2396861978080693607, guid: 66feef45a0e02154c8b2fb8912c7cccd, type: 3}
   _bulletsCount: 30
   _damagePercent: 100
   _shotPower: 30
