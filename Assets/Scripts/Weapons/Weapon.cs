@@ -54,7 +54,7 @@ public class Weapon : ObjectPool<Bullet>
         transform.parent = newParent;
         transform.rotation = newParent.rotation;
         transform.position = newParent.position;
-        transform.localPosition += new Vector3(0.2f, -0.1f); // костыль;
+        transform.localPosition += new Vector3(0.2f, -0f); // костыль;
     }
 
     public virtual void Throw()

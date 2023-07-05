@@ -106,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 83143b79fdb7fc049b6917773cd487e0, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -159,3 +159,4 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 775ea8a793d19a445ac394705eda8320, type: 2}
   _shootPoint: {fileID: 7531985522518755038}
   _bonusVisionRange: 2
+  _bonusDamage: 2
