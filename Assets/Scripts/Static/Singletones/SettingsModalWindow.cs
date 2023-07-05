@@ -21,4 +21,9 @@ public class SettingsModalWindow : MonoBehaviour
     {
         _blurPanel.gameObject.SetActive(true);
     }
+
+    public void Close()
+    {
+        _blurPanel.gameObject.SetActive(false);
+    }
 }

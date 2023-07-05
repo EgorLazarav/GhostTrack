@@ -17,6 +17,7 @@ public class FloatAnimator : AnimatedUI
     protected override IEnumerator Animating()
     {
         yield return new WaitForSecondsRealtime(0.1f);
+        transform.eulerAngles = new Vector3(0, 0, _baseRotationZ);
 
         while (true)
         {

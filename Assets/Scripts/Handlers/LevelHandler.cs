@@ -28,6 +28,23 @@ public class LevelHandler : MonoBehaviour
         Car.PlayerEntered += OnPlayerEnteredCar;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                SettingsModalWindow.Instance.Close();
+            }
+            else
+            {
+                Time.timeScale = 0;
+                SettingsModalWindow.Instance.Show();
+            }
+        }
+    }
+
     private void OnPlayerDied()
     {
         _levelInfoDisplay.Show("'R' TO RESTART");
