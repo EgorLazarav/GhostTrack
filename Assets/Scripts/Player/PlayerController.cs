@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
@@ -27,12 +28,49 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerInput.DropWeaponKeyPressed += OnDropWeaponKeyPressed;
+        PlayerInput.MoveKeyPressing += OnMoveKeyPressing;
+        PlayerInput.PickUpWeaponKeyPressed += OnPickUpWeaponKeyPressed;
+        PlayerInput.PuncKeyPressed += OnPuncKeyPressed;
+        PlayerInput.ShootKeyPressing += OnShootKeyPressing;
+
         _health.Over += OnHealthOver;
     }
 
     private void OnDisable()
     {
+        PlayerInput.DropWeaponKeyPressed -= OnDropWeaponKeyPressed;
+        PlayerInput.MoveKeyPressing -= OnMoveKeyPressing;
+        PlayerInput.PickUpWeaponKeyPressed -= OnPickUpWeaponKeyPressed;
+        PlayerInput.PuncKeyPressed -= OnPuncKeyPressed;
+        PlayerInput.ShootKeyPressing -= OnShootKeyPressing;
+
         _health.Over -= OnHealthOver;
+    }
+
+    private void OnShootKeyPressing()
+    {
+        _combat.TryShoot();
+    }
+
+    private void OnPuncKeyPressed()
+    {
+        _combat.TryPunch();
+    }
+
+    private void OnPickUpWeaponKeyPressed()
+    {
+        _combat.TryPickUpClosestWeapon();
+    }
+
+    private void OnMoveKeyPressing(Vector2 direction)
+    {
+        _movement.Move(direction);
+    }
+
+    private void OnDropWeaponKeyPressed()
+    {
+        _combat.TryDropWeapon();
     }
 
     private void OnHealthOver()

@@ -25,30 +25,7 @@ public class PlayerCombat : MonoBehaviour
         EquipWeapon(weapon);
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            TryShoot();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            TryPunch();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            TryDropWeapon();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TryEquipClosestWeapon();
-        }
-    }
-
-    private void TryPunch()
+    public void TryPunch()
     {
         print("Punch");
         // сделать партикл эффект удара
@@ -62,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
             health.ApplyDamage(ignoreArmor: true);
     }
 
-    private bool TryShoot()
+    public bool TryShoot()
     {
         if (_currentWeapon == null)
             return false;
@@ -80,7 +57,7 @@ public class PlayerCombat : MonoBehaviour
         return true;
     }
 
-    private bool TryDropWeapon()
+    public bool TryDropWeapon()
     {
         if (_currentWeapon == null)
             return false;
@@ -93,7 +70,7 @@ public class PlayerCombat : MonoBehaviour
         return true;
     }
 
-    private bool TryEquipClosestWeapon()
+    public bool TryPickUpClosestWeapon()
     {
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));

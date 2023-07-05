@@ -83,12 +83,14 @@ public class MainCameraController : MonoBehaviour
     {
         if (isKeyDown)
         {
+            PlayerInput.Instance.enabled = false;
             StopCoroutine(_followingCoroutine);
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _lookingCoroutine = StartCoroutine(Looking());
         }
         else
         {
+            PlayerInput.Instance.enabled = true;
             StopCoroutine(_lookingCoroutine);
             _followingCoroutine = StartCoroutine(Following(_followTarget));
         }

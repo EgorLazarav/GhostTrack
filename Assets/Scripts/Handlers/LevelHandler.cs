@@ -34,11 +34,13 @@ public class LevelHandler : MonoBehaviour
         {
             if (Time.timeScale == 0)
             {
+                PlayerInput.Instance.enabled = true;
                 Time.timeScale = 1;
                 SettingsModalWindow.Instance.Close();
             }
             else
             {
+                PlayerInput.Instance.enabled = false;
                 Time.timeScale = 0;
                 SettingsModalWindow.Instance.Show();
             }
