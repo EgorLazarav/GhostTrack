@@ -31,16 +31,16 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(SceneNames.MainMenu.ToString());
+        SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
     }
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene(SceneNames.Tutorial.ToString());
+        SceneManager.LoadSceneAsync(SceneNames.Tutorial.ToString());
     }
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }
