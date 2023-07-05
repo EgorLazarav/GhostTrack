@@ -3772,7 +3772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c760e9162e5ffd74da50eec3c7d40096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blurPanel: {fileID: 1981875370}
+  _settingsPanel: {fileID: 1981875370}
+  _audioPanel: {fileID: 76076099}
+  _keyBindings: {fileID: 1105859411}
 --- !u!1 &1145764941
 GameObject:
   m_ObjectHideFlags: 0

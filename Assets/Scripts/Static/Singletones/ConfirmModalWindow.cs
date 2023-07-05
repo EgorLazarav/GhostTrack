@@ -35,7 +35,17 @@ public class ConfirmModalWindow : MonoBehaviour
         _acceptButton.onClick.RemoveListener(OnButtonClicked);
         _declineButton.onClick.RemoveListener(OnButtonClicked);
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && _blurPanel.gameObject.activeSelf)
+        {
+            _acceptButton.onClick.RemoveAllListeners();
+            _acceptButton.onClick.AddListener(OnButtonClicked);
+            _blurPanel.gameObject.SetActive(false);
+        }
+    }
+
     private void OnButtonClicked()
     {
         _acceptButton.onClick.RemoveAllListeners();

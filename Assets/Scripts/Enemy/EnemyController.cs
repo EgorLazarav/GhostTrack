@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 lookDirection = target - transform.position;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        float turnRate = Mathf.Abs(transform.eulerAngles.z - lookAngle);
+        float turnRate = Mathf.Abs(lookAngle - transform.eulerAngles.z) / 10; 
 
         transform.DORotate(new Vector3(0, 0, lookAngle), turnRate * Time.deltaTime);
     }
