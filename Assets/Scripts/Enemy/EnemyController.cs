@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField][Range(0, 360)] private int _viewAngle = 180;
     [SerializeField] private float _viewRange = 10;
+    [SerializeField] private float _maxReactionTime = 1.2f;
+    [SerializeField] private float _maxSpread = 0.2f;
 
     private NavMeshAgent _agent;
     private EnemyDetectionSystem _detectionSystem;
@@ -34,6 +36,8 @@ public class EnemyController : MonoBehaviour
     public float MaxStopTime => _maxStopTime;
     public float PatrolRangeX => _patrolRangeX;
     public float PatrolRangeY => _patrolRangeY;
+    public float MaxReactionTime => _maxReactionTime;
+    public float MaxSpread => _maxSpread;
 
     public static event UnityAction<EnemyController> Died;
 

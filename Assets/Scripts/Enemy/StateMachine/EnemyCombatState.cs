@@ -4,23 +4,41 @@ using UnityEngine;
 
 public class EnemyCombatState : EnemyState
 {
+    private Coroutine _coroutine;
+
     private void OnEnable()
     {
-        print("COMBAT!");
+        _coroutine = StartCoroutine(Fighting());
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        EnemyController.TurnToTarget(EnemyController.Player.transform.position);
+        if (_coroutine != null )
+            StopCoroutine(_coroutine);
+    }
 
-        if (CheckShootingPossibility())
+    private IEnumerator Fighting()
+    {
+        System.Random random = new System.Random();
+
+        yield return new WaitForSeconds(Random.Range(0, EnemyController.MaxReactionTime));
+
+        while (true)
         {
-            EnemyController.Agent.SetDestination(transform.position);
-            EnemyController.Weapon.TryShoot();
-        }
-        else
-        {
-            EnemyController.Agent.SetDestination(EnemyController.Player.transform.position);
+            Vector3 randomSpread = random.GetRandomSpread(EnemyController.MaxSpread);
+            EnemyController.TurnToTarget(EnemyController.Player.transform.position + randomSpread);
+
+            if (CheckShootingPossibility())
+            {
+                EnemyController.Agent.SetDestination(transform.position);
+                EnemyController.Weapon.TryShoot();
+            }
+            else
+            {
+                EnemyController.Agent.SetDestination(EnemyController.Player.transform.position);
+            }
+
+            yield return null;
         }
     }
 

@@ -44,4 +44,9 @@ public static class Extends
     {
         transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + value), time);
     }
+
+    public static Vector3 GetRandomSpread(this System.Random random, float maxDelta)
+    {
+        return new Vector3(Random.Range(-maxDelta, maxDelta), Random.Range(-maxDelta, maxDelta));
+    }
 }
