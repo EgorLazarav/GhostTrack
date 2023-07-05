@@ -17,11 +17,12 @@ public class HeavyBullet : Bullet
     protected override void DealDamage(Health health)
     {
         _currentHits++;
-        DamagePercent /= _damageReducePerHit;
 
         if (_currentHits >= _maxHits)
             base.DealDamage(health);
         else
             health.ApplyDamage(DamagePercent);
+
+        DamagePercent /= _damageReducePerHit;
     }
 }
