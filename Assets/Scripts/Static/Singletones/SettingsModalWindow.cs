@@ -3,7 +3,9 @@ using UnityEngine.UI;
 
 public class SettingsModalWindow : MonoBehaviour
 {
-    [SerializeField] private Image _blurPanel;
+    [SerializeField] private Image _settingsPanel;
+    [SerializeField] private Image _audioPanel;
+    [SerializeField] private Image _keyBindings;
 
     public static SettingsModalWindow Instance { get; private set; }
 
@@ -19,11 +21,13 @@ public class SettingsModalWindow : MonoBehaviour
 
     public void Show()
     {
-        _blurPanel.gameObject.SetActive(true);
+        _settingsPanel.gameObject.SetActive(true);
     }
 
     public void Close()
     {
-        _blurPanel.gameObject.SetActive(false);
+        _settingsPanel.gameObject.SetActive(false);
+        _audioPanel.gameObject.SetActive(false);
+        _keyBindings.gameObject.SetActive(false);
     }
 }

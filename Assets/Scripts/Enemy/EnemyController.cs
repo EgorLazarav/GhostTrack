@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _viewRange = 10;
     [SerializeField] private float _maxReactionTime = 1.2f;
     [SerializeField] private float _maxSpread = 0.2f;
+    [SerializeField] private float _hearingRange = 2;
 
     private NavMeshAgent _agent;
     private EnemyDetectionSystem _detectionSystem;
@@ -38,6 +39,7 @@ public class EnemyController : MonoBehaviour
     public float PatrolRangeY => _patrolRangeY;
     public float MaxReactionTime => _maxReactionTime;
     public float MaxSpread => _maxSpread;
+    public float ViewRange => _viewRange;
 
     public static event UnityAction<EnemyController> Died;
 
@@ -46,7 +48,7 @@ public class EnemyController : MonoBehaviour
         _player = player;
 
         _detectionSystem = GetComponent<EnemyDetectionSystem>();
-        _detectionSystem.Init(_playerMask, _obstacleMask, _viewAngle, _viewRange);
+        _detectionSystem.Init(_playerMask, _obstacleMask, _viewAngle, _viewRange, _hearingRange);
 
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
@@ -73,9 +75,9 @@ public class EnemyController : MonoBehaviour
     public void TurnToTarget(Vector3 target)
     {
         Vector3 lookDirection = target - transform.position;
-        float turnRate = 0.1f;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        float turnRate = Mathf.Abs(transform.eulerAngles.z - lookAngle);
 
-        transform.DORotate(new Vector3(0, 0, lookAngle), turnRate);
+        transform.DORotate(new Vector3(0, 0, lookAngle), turnRate * Time.deltaTime);
     }
 }

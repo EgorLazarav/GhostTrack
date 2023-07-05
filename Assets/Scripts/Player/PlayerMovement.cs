@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
+    private void FixedUpdate()
+    {
+        if (!PlayerInput.Instance.enabled)
+            _rigidbody.velocity = Vector2.zero;
+    }
+
     public void Move(Vector2 direction)
     {
         _rigidbody.velocity = direction * _speed;

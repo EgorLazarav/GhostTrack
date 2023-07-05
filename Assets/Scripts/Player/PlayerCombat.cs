@@ -11,15 +11,17 @@ public class PlayerCombat : MonoBehaviour
     private Transform _punchPoint;
     private float _handsLength = 0.5f;
     private Weapon _currentWeapon;
+    private LayerMask _enemyMask;
 
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint)
+    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask)
     {
         _weaponPoint = weaponPoint;
         _punchPoint = punchPoint;
         _handsLength = handsLength;
+        _enemyMask = enemyMask;
 
         var weapon = Instantiate(startWeapon);
         EquipWeapon(weapon);
@@ -30,12 +32,14 @@ public class PlayerCombat : MonoBehaviour
         print("Punch");
         // сделать партикл эффект удара
 
-        var hit = Physics2D.Raycast(_punchPoint.position, Vector2.right, _handsLength);
+        var hit = Physics2D.OverlapCircle(_punchPoint.position, _handsLength, _enemyMask);
 
         if (!hit)
             return;
 
-        if (hit.collider.TryGetComponent(out Health health))
+        print(hit.name);
+
+        if (hit.TryGetComponent(out Health health))
             health.ApplyDamage(ignoreArmor: true);
     }
 

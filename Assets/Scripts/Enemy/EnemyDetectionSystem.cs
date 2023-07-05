@@ -9,15 +9,20 @@ public class EnemyDetectionSystem : MonoBehaviour
     private float _viewRange;
 
     private bool _isPlayerDetected;
+    private CircleCollider2D _hearingArea;
 
     public event UnityAction PlayerDetected;
 
-    public void Init(LayerMask playerMask, LayerMask obstacleMask, float viewAngle, float viewRange)
+    public void Init(LayerMask playerMask, LayerMask obstacleMask, float viewAngle, float viewRange, float hearingRange)
     {
         _playerMask = playerMask;
         _obstacleMask = obstacleMask;
         _viewAngle = viewAngle;
         _viewRange = viewRange;
+
+        _hearingArea = gameObject.AddComponent<CircleCollider2D>();
+        _hearingArea.isTrigger = true;
+        _hearingArea.radius = hearingRange;
     }
 
     private void OnBecameVisible()
@@ -43,6 +48,16 @@ public class EnemyDetectionSystem : MonoBehaviour
     private void Update()
     {
         DetectPlayer();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out PlayerController player))
+        {
+            enabled = false;
+            Destroy(_hearingArea);
+            PlayerDetected?.Invoke();
+        }
     }
 
     private void DetectPlayer()
