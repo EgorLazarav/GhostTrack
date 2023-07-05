@@ -27,6 +27,11 @@ public class Health : MonoBehaviour
         _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
 
         if (_currentPercent <= 0)
+        {
             Over?.Invoke();
+            Destroy(gameObject);
+        }
+
+        print(gameObject.name + " : " + _currentPercent + "%");
     }
 }

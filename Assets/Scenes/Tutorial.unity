@@ -4352,7 +4352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _combat: {fileID: 949360833}
-  _startWeapon: {fileID: 941420416}
+  _startWeapon: {fileID: 160849015964691011, guid: 6bbbc61d55f0bf7459ab76b5c452f8f5, type: 3}
   _weaponPoint: {fileID: 742534339}
   _punchPoint: {fileID: 759776432}
   _health: {fileID: 949360835}
