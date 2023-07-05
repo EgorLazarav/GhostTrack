@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] protected Rigidbody2D Rigidbody;
-
+    protected Rigidbody2D Rigidbody;
+    protected Collider2D Collider;
     protected int DamagePercent;
+
+    protected virtual void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
+
+        Rigidbody.isKinematic = true;
+        Collider.isTrigger = true;
+    }
 
     private void OnBecameInvisible()
     {

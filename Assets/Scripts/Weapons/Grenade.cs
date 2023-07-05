@@ -12,6 +12,16 @@ public class Grenade : Bullet
     private int _currentDurability;
     private Coroutine _launchingCoroutine;
 
+    protected override void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
+
+        Collider.isTrigger = false;
+        Rigidbody.isKinematic = false;
+        Rigidbody.gravityScale = 0;
+    }
+
     public override void Init(Vector3 position, Quaternion rotation, float shotPower, int damagePercent)
     {
         base.Init(position, rotation, shotPower, damagePercent);

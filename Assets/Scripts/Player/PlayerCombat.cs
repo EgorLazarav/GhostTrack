@@ -51,6 +51,7 @@ public class PlayerCombat : MonoBehaviour
     private void TryPunch()
     {
         print("Punch");
+        // сделать партикл эффект удара
 
         var hit = Physics2D.Raycast(_punchPoint.position, Vector2.right, _handsLength);
 
@@ -58,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         if (hit.collider.TryGetComponent(out Health health))
-            health.ApplyDamage();
+            health.ApplyDamage(ignoreArmor: true);
     }
 
     private bool TryShoot()

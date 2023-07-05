@@ -16,12 +16,12 @@ public class Health : MonoBehaviour
             _damageReducer = damageReducer;
     }
 
-    public void ApplyDamage(int amount = 100)
+    public void ApplyDamage(int amount = 100, bool ignoreArmor = false)
     {
         if (_isInvulnerable)
             return;
 
-        if (_damageReducer != null)
+        if (_damageReducer != null && ignoreArmor == false)
             amount = _damageReducer.Reduce(amount);
 
         _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
