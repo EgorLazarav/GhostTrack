@@ -33,11 +33,6 @@ public class PlayerInput : MonoBehaviour
             PuncKeyPressed?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            LookKeyPressed?.Invoke();
-        }
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             DropWeaponKeyPressed?.Invoke();

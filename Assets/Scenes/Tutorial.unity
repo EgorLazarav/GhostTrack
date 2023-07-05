@@ -319,6 +319,50 @@ Transform:
   m_Father: {fileID: 252102025}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &96583640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96583641}
+  - component: {fileID: 96583642}
+  m_Layer: 7
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &96583641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96583640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 949360828}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96583642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96583640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdbb97f9ac13b743b3ce623630cc454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &127467204
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +524,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &127467214
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -942,6 +988,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &252102034
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3709,6 +3757,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &898368588
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4035,6 +4085,7 @@ Transform:
   m_Children:
   - {fileID: 742534339}
   - {fileID: 759776432}
+  - {fileID: 96583641}
   m_Father: {fileID: 1162729112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8566,6 +8617,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &1136232823
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8954,6 +9007,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &1502957654
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9341,6 +9396,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &1745369848
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9592,6 +9649,8 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
 --- !u!195 &1791756870
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10240,3 +10299,5 @@ MonoBehaviour:
     m_Bits: 64
   _viewAngle: 180
   _viewRange: 10
+  _maxReactionTime: 1.2
+  _maxSpread: 0.2
