@@ -3290,7 +3290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c1f835b2ad2bf47845c3b883a64c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInvulnerable: 1
+  _isInvulnerable: 0
 --- !u!1 &950998410
 GameObject:
   m_ObjectHideFlags: 0
