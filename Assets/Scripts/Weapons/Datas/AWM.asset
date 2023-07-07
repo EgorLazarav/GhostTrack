@@ -15,5 +15,5 @@ MonoBehaviour:
   _bullet: {fileID: 7826823786345528848, guid: c2de0ef07990d314baee39969e9c783b, type: 3}
   _bulletsCount: 10
   _damagePercent: 100
-  _shotPower: 50
+  _shotPower: 25
   _timeBetweenShots: 2
