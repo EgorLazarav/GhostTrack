@@ -330,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 96583641}
   - component: {fileID: 96583642}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: PlayerInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2726,7 +2726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 742534339}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WeaponPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2757,7 +2757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 759776432}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: PunchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3290,7 +3290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c1f835b2ad2bf47845c3b883a64c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInvulnerable: 0
+  _isInvulnerable: 1
 --- !u!1 &950998410
 GameObject:
   m_ObjectHideFlags: 0

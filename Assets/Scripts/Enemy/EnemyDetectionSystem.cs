@@ -9,7 +9,7 @@ public class EnemyDetectionSystem : MonoBehaviour
     private float _viewRange;
 
     private bool _isPlayerDetected;
-    private CircleCollider2D _hearingArea;
+    private float _hearingRange;
 
     public event UnityAction PlayerDetected;
 
@@ -19,10 +19,7 @@ public class EnemyDetectionSystem : MonoBehaviour
         _obstacleMask = obstacleMask;
         _viewAngle = viewAngle;
         _viewRange = viewRange;
-
-        _hearingArea = gameObject.AddComponent<CircleCollider2D>();
-        _hearingArea.isTrigger = true;
-        _hearingArea.radius = hearingRange;
+        _hearingRange = hearingRange;
     }
 
     private void OnBecameVisible()
@@ -47,20 +44,29 @@ public class EnemyDetectionSystem : MonoBehaviour
 
     private void Update()
     {
-        DetectPlayer();
+        CheckPlayerInViewRange();
+        CheckPlayerInHearingRange();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void CheckPlayerInHearingRange()
     {
-        if (collision.TryGetComponent(out PlayerController player))
+        var targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, _hearingRange, _playerMask);
+
+        foreach (var target in targetsInViewRadius)
         {
-            enabled = false;
-            Destroy(_hearingArea);
-            PlayerDetected?.Invoke();
+            Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
+            float distantionToTarget = Vector2.Distance(transform.position, target.transform.position);
+
+            if (Physics2D.Raycast(transform.position, directionToTarget, distantionToTarget, _obstacleMask) == false)
+            {
+                PlayerDetected?.Invoke();
+                _isPlayerDetected = true;
+                enabled = false;
+            }
         }
     }
 
-    private void DetectPlayer()
+    private void CheckPlayerInViewRange()
     {
         var targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, _viewRange, _playerMask);
 

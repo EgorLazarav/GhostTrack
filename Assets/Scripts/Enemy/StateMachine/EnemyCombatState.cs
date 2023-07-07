@@ -19,14 +19,11 @@ public class EnemyCombatState : EnemyState
 
     private IEnumerator Fighting()
     {
-        System.Random random = new System.Random();
-
         yield return new WaitForSeconds(Random.Range(0, EnemyController.MaxReactionTime));
 
         while (true)
         {
-            Vector3 randomSpread = random.GetRandomSpread(EnemyController.MaxSpread);
-            EnemyController.TurnToTarget(EnemyController.Player.transform.position + randomSpread);
+            EnemyController.TurnToTarget(EnemyController.Player.transform.position);
 
             if (CheckShootingPossibility())
             {
@@ -38,7 +35,7 @@ public class EnemyCombatState : EnemyState
                 EnemyController.Agent.SetDestination(EnemyController.Player.transform.position);
             }
 
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime * EnemyController.MaxReactionTime);
         }
     }
 
