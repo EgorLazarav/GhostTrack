@@ -8,8 +8,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _effectsSource;
 
     [Header("Combat SFX")]
-    [SerializeField] private AudioClip _punchHittedSFX;
-    [SerializeField] private AudioClip _punchNotHittedSFX;
+    [SerializeField] private AudioClip _hitSFX;
+    [SerializeField] private AudioClip _punchSFX;
+    [SerializeField] private AudioClip _emptyClipSFX;
+
+    private Coroutine _emptyClipSoundPlayingCoroutine;
 
     public static AudioManager Instance { get; private set; } = null;
 
@@ -23,11 +26,36 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayPunchSFX(bool isPunchHitted)
+    public void PlayPunchSFX()
     {
-        if (isPunchHitted)
-            _effectsSource.PlayOneShot(_punchHittedSFX);
-        else
-            _effectsSource.PlayOneShot(_punchNotHittedSFX);
+        _effectsSource.PlayOneShot(_punchSFX);
+    }
+
+    public void PlayHitSFX()
+    {
+        _effectsSource.PlayOneShot(_hitSFX);
+    }
+
+    public void PlayShotSFX(AudioClip clip)
+    {
+        _effectsSource.PlayOneShot(clip);
+    }
+
+    public void TryPlayEmptyClipSFX()
+    {
+        if (_emptyClipSoundPlayingCoroutine != null)
+            return;
+
+        _effectsSource.PlayOneShot(_emptyClipSFX);
+        _emptyClipSoundPlayingCoroutine = StartCoroutine(EmptyClipSoundPlaying());
+    }
+
+    private IEnumerator EmptyClipSoundPlaying()
+    {
+        float delay = _emptyClipSFX.length;
+
+        yield return new WaitForSeconds(delay);
+
+        _emptyClipSoundPlayingCoroutine = null;
     }
 }

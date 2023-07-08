@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 3784646680680844064}
   - component: {fileID: 6689110616474957591}
   - component: {fileID: 6689110616474957590}
-  m_Layer: 12
+  m_Layer: 8
   m_Name: SimpleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,6 +161,7 @@ MonoBehaviour:
   _viewRange: 6
   _maxReactionTime: 1.2
   _maxSpread: 0.2
+  _hearingRange: 2
 --- !u!114 &3784646680558329418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isInvulnerable: 0
+  _hitVFX: {fileID: 5758209532436848253, guid: 61f49a225e0e6d6449756020ac7bd738, type: 3}
 --- !u!114 &6689110616474957589
 MonoBehaviour:
   m_ObjectHideFlags: 0

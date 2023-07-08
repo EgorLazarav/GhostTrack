@@ -35,7 +35,10 @@ public class Weapon : ObjectPool<Bullet>
             return false;
 
         if (_currentBulletsCount <= 0)
+        {
+            AudioManager.Instance.TryPlayEmptyClipSFX();
             return false;
+        }
 
         _currentBulletsCount--;
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());
@@ -47,6 +50,7 @@ public class Weapon : ObjectPool<Bullet>
     {
         var bullet = GetItem();
         bullet.Init(_shootPoint.position, rotation, shotPower, damagePercent);
+        AudioManager.Instance.PlayShotSFX(Data.ShotSFX);
     }
 
     public virtual void PickUp(Transform newParent)

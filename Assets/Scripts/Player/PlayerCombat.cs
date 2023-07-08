@@ -13,20 +13,18 @@ public class PlayerCombat : MonoBehaviour
     private Weapon _currentWeapon;
     private LayerMask _enemyMask;
     private LayerMask _weaponMask;
-    private ParticleSystem _punchVFX;
 
     public Weapon CurrentWeapon => _currentWeapon;
 
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask, ParticleSystem punchVFX, LayerMask weaponMask)
+    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask,LayerMask weaponMask)
     {
         _weaponPoint = weaponPoint;
         _punchPoint = punchPoint;
         _handsLength = handsLength;
         _enemyMask = enemyMask;
-        _punchVFX = punchVFX;
         _weaponMask = weaponMask;
 
         var weapon = Instantiate(startWeapon);
@@ -35,22 +33,15 @@ public class PlayerCombat : MonoBehaviour
 
     public void TryPunch()
     {
-        print("Punch");
-        AudioManager.Instance.PlayPunchSFX(false);
+        AudioManager.Instance.PlayPunchSFX();
 
         var hit = Physics2D.OverlapCircle(_punchPoint.position, _handsLength, _enemyMask);
 
         if (!hit)
             return;
 
-        print(hit.name);
-
         if (hit.TryGetComponent(out Health health))
-        {
             health.ApplyDamage(ignoreArmor: true);
-            _punchVFX.Play();
-            AudioManager.Instance.PlayPunchSFX(true);
-        }
     }
 
     public bool TryShoot()

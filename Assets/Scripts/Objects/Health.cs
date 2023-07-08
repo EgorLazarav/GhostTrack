@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] private bool _isInvulnerable = false;
+    [SerializeField] private ParticleSystem _hitVFX;
 
     private float _currentPercent = 100;
     private DamageReducer _damageReducer;
@@ -25,6 +26,10 @@ public class Health : MonoBehaviour
             amount = _damageReducer.Reduce(amount);
 
         _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
+
+        AudioManager.Instance.PlayHitSFX();
+        var hitVFX = Instantiate(_hitVFX, transform.position, Quaternion.identity);
+        Destroy(hitVFX, hitVFX.main.duration);
 
         if (_currentPercent <= 0)
             Over?.Invoke();

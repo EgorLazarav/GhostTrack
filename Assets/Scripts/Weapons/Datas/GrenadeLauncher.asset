@@ -17,3 +17,4 @@ MonoBehaviour:
   _damagePercent: 100
   _shotPower: 8
   _timeBetweenShots: 1
+  _shotSFX: {fileID: 8300000, guid: d279893434418a144b0fffebca7db896, type: 3}
