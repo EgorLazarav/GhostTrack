@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7531985522815080090}
   - component: {fileID: 5920914762372672408}
   - component: {fileID: 4942116768135113959}
-  m_Layer: 11
+  m_Layer: 2
   m_Name: AWM
   m_TagString: Untagged
   m_Icon: {fileID: 0}

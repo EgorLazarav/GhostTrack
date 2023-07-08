@@ -3276,7 +3276,10 @@ MonoBehaviour:
   _handsLength: 0.5
   _enemyMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 4352
+  _weaponMask:
+    serializedVersion: 2
+    m_Bits: 4
   _punchVFX: {fileID: 2140048766}
   _movement: {fileID: 949360831}
   _speed: 5

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 194346533056455634}
   - component: {fileID: 4044189936654048976}
   - component: {fileID: -1398422719830060170}
-  m_Layer: 11
+  m_Layer: 2
   m_Name: Nova
   m_TagString: Untagged
   m_Icon: {fileID: 0}

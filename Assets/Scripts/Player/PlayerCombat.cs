@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     private float _handsLength = 0.5f;
     private Weapon _currentWeapon;
     private LayerMask _enemyMask;
+    private LayerMask _weaponMask;
     private ParticleSystem _punchVFX;
 
     public Weapon CurrentWeapon => _currentWeapon;
@@ -19,13 +20,14 @@ public class PlayerCombat : MonoBehaviour
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask, ParticleSystem punchVFX)
+    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask, ParticleSystem punchVFX, LayerMask weaponMask)
     {
         _weaponPoint = weaponPoint;
         _punchPoint = punchPoint;
         _handsLength = handsLength;
         _enemyMask = enemyMask;
         _punchVFX = punchVFX;
+        _weaponMask = weaponMask;
 
         var weapon = Instantiate(startWeapon);
         EquipWeapon(weapon);
@@ -84,12 +86,8 @@ public class PlayerCombat : MonoBehaviour
 
     public bool TryPickUpClosestWeapon()
     {
-        var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
+        var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength, _weaponMask);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
-
-        foreach (var weapon in closestObjects)
-            print(weapon.name);
-
 
         if (closestWeapon != null)
             EquipWeapon(closestWeapon.GetComponent<Weapon>());
