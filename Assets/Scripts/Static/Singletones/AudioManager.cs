@@ -5,6 +5,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioSource _effectsSource;
+
+    [Header("Combat SFX")]
+    [SerializeField] private AudioClip _punchHittedSFX;
+    [SerializeField] private AudioClip _punchNotHittedSFX;
 
     public static AudioManager Instance { get; private set; } = null;
 
@@ -16,5 +21,13 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void PlayPunchSFX(bool isPunchHitted)
+    {
+        if (isPunchHitted)
+            _effectsSource.PlayOneShot(_punchHittedSFX);
+        else
+            _effectsSource.PlayOneShot(_punchNotHittedSFX);
     }
 }

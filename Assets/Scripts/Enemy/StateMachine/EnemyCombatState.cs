@@ -28,6 +28,7 @@ public class EnemyCombatState : EnemyState
             if (CheckShootingPossibility())
             {
                 EnemyController.Agent.SetDestination(transform.position);
+                yield return new WaitForSeconds(Random.Range(0.05f, 0.2f));
                 EnemyController.Weapon.TryShoot();
             }
             else
@@ -42,10 +43,16 @@ public class EnemyCombatState : EnemyState
     private bool CheckShootingPossibility()
     {
         Ray2D ray = new Ray2D(EnemyController.Weapon.ShootPoint.position, EnemyController.Weapon.transform.right);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, EnemyController.ViewRange);
+        var hits = Physics2D.RaycastAll(ray.origin, ray.direction, EnemyController.ViewRange);
 
         Debug.DrawRay(ray.origin, ray.direction * EnemyController.ViewRange, Color.red);
 
-        return (hit.collider != null && hit.collider.TryGetComponent(out PlayerController player));
+        foreach (var hit in hits)
+        {
+            if (hit.collider.TryGetComponent(out PlayerController player))
+                return true;
+        }
+
+        return false;
     }
 }

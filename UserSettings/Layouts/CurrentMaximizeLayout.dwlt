@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 5361
+  controlID: 5721
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 5362
+  controlID: 5722
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 5363
+  controlID: 5723
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 885b0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: d8a8ffff46e7ffffc4ebffffaef8fffff0f9fffffafaffff5c5a0000d45a00003a8900006c89000058c8000014c9000098c9000008ca000036ca0000
+      m_SelectedIDs: 2c87ffff
+      m_LastClickedID: -30932
+      m_ExpandedIDs: 4489ffff7a8fffff6cc9ffff28cbffffe6cdffff52d9ffff00dbffff6cddffff1ee3ffffb2f8fffffafaffff725d0000925d0000c45d00006892000004a1000024a10000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -278,7 +278,7 @@ MonoBehaviour:
   - {fileID: 9}
   - {fileID: 10}
   m_Selected: 1
-  m_LastSelected: 2
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -559,9 +559,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.4582295, y: 1.5479642, z: -0.0068859365}
+    m_Target: {x: -10.376488, y: -1.3855928, z: -9.940844}
     speed: 2
-    m_Value: {x: -6.4582295, y: 1.5479642, z: -0.0068859365}
+    m_Value: {x: -10.493833, y: -1.345815, z: -9.938696}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -612,9 +612,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.4279358
+    m_Target: 4.9881377
     speed: 2
-    m_Value: 1.4279358
+    m_Value: 4.7733374
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -826,22 +826,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Weapons/Datas
+    - Assets/Prefabs/Weapons
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Weapons/Datas
+  - Assets/Prefabs/Weapons
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\MyFolder\Unity Projects\GhostTrack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 297}
-    m_SelectedIDs: 2a6d0000
-    m_LastClickedID: 27946
-    m_ExpandedIDs: 00000000c2590000c4590000c6590000c8590000ca590000cc590000ce590000d0590000d2590000d4590000d6590000d8590000ee590000025a000000ca9a3b
+    scrollPos: {x: 0, y: 109}
+    m_SelectedIDs: ae5f0000
+    m_LastClickedID: 24494
+    m_ExpandedIDs: 00000000f2590000f4590000f6590000f8590000fa590000fc590000fe590000005a0000065a0000085a00000a5a0000245a0000345a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -869,7 +869,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c2590000c4590000c6590000c8590000ca590000cc590000ce590000d0590000d2590000d4590000d6590000d8590000025a000000ca9a3b
+    m_ExpandedIDs: 00000000f2590000f4590000f6590000f8590000fa590000fc590000fe590000005a0000065a0000085a00000a5a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -894,8 +894,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 885b0000
-    m_LastClickedInstanceID: 23432
+    m_SelectedInstanceIDs: 2c87ffff
+    m_LastClickedInstanceID: -30932
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c8670000
     m_RenameOverlay:

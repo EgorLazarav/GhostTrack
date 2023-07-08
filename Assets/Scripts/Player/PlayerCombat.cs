@@ -12,16 +12,20 @@ public class PlayerCombat : MonoBehaviour
     private float _handsLength = 0.5f;
     private Weapon _currentWeapon;
     private LayerMask _enemyMask;
+    private ParticleSystem _punchVFX;
+
+    public Weapon CurrentWeapon => _currentWeapon;
 
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Shooted;
 
-    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask)
+    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask, ParticleSystem punchVFX)
     {
         _weaponPoint = weaponPoint;
         _punchPoint = punchPoint;
         _handsLength = handsLength;
         _enemyMask = enemyMask;
+        _punchVFX = punchVFX;
 
         var weapon = Instantiate(startWeapon);
         EquipWeapon(weapon);
@@ -30,7 +34,7 @@ public class PlayerCombat : MonoBehaviour
     public void TryPunch()
     {
         print("Punch");
-        // сделать партикл эффект удара
+        AudioManager.Instance.PlayPunchSFX(false);
 
         var hit = Physics2D.OverlapCircle(_punchPoint.position, _handsLength, _enemyMask);
 
@@ -40,7 +44,11 @@ public class PlayerCombat : MonoBehaviour
         print(hit.name);
 
         if (hit.TryGetComponent(out Health health))
+        {
             health.ApplyDamage(ignoreArmor: true);
+            _punchVFX.Play();
+            AudioManager.Instance.PlayPunchSFX(true);
+        }
     }
 
     public bool TryShoot()
@@ -78,6 +86,10 @@ public class PlayerCombat : MonoBehaviour
     {
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
+
+        foreach (var weapon in closestObjects)
+            print(weapon.name);
+
 
         if (closestWeapon != null)
             EquipWeapon(closestWeapon.GetComponent<Weapon>());

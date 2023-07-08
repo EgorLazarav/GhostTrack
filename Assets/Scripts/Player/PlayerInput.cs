@@ -23,14 +23,14 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            ShootKeyPressing?.Invoke();
-        }
-
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             PuncKeyPressed?.Invoke();
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            ShootKeyPressing?.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

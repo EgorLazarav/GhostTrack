@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Health _health;
     [SerializeField] private float _handsLength = 0.5f;
     [SerializeField] private LayerMask _enemyMask;
+    [SerializeField] private ParticleSystem _punchVFX;
 
     [Header("Movement")]
     [SerializeField] private PlayerMovement _movement;
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        _combat.Init(_startWeapon, _weaponPoint, _handsLength, _punchPoint, _enemyMask);
+        _combat.Init(_startWeapon, _weaponPoint, _handsLength, _punchPoint, _enemyMask, _punchVFX);
         _movement.Init(_speed);
     }
 
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveKeyPressing(Vector2 direction)
     {
-        _movement.Move(direction);
+        _movement.Move(direction, _combat.CurrentWeapon == null);
     }
 
     private void OnDropWeaponKeyPressed()

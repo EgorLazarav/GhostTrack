@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,8 +25,10 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody.velocity = Vector2.zero;
     }
 
-    public void Move(Vector2 direction)
+    public void Move(Vector2 direction, bool isWeaponEquiped)
     {
-        _rigidbody.velocity = direction * _speed;
+        float noWeaponSpeedBonus = 1.5f;
+
+        _rigidbody.velocity = direction * (_speed + (Convert.ToInt32(isWeaponEquiped) * noWeaponSpeedBonus));
     }
 }
