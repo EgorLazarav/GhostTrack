@@ -7,6 +7,8 @@ using System.Linq;
 
 public class ButtonsMenuAnimator : AnimatedUI
 {
+    private bool _isEnded = false;
+
     protected override IEnumerator Animating()
     {
         Button[] buttons = transform.GetComponentsInChildren<Button>(includeInactive: true);
@@ -19,6 +21,24 @@ public class ButtonsMenuAnimator : AnimatedUI
             button.gameObject.SetActive(true);
             button.transform.localScale = Vector3.zero;
             button.transform.DOScale(1, 1 / AnimationSpeed);
+        }
+
+        _isEnded = true;
+    }
+
+    private void Update()
+    {
+        if (_isEnded)
+            return;
+
+        if (Input.anyKeyDown)
+        {
+            StopAllCoroutines();
+            _isEnded = true;
+
+            Button[] buttons = transform.GetComponentsInChildren<Button>(includeInactive: true);
+            buttons.ToList().ForEach(button => button.gameObject.SetActive(true));
+            buttons.ToList().ForEach(button => button.transform.localScale = Vector3.one);
         }
     }
 }
