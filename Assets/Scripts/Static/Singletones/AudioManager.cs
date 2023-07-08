@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _emptyClipSFX;
     [SerializeField] private AudioClip _explosionSFX;
     [SerializeField] private AudioClip _bounceGrenadeSFX;
+    [SerializeField] private AudioClip _pickUpWeaponSFX;
+    [SerializeField] private AudioClip _dropWeaponSFX;
 
     private Coroutine _emptyClipSoundPlayingCoroutine;
 
@@ -51,6 +53,16 @@ public class AudioManager : MonoBehaviour
     public void PlayGrenadeBounceSFX()
     {
         _effectsSource.PlayOneShot(_bounceGrenadeSFX);
+    }
+
+    public void PlayPickUpWeaponSFX()
+    {
+        _effectsSource.PlayOneShot(_pickUpWeaponSFX);
+    }
+
+    public void PlayDropWeaponSFX()
+    {
+        _effectsSource.PlayOneShot(_dropWeaponSFX);
     }
 
     public void TryPlayEmptyClipSFX()

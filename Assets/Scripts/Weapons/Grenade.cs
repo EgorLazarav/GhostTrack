@@ -6,7 +6,7 @@ public class Grenade : Bullet
 {
     [SerializeField] private int _durability = 3;
     [SerializeField] private float _explosionTimer = 3;
-    [SerializeField] private float _explosionRange = 2;
+    [SerializeField] private float _explosionRange = 1.2f;
     [SerializeField] private ParticleSystem _explosion;
 
     private float _velocityReduceCoeff = 1.2f;

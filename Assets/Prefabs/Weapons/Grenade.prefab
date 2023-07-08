@@ -138,5 +138,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _durability: 3
   _explosionTimer: 3
-  _explosionRange: 2
+  _explosionRange: 1.2
   _explosion: {fileID: 73422621658866986, guid: b61aa4bb8a51a6544b23815ab7726bbd, type: 3}

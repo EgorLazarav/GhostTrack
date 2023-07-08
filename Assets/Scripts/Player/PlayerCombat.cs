@@ -71,6 +71,7 @@ public class PlayerCombat : MonoBehaviour
         _currentWeapon = null;
 
         BulletsChanged?.Invoke(0);
+        AudioManager.Instance.PlayDropWeaponSFX();
 
         return true;
     }
@@ -92,6 +93,7 @@ public class PlayerCombat : MonoBehaviour
 
         _currentWeapon = newWeapon;
         _currentWeapon.PickUp(_weaponPoint);
+        AudioManager.Instance.PlayPickUpWeaponSFX();
 
         BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
     }
