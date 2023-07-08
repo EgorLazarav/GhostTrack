@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private float _closingSpeed = 20;
+
     private Rigidbody2D _rigidbody;
     private Coroutine _coroutine;
 
@@ -24,7 +26,7 @@ public class Door : MonoBehaviour
     private IEnumerator Closing()
     {
         _rigidbody.angularDrag = 0;
-        float speed = 10;
+        yield return new WaitForSeconds(0.2f);
 
         while (Mathf.Abs(_rigidbody.rotation) > 1)
         {
@@ -32,11 +34,11 @@ public class Door : MonoBehaviour
 
             if (_rigidbody.rotation > 0)
             {
-                _rigidbody.rotation -= Time.deltaTime * speed;
+                _rigidbody.rotation -= Time.deltaTime * _closingSpeed;
             }
             else
             {
-                _rigidbody.rotation += Time.deltaTime * speed;
+                _rigidbody.rotation += Time.deltaTime * _closingSpeed;
             }
 
             yield return null;
@@ -45,7 +47,6 @@ public class Door : MonoBehaviour
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.rotation = 0;
         _rigidbody.angularDrag = 10;
-
         _coroutine = null;
     }
 }
