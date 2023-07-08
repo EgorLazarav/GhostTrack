@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _hitSFX;
     [SerializeField] private AudioClip _punchSFX;
     [SerializeField] private AudioClip _emptyClipSFX;
+    [SerializeField] private AudioClip _explosionSFX;
+    [SerializeField] private AudioClip _bounceGrenadeSFX;
 
     private Coroutine _emptyClipSoundPlayingCoroutine;
 
@@ -36,9 +38,19 @@ public class AudioManager : MonoBehaviour
         _effectsSource.PlayOneShot(_hitSFX);
     }
 
+    public void PlayExplosionSFX()
+    {
+        _effectsSource.PlayOneShot(_explosionSFX);
+    }
+
     public void PlayShotSFX(AudioClip clip)
     {
         _effectsSource.PlayOneShot(clip);
+    }
+
+    public void PlayGrenadeBounceSFX()
+    {
+        _effectsSource.PlayOneShot(_bounceGrenadeSFX);
     }
 
     public void TryPlayEmptyClipSFX()

@@ -7,6 +7,7 @@ public class Grenade : Bullet
     [SerializeField] private int _durability = 3;
     [SerializeField] private float _explosionTimer = 3;
     [SerializeField] private float _explosionRange = 2;
+    [SerializeField] private ParticleSystem _explosion;
 
     private float _velocityReduceCoeff = 1.2f;
     private int _currentDurability;
@@ -40,6 +41,7 @@ public class Grenade : Bullet
 
         Rigidbody.velocity /= _velocityReduceCoeff;
         _currentDurability--;
+        AudioManager.Instance.PlayGrenadeBounceSFX();
 
         if (_currentDurability <= 0)
             Explode();
@@ -71,6 +73,10 @@ public class Grenade : Bullet
                 health.ApplyDamage(DamagePercent); // от расстояния цели от центра взрыва урон менять
             }
         }
+
+        var explosion = Instantiate(_explosion, transform.position, Quaternion.identity);
+        Destroy(explosion, explosion.main.duration);
+        AudioManager.Instance.PlayExplosionSFX();
 
         gameObject.SetActive(false);
     }

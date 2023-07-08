@@ -3220,6 +3220,8 @@ MonoBehaviour:
   _hitSFX: {fileID: 8300000, guid: ba2ed5447f0e5fb4ca7a9a149654c060, type: 3}
   _punchSFX: {fileID: 8300000, guid: 1f866c88edb340b489d66793db87b04e, type: 3}
   _emptyClipSFX: {fileID: 8300000, guid: df2b8d35fb68b6d4581ec8a91382b0a5, type: 3}
+  _explosionSFX: {fileID: 8300000, guid: 2debde5c9b033454db4d6e6763665a96, type: 3}
+  _bounceGrenadeSFX: {fileID: 8300000, guid: c0c38ae5b310f754b971e9ea8eac44fe, type: 3}
 --- !u!82 &1067643938
 AudioSource:
   m_ObjectHideFlags: 0
