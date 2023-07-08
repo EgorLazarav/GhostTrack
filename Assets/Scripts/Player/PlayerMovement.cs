@@ -6,12 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    private float _speed = 5;
     private Rigidbody2D _rigidbody;
+    private float _speed;
+    private float _noWeaponBonusSpeed;
 
-    public void Init(float speed)
+    public void Init(float speed, float noWeaponBonusSpeed)
     {
         _speed = speed;
+        _noWeaponBonusSpeed = noWeaponBonusSpeed;   
     }
 
     private void Start()
@@ -27,8 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 direction, bool isWeaponEquiped)
     {
-        float noWeaponSpeedBonus = 1.5f;
-
-        _rigidbody.velocity = direction * (_speed + (Convert.ToInt32(isWeaponEquiped) * noWeaponSpeedBonus));
+        _rigidbody.velocity = direction * (_speed + (Convert.ToInt32(isWeaponEquiped) * _noWeaponBonusSpeed));
     }
 }

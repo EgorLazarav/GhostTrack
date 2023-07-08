@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private float _speed = 5;
+    [SerializeField] private float _noWeaponBonusSpeed = 1.5f;
 
     public Weapon StartWeapon => _startWeapon;
 
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         _combat.Init(_startWeapon, _weaponPoint, _handsLength, _punchPoint, _enemyMask, _weaponMask);
-        _movement.Init(_speed);
+        _movement.Init(_speed, _noWeaponBonusSpeed);
     }
 
     private void OnEnable()
