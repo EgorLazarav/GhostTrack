@@ -16,6 +16,7 @@ public class WeaponData : ScriptableObject
     [SerializeField] private AudioClip _shotSFX;
     [SerializeField] private AudioClip _emptyClipSFX;
     [SerializeField] private AudioClip _pickUpSFX;
+    [SerializeField] private bool _isShotSilenced = false;
 
     public Bullet Bullet => _bullet;
     public int BulletsCount => _bulletsCount;
@@ -26,4 +27,5 @@ public class WeaponData : ScriptableObject
     public AudioClip ShotSFX => _shotSFX;
     public AudioClip EmptyClipSFX => _emptyClipSFX;
     public AudioClip PickUpSFX => _pickUpSFX;
+    public bool IsShotSilenced => _isShotSilenced;  
 }

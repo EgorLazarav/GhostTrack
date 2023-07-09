@@ -52,7 +52,13 @@ public class PlayerCombat : MonoBehaviour
         if (_currentWeapon == null)
             return;
 
-        _currentWeapon.TryShoot();
+        if (_currentWeapon.TryShoot())
+        {
+            if (_currentWeapon.Data.IsShotSilenced == false)
+                Attacked?.Invoke();
+
+            BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
+        }
     }
 
     public void TryDropWeapon()

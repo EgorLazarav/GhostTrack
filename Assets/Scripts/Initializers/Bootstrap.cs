@@ -24,7 +24,6 @@ public class Bootstrap : MonoBehaviour
     {
         _player.Init();
 
-        _enemies = FindObjectsOfType<EnemyController>();
         _levelHandler.Init(_enemies.Length);
 
         _mainCameraController.Init(_player.transform, _player.ViewRange);

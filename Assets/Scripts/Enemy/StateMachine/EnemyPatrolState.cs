@@ -18,10 +18,12 @@ public class EnemyPatrolState : EnemyState
 
     private void Start()
     {
-        _patrolArea = new Rect(transform.position.x + EnemyController.PatrolAreaOffset.x, 
-            transform.position.y + EnemyController.PatrolAreaOffset.y, 
+        _patrolArea = new Rect(
+            transform.position.x - EnemyController.PatrolAreaSize.x / 2 + EnemyController.PatrolAreaOffset.x, 
+            transform.position.y - EnemyController.PatrolAreaSize.y / 2 + EnemyController.PatrolAreaOffset.y, 
             EnemyController.PatrolAreaSize.x, 
-            EnemyController.PatrolAreaSize.y);
+            EnemyController.PatrolAreaSize.y
+            );
     }
 
     private IEnumerator Patroling()

@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
         _player = player;
         GetComponent<BoxCollider2D>().enabled = false;
         _health = GetComponent<Health>();
+        _health.Over += OnHealthOver;
         _weapon = transform.GetComponentInChildren<Weapon>();
 
         _detectionSystem = GetComponent<EnemyDetectionSystem>();
@@ -59,11 +60,6 @@ public class EnemyController : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = _movementSpeed;
-    }
-
-    private void OnEnable()
-    {
-        _health.Over += OnHealthOver;
     }
 
     private void OnDisable()
@@ -79,6 +75,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnHealthOver()
     {
+        _weapon.Throw();
         Died?.Invoke(this);
         gameObject.SetActive(false);
     }
