@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194346531777819537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.582, y: -0.038, z: 0}
+  m_LocalPosition: {x: 0.584, y: -0.038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,10 +128,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0030977577}
+  m_Offset: {x: 0.01683405, y: -0.0030977577}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -142,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9349942, y: 0.18163133}
+  m_Size: {x: 0.9686623, y: 0.18163133}
   m_EdgeRadius: 0
 --- !u!114 &-1398422719830060170
 MonoBehaviour:
@@ -158,4 +158,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 4eb01c1603bac664d9be3cd612803e91, type: 2}
   _shootPoint: {fileID: 194346531777819542}
+  _collider: {fileID: 4044189936654048976}
   _angleSpread: 5

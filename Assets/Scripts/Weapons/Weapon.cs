@@ -6,6 +6,7 @@ public class Weapon : ObjectPool<Bullet>
 {
     [SerializeField] private WeaponData _data;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Collider2D _collider;
 
     private Coroutine _internalReloadingCoroutine = null;
     private WaitForSeconds _internalReloadingDelay;
@@ -18,7 +19,6 @@ public class Weapon : ObjectPool<Bullet>
     private void Start()
     {
         InitPool(_data.Bullet);
-
         _internalReloadingDelay = new WaitForSeconds(_data.TimeBetweenShots);
         _currentBulletsCount = _data.BulletsCount;
     }
@@ -56,10 +56,12 @@ public class Weapon : ObjectPool<Bullet>
         transform.rotation = newParent.rotation;
         transform.position = newParent.position;
         transform.localPosition += new Vector3(0.2f, -0f); // костыль;
+        _collider.isTrigger = false;
     }
 
     public virtual void Throw()
     {
         transform.parent = null;
+        _collider.isTrigger = true;
     }
 }
