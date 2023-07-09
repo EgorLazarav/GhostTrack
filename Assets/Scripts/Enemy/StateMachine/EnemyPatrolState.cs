@@ -30,12 +30,23 @@ public class EnemyPatrolState : EnemyState
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(0, EnemyController.MaxStopTime));
-
             Vector3 newDestination = GetRandomPointInArea(_patrolArea);
 
-            EnemyController.TurnToTarget(newDestination);
-            EnemyController.Agent.SetDestination(newDestination);
+            while (Vector2.Distance(transform.position, newDestination) > EnemyController.Agent.radius)
+            {
+                EnemyController.TurnToTarget(newDestination);
+                EnemyController.Agent.SetDestination(newDestination);
+
+                yield return null;
+            }
+
+            float stopTime = Random.Range(0, EnemyController.MaxStopTime);
+
+            while (stopTime > 0)
+            {
+                stopTime -= Time.deltaTime;
+                yield return null;
+            }
         }
     }
 

@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 3
+  _maxStopTime: 6
   _patrolAreaSize: {x: 0, y: 0}
   _patrolAreaOffset: {x: 0, y: 0}
-  _maxStopTime: 6
   _playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -143,7 +143,6 @@ MonoBehaviour:
   _viewAngle: 180
   _viewRange: 6
   _maxReactionTime: 1.2
-  _maxSpread: 0.2
   _hearingRange: 2
 --- !u!114 &3784646680558329418
 MonoBehaviour:

@@ -13,17 +13,16 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float _movementSpeed = 3;
+    [SerializeField] private float _maxStopTime = 6;
     [SerializeField] private Vector2 _patrolAreaSize;
     [SerializeField] private Vector2 _patrolAreaOffset;
-    [SerializeField] private float _maxStopTime = 6;
 
     [Header("Combat Settings")]
     [SerializeField] private LayerMask _playerMask;
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField][Range(0, 360)] private int _viewAngle = 180;
-    [SerializeField] private float _viewRange = 10;
+    [SerializeField] private float _viewRange = 6;
     [SerializeField] private float _maxReactionTime = 1.2f;
-    [SerializeField] private float _maxSpread = 0.2f;
     [SerializeField] private float _hearingRange = 2;
 
     private Health _health;
@@ -40,8 +39,6 @@ public class EnemyController : MonoBehaviour
     public Vector2 PatrolAreaSize => _patrolAreaSize;
     public Vector2 PatrolAreaOffset => _patrolAreaOffset;
     public float MaxReactionTime => _maxReactionTime;
-    public float MaxSpread => _maxSpread;
-    public float ViewRange => _viewRange;
 
     public static event UnityAction<EnemyController> Died;
 
