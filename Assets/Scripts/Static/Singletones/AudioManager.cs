@@ -31,6 +31,8 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        AudioListener.volume = 0;
     }
 
     public void PlayPunchSFX()

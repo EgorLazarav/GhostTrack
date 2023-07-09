@@ -28,18 +28,18 @@ public class EnemyDetectionSystem : MonoBehaviour
             return;
 
         enabled = true;
-        PlayerCombat.Shooted += OnPlayerShooted;
+        PlayerCombat.Attacked += OnPlayerAttacked;
     }
 
     private void OnBecameInvisible()
     {
         enabled = false;
-        PlayerCombat.Shooted -= OnPlayerShooted;
+        PlayerCombat.Attacked -= OnPlayerAttacked;
     }
 
     private void OnDisable()
     {
-        PlayerCombat.Shooted -= OnPlayerShooted;
+        PlayerCombat.Attacked -= OnPlayerAttacked;
     }
 
     private void Update()
@@ -88,7 +88,7 @@ public class EnemyDetectionSystem : MonoBehaviour
         }
     }
 
-    private void OnPlayerShooted()
+    private void OnPlayerAttacked()
     {
         PlayerDetected?.Invoke();
     }

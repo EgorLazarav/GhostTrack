@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     public Weapon CurrentWeapon => _currentWeapon;
 
     public static event UnityAction<int> BulletsChanged;
-    public static event UnityAction Shooted;
+    public static event UnityAction Attacked;
 
     public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask,LayerMask weaponMask)
     {
@@ -41,7 +41,10 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         if (hit.TryGetComponent(out Health health))
+        {
             health.ApplyDamage(ignoreArmor: true);
+            Attacked?.Invoke();
+        }
     }
 
     public bool TryShoot()
@@ -51,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (_currentWeapon.TryShoot())
         {
-            Shooted?.Invoke();
+            Attacked?.Invoke();
             BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
 
             return true;
