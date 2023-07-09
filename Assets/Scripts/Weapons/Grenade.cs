@@ -45,7 +45,7 @@ public class Grenade : Bullet
 
         Rigidbody.velocity /= _velocityReduceCoeff;
         _currentDurability--;
-        AudioManager.Instance.PlayGrenadeBounceSFX();
+        // AudioManager.Instance.PlayGrenadeBounceSFX();
 
         if (_currentDurability <= 0)
             Explode();
@@ -80,7 +80,7 @@ public class Grenade : Bullet
 
         var explosion = Instantiate(_explosion, transform.position, Quaternion.identity);
         Destroy(explosion, explosion.main.duration);
-        AudioManager.Instance.PlayExplosionSFX();
+        // AudioManager.Instance.PlayExplosionSFX();
 
         gameObject.SetActive(false);
     }

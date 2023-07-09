@@ -13,6 +13,13 @@ public class MainCameraController : MonoBehaviour
 
     private const float BasePositionZ = -10;
 
+    private void Start()
+    {
+        Vector3 basePosition = transform.position;
+        basePosition.z = BasePositionZ;
+        transform.position = basePosition;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))

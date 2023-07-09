@@ -33,7 +33,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void TryPunch()
     {
-        AudioManager.Instance.PlayPunchSFX();
+        // AudioManager.Instance.PlayPunchSFX();
 
         var hit = Physics2D.OverlapCircle(_punchPoint.position, _handsLength, _enemyMask);
 

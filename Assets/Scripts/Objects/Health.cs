@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
 
         _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
 
-        AudioManager.Instance.PlayHitSFX();
+        // AudioManager.Instance.PlayHitSFX();
         var hitVFX = Instantiate(_hitVFX, transform.position, Quaternion.identity);
         Destroy(hitVFX, hitVFX.main.duration);
 
