@@ -7,17 +7,17 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyDetectionSystem))]
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class EnemyController : MonoBehaviour
 {
-    [Header("Patrol State Settings")]
+    [Header("Movement Settings")]
     [SerializeField] private float _movementSpeed = 3;
-    [SerializeField] private float _patrolRangeX = 4;
-    [SerializeField] private float _patrolRangeY = 4;
+    [SerializeField] private Vector2 _patrolAreaSize;
+    [SerializeField] private Vector2 _patrolAreaOffset;
     [SerializeField] private float _maxStopTime = 6;
 
-    [Header("Combat State Settings")]
-    [SerializeField]private Health _health;
-    [SerializeField] private Weapon _weapon;
+    [Header("Combat Settings")]
     [SerializeField] private LayerMask _playerMask;
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField][Range(0, 360)] private int _viewAngle = 180;
@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _maxSpread = 0.2f;
     [SerializeField] private float _hearingRange = 2;
 
+    private Health _health;
+    private Weapon _weapon;
     private NavMeshAgent _agent;
     private EnemyDetectionSystem _detectionSystem;
     private PlayerController _player;
@@ -35,8 +37,8 @@ public class EnemyController : MonoBehaviour
     public PlayerController Player => _player;
     public Weapon Weapon => _weapon;
     public float MaxStopTime => _maxStopTime;
-    public float PatrolRangeX => _patrolRangeX;
-    public float PatrolRangeY => _patrolRangeY;
+    public Vector2 PatrolAreaSize => _patrolAreaSize;
+    public Vector2 PatrolAreaOffset => _patrolAreaOffset;
     public float MaxReactionTime => _maxReactionTime;
     public float MaxSpread => _maxSpread;
     public float ViewRange => _viewRange;
@@ -46,6 +48,9 @@ public class EnemyController : MonoBehaviour
     public void Init(PlayerController player)
     {
         _player = player;
+        GetComponent<BoxCollider2D>().enabled = false;
+        _health = GetComponent<Health>();
+        _weapon = transform.GetComponentInChildren<Weapon>();
 
         _detectionSystem = GetComponent<EnemyDetectionSystem>();
         _detectionSystem.Init(_playerMask, _obstacleMask, _viewAngle, _viewRange, _hearingRange);
@@ -64,6 +69,12 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         _health.Over -= OnHealthOver;
+    }
+
+    private void OnValidate()
+    {
+        GetComponent<BoxCollider2D>().size = _patrolAreaSize;
+        GetComponent<BoxCollider2D>().offset = _patrolAreaOffset;
     }
 
     private void OnHealthOver()

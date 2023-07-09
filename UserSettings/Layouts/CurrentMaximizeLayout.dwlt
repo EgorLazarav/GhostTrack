@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 65848
+  controlID: 69446
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 65849
+  controlID: 69447
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 65850
+  controlID: 69448
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,23 +224,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: a615fdff8e19fdff7a97fdffc497fdff0a98fdff689cfdff7ab3fdff28b6fdff14b7fdff565efeff9e85feff0086feffce89feffc8acfeff84b2feffb6c8feffc0c8feffc4c8feffdac8feff74cbfeff78cbfeff88ccfeff8cccfeffa4ccfeffdcd0feff76b0ffffa2b6ffffd4bafffff8bcffffacc3ffff60c5ffff6eddffffc4e1fffffce5ffffc6ecffff08edffff9cf3fffffafafffff4ffffff72410100e0410100026f0100a8700100f2e7010072ec010000ed010098ee0100a0d902000eda0200
+      m_SelectedIDs: a0d90200
+      m_LastClickedID: 186784
+      m_ExpandedIDs: a615fdff8e19fdff7a97fdffc497fdff0a98fdff689cfdff7ab3fdff28b6fdff14b7fdff565efeff9e85feff0086feffce89feffc8acfeff84b2feffb6c8feffc0c8feffc4c8feffdac8feff74cbfeff78cbfeff88ccfeff8cccfeffa4ccfeffdcd0feff76b0ffffa2b6ffffd4bafffff8bcffffacc3ffff60c5ffff6eddffffc4e1fffffce5ffffc6ecffff08edffff9cf3fffffafafffff4ffffff72410100e0410100026f0100a8700100f2e7010072ec010000ed010098ee01006cd9020072d902000eda0200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: SimpleEnemy (5)
-        m_OriginalName: SimpleEnemy (5)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 186940
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
@@ -559,9 +559,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.46, y: 1.67, z: 0}
+    m_Target: {x: -7.637501, y: 0.43199748, z: -0.05866359}
     speed: 2
-    m_Value: {x: -7.4599996, y: 1.6699998, z: 0}
+    m_Value: {x: -7.637501, y: 0.43199748, z: -0.05866359}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -612,9 +612,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.7393409
+    m_Target: 5.240758
     speed: 2
-    m_Value: 0.7393409
+    m_Value: 5.240758
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -854,22 +854,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Weapons
+    - Assets/Prefabs/Creatures
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Weapons
+  - Assets/Prefabs/Creatures
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\MyFolder\Unity Projects\GhostTrack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 58}
-    m_SelectedIDs: e6590000
-    m_LastClickedID: 23014
-    m_ExpandedIDs: 00000000a6590000a8590000aa590000ac590000ae590000b0590000b2590000b4590000b6590000b8590000ba590000bc590000be590000e859000000ca9a3b
+    m_SelectedIDs: f89e0200
+    m_LastClickedID: 171768
+    m_ExpandedIDs: 00000000a6590000a8590000aa590000ac590000ae590000b0590000b2590000b4590000b6590000b8590000ba590000bc590000be590000e4590000e859000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -922,9 +922,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9c560000
-    m_LastClickedInstanceID: 22172
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 12da0200
+    m_LastClickedInstanceID: 186898
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c8670000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
