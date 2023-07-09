@@ -14,6 +14,8 @@ public class WeaponData : ScriptableObject
     [SerializeField][Min(0.1f)] private float _shotPower = 10;
     [SerializeField][Min(0.01f)] private float _timeBetweenShots = 1;
     [SerializeField] private AudioClip _shotSFX;
+    [SerializeField] private AudioClip _emptyClipSFX;
+    [SerializeField] private AudioClip _pickUpSFX;
 
     public Bullet Bullet => _bullet;
     public int BulletsCount => _bulletsCount;
@@ -22,4 +24,6 @@ public class WeaponData : ScriptableObject
     public float ShotPower => _shotPower;
     public float TimeBetweenShots => _timeBetweenShots;
     public AudioClip ShotSFX => _shotSFX;
+    public AudioClip EmptyClipSFX => _emptyClipSFX;
+    public AudioClip PickUpSFX => _pickUpSFX;
 }

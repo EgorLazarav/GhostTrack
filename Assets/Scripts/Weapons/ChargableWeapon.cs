@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChargableWeapon : Weapon
 {
-    [SerializeField] private float _maxChargeTimer = 3;
+    [SerializeField] private float _maxChargeTimer = 2;
 
     private Coroutine _chargingCoroutine;
     private Coroutine _reloadingCoroutine;
@@ -38,6 +38,7 @@ public class ChargableWeapon : Weapon
             if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Q))
                 break;
         }
+
 
         Shoot(rotation, Data.ShotPower * timer, Data.DamagePercent);
 

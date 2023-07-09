@@ -159,4 +159,4 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 43368f5294428864fae202cbfcfa98f8, type: 2}
   _shootPoint: {fileID: 5364185000086017684}
   _collider: {fileID: 8132592318781881298}
-  _maxChargeTimer: 3
+  _maxChargeTimer: 1.5

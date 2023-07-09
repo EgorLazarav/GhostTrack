@@ -12,12 +12,17 @@ public class BulletsDisplay : MonoBehaviour
     {
         _text = GetComponent<Text>();
 
-        if (startWeaponBulletsCount == 0)
-            _text.text = "NO AMMO";
-        else
-            _text.text = "||| " + startWeaponBulletsCount;
+        SetText(startWeaponBulletsCount);
 
         PlayerCombat.BulletsChanged += OnPlayerBulletsChanged;
+    }
+
+    private void SetText(int bulletsCount)
+    {
+        if (bulletsCount == 0)
+            _text.text = "NO AMMO";
+        else
+            _text.text = "||| " + bulletsCount;
     }
 
     private void OnDestroy()

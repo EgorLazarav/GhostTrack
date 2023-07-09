@@ -151,6 +151,7 @@ MonoBehaviour:
   _bounceGrenadeSFX: {fileID: 8300000, guid: c0c38ae5b310f754b971e9ea8eac44fe, type: 3}
   _pickUpWeaponSFX: {fileID: 8300000, guid: a971d069695cb6545b265f4a10af5b8e, type: 3}
   _dropWeaponSFX: {fileID: 8300000, guid: eecb8512eb14dec47b88a2a7aa7dd80f, type: 3}
+  _chargableWeaponSFX: {fileID: 8300000, guid: 807beff09edf4494a82294edd87a39db, type: 3}
 --- !u!82 &6759482452677191045
 AudioSource:
   m_ObjectHideFlags: 0

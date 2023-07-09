@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private bool _isInvulnerable = false;
     [SerializeField] private ParticleSystem _hitVFX;
+    [SerializeField] private AudioClip _hitSFX;
 
     private float _currentPercent = 100;
     private DamageReducer _damageReducer;

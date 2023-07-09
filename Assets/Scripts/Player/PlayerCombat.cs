@@ -47,50 +47,32 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public bool TryShoot()
+    public void TryShoot()
     {
         if (_currentWeapon == null)
-            return false;
+            return;
 
-        if (_currentWeapon.TryShoot())
-        {
-            Attacked?.Invoke();
-            BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
-
-            return true;
-        }
-        else
-        {
-            if (_currentWeapon.CurrentBulletsCount <= 0)
-                AudioManager.Instance.TryPlayEmptyClipSFX();
-
-            return false;
-        }
+        _currentWeapon.TryShoot();
     }
 
-    public bool TryDropWeapon()
+    public void TryDropWeapon()
     {
         if (_currentWeapon == null)
-            return false;
+            return;
 
         _currentWeapon.Throw();
         _currentWeapon = null;
 
         BulletsChanged?.Invoke(0);
-        AudioManager.Instance.PlayDropWeaponSFX();
-
-        return true;
     }
 
-    public bool TryPickUpClosestWeapon()
+    public void TryPickUpClosestWeapon()
     {
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength, _weaponMask);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
 
         if (closestWeapon != null)
             EquipWeapon(closestWeapon.GetComponent<Weapon>());
-
-        return closestWeapon != null;
     }
 
     private void EquipWeapon(Weapon newWeapon)
@@ -99,7 +81,6 @@ public class PlayerCombat : MonoBehaviour
 
         _currentWeapon = newWeapon;
         _currentWeapon.PickUp(_weaponPoint);
-        AudioManager.Instance.PlayPickUpWeaponSFX();
 
         BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
     }

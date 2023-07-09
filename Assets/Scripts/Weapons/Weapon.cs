@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Weapon : ObjectPool<Bullet>
 {
@@ -15,6 +16,8 @@ public class Weapon : ObjectPool<Bullet>
     public int CurrentBulletsCount => _currentBulletsCount;
     public WeaponData Data => _data;
     public Transform ShootPoint => _shootPoint;
+
+    public event UnityAction Shooted;
 
     private void Start()
     {
@@ -47,7 +50,8 @@ public class Weapon : ObjectPool<Bullet>
     {
         var bullet = GetItem();
         bullet.Init(_shootPoint.position, rotation, shotPower, damagePercent);
-        AudioManager.Instance.PlayShotSFX(Data.ShotSFX);
+        AudioManager.Instance.PlaySound(Data.ShotSFX);
+        Shooted?.Invoke();
     }
 
     public virtual void PickUp(Transform newParent)
