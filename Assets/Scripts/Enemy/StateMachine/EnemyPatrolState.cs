@@ -34,7 +34,7 @@ public class EnemyPatrolState : EnemyState
 
             while (Vector2.Distance(transform.position, newDestination) > EnemyController.Agent.radius)
             {
-                EnemyController.TurnToTarget(newDestination);
+                EnemyController.TurnToTarget(EnemyController.Agent.steeringTarget);
                 EnemyController.Agent.SetDestination(newDestination);
 
                 yield return null;
