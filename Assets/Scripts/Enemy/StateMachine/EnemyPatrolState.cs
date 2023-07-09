@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyPatrolState : EnemyState
 {
     private Rect _patrolArea;
     private Coroutine _coroutine;
+    private Tween _rotateTween;
 
     private void OnEnable()
     {
@@ -14,20 +16,23 @@ public class EnemyPatrolState : EnemyState
     private void OnDisable()
     {
         StopCoroutine(_coroutine);
+        _rotateTween.Kill();
     }
 
     private void Start()
     {
         _patrolArea = new Rect(
-            transform.position.x - EnemyController.PatrolAreaSize.x / 2 + EnemyController.PatrolAreaOffset.x, 
-            transform.position.y - EnemyController.PatrolAreaSize.y / 2 + EnemyController.PatrolAreaOffset.y, 
-            EnemyController.PatrolAreaSize.x, 
+            transform.position.x - EnemyController.PatrolAreaSize.x / 2 + EnemyController.PatrolAreaOffset.x,
+            transform.position.y - EnemyController.PatrolAreaSize.y / 2 + EnemyController.PatrolAreaOffset.y,
+            EnemyController.PatrolAreaSize.x,
             EnemyController.PatrolAreaSize.y
             );
     }
 
     private IEnumerator Patroling()
     {
+        yield return new WaitForSeconds(1);
+
         while (true)
         {
             Vector3 newDestination = GetRandomPointInArea(_patrolArea);
@@ -45,7 +50,7 @@ public class EnemyPatrolState : EnemyState
             }
 
             stopTime = Random.Range(0, EnemyController.MaxStopTime);
-            transform.DORotateZ(transform.eulerAngles.z + 120, stopTime);
+            _rotateTween = transform.DORotate(new Vector3(0, 0, transform.eulerAngles.z + 120), stopTime);
 
             while (stopTime > 0)
             {
