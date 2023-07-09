@@ -19,7 +19,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _noWeaponBonusSpeed = 1.5f;
 
+    [Header("Optional")]
+    [SerializeField] private float _viewRange = 3;
+
     public Weapon StartWeapon => _startWeapon;
+    public float ViewRange => _viewRange;
 
     public static event UnityAction Died;
 

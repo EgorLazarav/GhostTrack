@@ -35,7 +35,7 @@ public static class Extends
         transform.position = Camera.main.ScreenToWorldPoint(randomPointOnScreen);
     }
 
-    public static void FollowTargetXY(this Transform transform, Transform target)
+    public static void SetPositionToTargetXY(this Transform transform, Transform target)
     {
         transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
     }

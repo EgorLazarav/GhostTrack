@@ -26,7 +26,7 @@ public class Bootstrap : MonoBehaviour
 
         _levelHandler.Init(_enemies.Length);
 
-        _mainCameraController.Init(_player.transform);
+        _mainCameraController.Init(_player.transform, _player.ViewRange);
 
         _bulletsDisplay.Init(_player.StartWeapon.Data.BulletsCount);
 
