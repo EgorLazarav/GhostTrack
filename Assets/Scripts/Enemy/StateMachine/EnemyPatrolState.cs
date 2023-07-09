@@ -31,19 +31,26 @@ public class EnemyPatrolState : EnemyState
         while (true)
         {
             Vector3 newDestination = GetRandomPointInArea(_patrolArea);
+            float stopTime = Random.Range(0, EnemyController.MaxStopTime);
 
-            while (Vector2.Distance(transform.position, newDestination) > EnemyController.Agent.radius)
+            while (Vector2.Distance(transform.position, newDestination) > EnemyController.Agent.radius / 2 && stopTime > 0)
             {
+                stopTime -= Time.deltaTime;
                 EnemyController.TurnToTarget(EnemyController.Agent.steeringTarget);
                 EnemyController.Agent.SetDestination(newDestination);
+
+                print("idy");
 
                 yield return null;
             }
 
-            float stopTime = Random.Range(0, EnemyController.MaxStopTime);
+            stopTime = Random.Range(0, EnemyController.MaxStopTime);
+            transform.DORotateZ(transform.eulerAngles.z + 120, stopTime);
 
             while (stopTime > 0)
             {
+                print("stoyu");
+
                 stopTime -= Time.deltaTime;
                 yield return null;
             }
