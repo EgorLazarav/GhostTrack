@@ -42,10 +42,10 @@ public class EnemyCombatState : EnemyState
 
     private bool CheckShootingPossibility()
     {
-        Ray2D ray = new Ray2D(EnemyController.Weapon.ShootPoint.position, EnemyController.Weapon.transform.right);
-        var hit = Physics2D.Raycast(ray.origin, ray.direction, EnemyController.ViewRange);
+        float boxSize = 0.2f;
+        float boxAngle = 90;
 
-        Debug.DrawRay(ray.origin, ray.direction * EnemyController.ViewRange, Color.red);
+        var hit = Physics2D.BoxCast(EnemyController.Weapon.ShootPoint.position, new Vector2(boxSize, boxSize), boxAngle, EnemyController.Weapon.transform.right);
 
         return (hit.collider != null && hit.collider.TryGetComponent(out PlayerController player));
     }

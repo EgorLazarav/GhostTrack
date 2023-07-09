@@ -23,11 +23,14 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
             Instance = this;
-        else if (Instance == this)
+        }
+        else if (Instance != this)
+        {
             Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void PlayPunchSFX()

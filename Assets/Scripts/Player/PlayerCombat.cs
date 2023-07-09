@@ -53,13 +53,16 @@ public class PlayerCombat : MonoBehaviour
         {
             Shooted?.Invoke();
             BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
+
+            return true;
         }
         else
         {
+            if (_currentWeapon.CurrentBulletsCount <= 0)
+                AudioManager.Instance.TryPlayEmptyClipSFX();
+
             return false;
         }
-
-        return true;
     }
 
     public bool TryDropWeapon()

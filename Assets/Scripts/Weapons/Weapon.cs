@@ -35,10 +35,7 @@ public class Weapon : ObjectPool<Bullet>
             return false;
 
         if (_currentBulletsCount <= 0)
-        {
-            AudioManager.Instance.TryPlayEmptyClipSFX();
             return false;
-        }
 
         _currentBulletsCount--;
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());

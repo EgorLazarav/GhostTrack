@@ -17,16 +17,20 @@ public class SceneLoader : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
             Instance = this;
-        else if (Instance == this)
+        }
+        else if (Instance != this)
+        {
             Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void Start()
     {
-        LoadMainMenu();
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            LoadMainMenu();
     }
 
     public void LoadMainMenu()
