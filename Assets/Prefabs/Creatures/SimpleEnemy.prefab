@@ -218,8 +218,8 @@ MonoBehaviour:
   _deadBody: {fileID: 3447890173897654182}
   _movementSpeed: 3
   _maxStopTime: 6
-  _patrolAreaSize: {x: 10, y: 8.5}
-  _patrolAreaOffset: {x: 0, y: -1.8}
+  _patrolAreaSize: {x: 16, y: 6}
+  _patrolAreaOffset: {x: 0, y: 2}
   _playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -423,7 +423,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.8}
+  m_Offset: {x: 0, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -434,7 +434,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 8.5}
+  m_Size: {x: 16, y: 6}
   m_EdgeRadius: 0
 --- !u!1 &3456284055819215800
 GameObject:
