@@ -11,6 +11,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider2D))]
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _deadBody;
+
     [Header("Movement Settings")]
     [SerializeField] private float _movementSpeed = 3;
     [SerializeField] private float _maxStopTime = 6;
@@ -75,6 +77,8 @@ public class EnemyController : MonoBehaviour
         _weapon.Throw();
         Died?.Invoke(this);
         gameObject.SetActive(false);
+        _deadBody.gameObject.SetActive(true);
+        _deadBody.transform.parent = null;
     }
 
     public void TurnToTarget(Vector3 target)

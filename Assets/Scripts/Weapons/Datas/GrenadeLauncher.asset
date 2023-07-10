@@ -20,4 +20,4 @@ MonoBehaviour:
   _shotSFX: {fileID: 8300000, guid: d279893434418a144b0fffebca7db896, type: 3}
   _emptyClipSFX: {fileID: 0}
   _pickUpSFX: {fileID: 0}
-  _isShotSilenced: 1
+  _isShotSilenced: 0
