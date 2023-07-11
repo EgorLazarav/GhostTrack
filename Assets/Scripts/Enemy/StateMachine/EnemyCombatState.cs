@@ -19,21 +19,23 @@ public class EnemyCombatState : EnemyState
 
     private IEnumerator Fighting()
     {
+        float maxShootPause = 0.2f;
+
         yield return new WaitForSeconds(Random.Range(0, EnemyController.MaxReactionTime));
 
         while (true)
         {
-            EnemyController.TurnToTarget(EnemyController.Player.transform.position);
-
             if (CheckShootingPossibility())
             {
                 EnemyController.Agent.SetDestination(transform.position);
-                yield return new WaitForSeconds(Random.Range(0.05f, 0.2f));
+                EnemyController.TurnToTarget(EnemyController.Player.transform.position);
+                yield return new WaitForSeconds(Random.Range(0, maxShootPause));
                 EnemyController.Weapon.TryShoot();
             }
             else
             {
                 EnemyController.Agent.SetDestination(EnemyController.Player.transform.position);
+                EnemyController.TurnToTarget(EnemyController.Agent.steeringTarget);
             }
 
             yield return new WaitForSeconds(Time.deltaTime * EnemyController.MaxReactionTime);
