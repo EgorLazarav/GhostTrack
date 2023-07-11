@@ -54,10 +54,12 @@ public class Weapon : ObjectPool<Bullet>
 
     public virtual void PickUp(Transform newParent)
     {
+        Vector3 weaponOffset = new Vector3(0.2f, -0.1f);
+
         transform.parent = newParent;
         transform.rotation = newParent.rotation;
         transform.position = newParent.position;
-        transform.localPosition += new Vector3(0.2f, -0.1f); // костыль;
+        transform.localPosition += weaponOffset;
         _collider.isTrigger = false;
     }
 
