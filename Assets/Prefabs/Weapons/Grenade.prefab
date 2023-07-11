@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de84b6d94e5a3d94185bdd850282e1e5, type: 3}
   m_Color: {r: 0.22476643, g: 0.5566038, b: 0, a: 1}
   m_FlipX: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   _explosionTimer: 3
   _explosionRange: 1.2
   _explosion: {fileID: 73422621658866986, guid: b61aa4bb8a51a6544b23815ab7726bbd, type: 3}
+  _bounceSFX: {fileID: 0}
 --- !u!70 &6384600170607515931
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
