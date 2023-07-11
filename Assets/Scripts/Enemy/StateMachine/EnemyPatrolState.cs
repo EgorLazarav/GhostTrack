@@ -44,8 +44,6 @@ public class EnemyPatrolState : EnemyState
                 EnemyController.TurnToTarget(EnemyController.Agent.steeringTarget);
                 EnemyController.Agent.SetDestination(newDestination);
 
-                print("idy");
-
                 yield return null;
             }
 
@@ -54,8 +52,6 @@ public class EnemyPatrolState : EnemyState
 
             while (stopTime > 0)
             {
-                print("stoyu");
-
                 stopTime -= Time.deltaTime;
                 yield return null;
             }
