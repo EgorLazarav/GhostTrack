@@ -18,3 +18,6 @@ MonoBehaviour:
   _shotPower: 15
   _timeBetweenShots: 0.2
   _shotSFX: {fileID: 8300000, guid: d279893434418a144b0fffebca7db896, type: 3}
+  _emptyClipSFX: {fileID: 8300000, guid: df2b8d35fb68b6d4581ec8a91382b0a5, type: 3}
+  _pickUpSFX: {fileID: 8300000, guid: a971d069695cb6545b265f4a10af5b8e, type: 3}
+  _isShotSilenced: 0

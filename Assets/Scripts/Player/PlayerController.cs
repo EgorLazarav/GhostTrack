@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Sound")]
+    [SerializeField] private AudioClip _punchSFX;
+
     [Header("Combat")]
     [SerializeField] private PlayerCombat _combat;
     [SerializeField] private Weapon _startWeapon;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private void OnPuncKeyPressed()
     {
         _combat.TryPunch();
+        AudioManager.Instance.PlaySound(_punchSFX);
     }
 
     private void OnPickUpWeaponKeyPressed()

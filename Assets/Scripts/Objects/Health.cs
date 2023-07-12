@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private bool _isInvulnerable = false;
     [SerializeField] private ParticleSystem _hitVFX;
-    [SerializeField] private AudioClip _hitSFX;
+    [SerializeField] private AudioClip _deathSFX;
 
     private float _currentPercent = 100;
     private DamageReducer _damageReducer;
@@ -27,13 +27,12 @@ public class Health : MonoBehaviour
             amount = _damageReducer.Reduce(amount);
 
         _currentPercent = Mathf.Clamp(_currentPercent - amount, 0, _currentPercent);
-
-        // AudioManager.Instance.PlayHitSFX();
-
+      
         if (_currentPercent <= 0)
         {
             var hitVFX = Instantiate(_hitVFX, transform.position, Quaternion.identity);
             Destroy(hitVFX.gameObject, hitVFX.main.duration);
+            AudioManager.Instance.PlaySound(_deathSFX);
             Over?.Invoke();
         }
     }

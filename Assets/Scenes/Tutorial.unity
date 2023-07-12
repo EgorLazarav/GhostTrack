@@ -6659,6 +6659,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1534432176, guid: e8a55e04227bb09498869ef6c2e24830, type: 3}
+      propertyPath: _punchSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f866c88edb340b489d66793db87b04e, type: 3}
+    - target: {fileID: 1977911551319215009, guid: e8a55e04227bb09498869ef6c2e24830, type: 3}
+      propertyPath: _deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ba2ed5447f0e5fb4ca7a9a149654c060, type: 3}
     - target: {fileID: 1977911551714136864, guid: e8a55e04227bb09498869ef6c2e24830, type: 3}
       propertyPath: m_Name
       value: Player

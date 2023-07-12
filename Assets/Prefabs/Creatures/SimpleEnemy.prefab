@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isInvulnerable: 0
   _hitVFX: {fileID: 5758209532436848253, guid: 61f49a225e0e6d6449756020ac7bd738, type: 3}
-  _hitSFX: {fileID: 0}
+  _deathSFX: {fileID: 8300000, guid: ba2ed5447f0e5fb4ca7a9a149654c060, type: 3}
 --- !u!114 &6689110616474957589
 MonoBehaviour:
   m_ObjectHideFlags: 0
