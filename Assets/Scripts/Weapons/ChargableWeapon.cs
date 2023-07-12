@@ -19,14 +19,14 @@ public class ChargableWeapon : Weapon
 
         if (base.TryShoot())
         {
-            _chargingCoroutine = StartCoroutine(Charging(ShootPoint.rotation));
+            _chargingCoroutine = StartCoroutine(Charging());
             return true;
         }
 
         return false;
     }
 
-    private IEnumerator Charging(Quaternion rotation)
+    private IEnumerator Charging()
     {
         float timer = 1;
 
@@ -40,7 +40,7 @@ public class ChargableWeapon : Weapon
         }
 
 
-        Shoot(rotation, Data.ShotPower * timer, Data.DamagePercent);
+        Shoot(ShootPoint.rotation, Data.ShotPower * timer, Data.DamagePercent);
 
         _reloadingCoroutine = StartCoroutine(Reloading(timer));
         _chargingCoroutine = null;

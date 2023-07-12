@@ -17,7 +17,6 @@ public class Weapon : ObjectPool<Bullet>
     public WeaponData Data => _data;
     public Transform ShootPoint => _shootPoint;
 
-
     private void Start()
     {
         InitPool(_data.Bullet);
@@ -39,7 +38,9 @@ public class Weapon : ObjectPool<Bullet>
         if (_currentBulletsCount <= 0)
             return false;
 
-        _currentBulletsCount--;
+        if (CheatCodeActivator.IsInfinityBullets == false)
+            _currentBulletsCount--;
+
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());
 
         return true;

@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private bool _isInvulnerable = false;
     [SerializeField] private ParticleSystem _hitVFX;
     [SerializeField] private AudioClip _deathSFX;
 
@@ -20,7 +19,7 @@ public class Health : MonoBehaviour
 
     public void ApplyDamage(float amount = 100, bool ignoreArmor = false)
     {
-        if (_isInvulnerable)
+        if (CheatCodeActivator.IsInvulnerable && gameObject.TryGetComponent(out PlayerController player))
             return;
 
         if (_damageReducer != null && ignoreArmor == false)

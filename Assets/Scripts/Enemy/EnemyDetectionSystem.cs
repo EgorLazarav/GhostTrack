@@ -44,6 +44,9 @@ public class EnemyDetectionSystem : MonoBehaviour
 
     private void Update()
     {
+        if (CheatCodeActivator.IsPlayerInvisible)
+            return;
+
         CheckPlayerInViewRange();
         CheckPlayerInHearingRange();
     }
@@ -90,6 +93,9 @@ public class EnemyDetectionSystem : MonoBehaviour
 
     private void OnPlayerAttacked()
     {
+        if (CheatCodeActivator.IsPlayerInvisible)
+            return;
+
         PlayerDetected?.Invoke();
     }
 }

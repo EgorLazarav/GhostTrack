@@ -79,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
             EquipWeapon(closestWeapon.GetComponent<Weapon>());
     }
 
-    private void EquipWeapon(Weapon newWeapon)
+    public void EquipWeapon(Weapon newWeapon)
     {
         TryDropWeapon();
 
