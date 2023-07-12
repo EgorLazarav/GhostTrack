@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRandomInGameTheme()
     {
-        _musicSource.clip = _mainMenuThemes[Random.Range(0, _mainMenuThemes.Length)];
+        _musicSource.clip = _inGameThemes[Random.Range(0, _inGameThemes.Length)];
         _musicSource.Play();
     }
 }
