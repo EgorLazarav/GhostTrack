@@ -6663,6 +6663,14 @@ PrefabInstance:
       propertyPath: _punchSFX
       value: 
       objectReference: {fileID: 8300000, guid: 1f866c88edb340b489d66793db87b04e, type: 3}
+    - target: {fileID: 1534432176, guid: e8a55e04227bb09498869ef6c2e24830, type: 3}
+      propertyPath: _dropWeaponSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: eecb8512eb14dec47b88a2a7aa7dd80f, type: 3}
+    - target: {fileID: 1534432176, guid: e8a55e04227bb09498869ef6c2e24830, type: 3}
+      propertyPath: _pickUpWeaponSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a971d069695cb6545b265f4a10af5b8e, type: 3}
     - target: {fileID: 1977911551319215009, guid: e8a55e04227bb09498869ef6c2e24830, type: 3}
       propertyPath: _deathSFX
       value: 

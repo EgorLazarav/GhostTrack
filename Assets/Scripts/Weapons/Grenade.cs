@@ -9,6 +9,7 @@ public class Grenade : Bullet
     [SerializeField] private float _explosionRange = 1.2f;
     [SerializeField] private ParticleSystem _explosion;
     [SerializeField] private AudioClip _bounceSFX;
+    [SerializeField] private AudioClip _explosionSFX;
 
     private float _velocityReduceCoeff = 1.2f;
     private int _currentDurability;
@@ -45,7 +46,7 @@ public class Grenade : Bullet
 
         Rigidbody.velocity /= _velocityReduceCoeff;
         _currentDurability--;
-        // AudioManager.Instance.PlayGrenadeBounceSFX();
+        AudioManager.Instance.PlaySound(_bounceSFX);
 
         if (_currentDurability <= 0)
             Explode();
@@ -80,7 +81,7 @@ public class Grenade : Bullet
 
         var explosion = Instantiate(_explosion, transform.position, Quaternion.identity);
         Destroy(explosion, explosion.main.duration);
-        // AudioManager.Instance.PlayExplosionSFX();
+        AudioManager.Instance.PlaySound(_explosionSFX);
 
         gameObject.SetActive(false);
     }

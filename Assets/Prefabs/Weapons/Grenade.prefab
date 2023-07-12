@@ -124,7 +124,8 @@ MonoBehaviour:
   _explosionTimer: 3
   _explosionRange: 1.2
   _explosion: {fileID: 73422621658866986, guid: b61aa4bb8a51a6544b23815ab7726bbd, type: 3}
-  _bounceSFX: {fileID: 0}
+  _bounceSFX: {fileID: 8300000, guid: c0c38ae5b310f754b971e9ea8eac44fe, type: 3}
+  _explosionSFX: {fileID: 8300000, guid: 2debde5c9b033454db4d6e6763665a96, type: 3}
 --- !u!70 &6384600170607515931
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

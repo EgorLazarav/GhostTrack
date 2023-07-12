@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnPuncKeyPressed()
     {
-        _combat.TryPunch();
         AudioManager.Instance.PlaySound(_punchSFX);
+        _combat.TryPunch();
     }
 
     private void OnPickUpWeaponKeyPressed()
