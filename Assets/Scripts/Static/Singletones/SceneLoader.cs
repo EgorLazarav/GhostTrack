@@ -35,16 +35,38 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
+        var operation = SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
+        StartCoroutine(LoadingMainMenu(operation));
     }
 
     public void LoadNewGame()
     {
-        SceneManager.LoadSceneAsync(SceneNames.Tutorial.ToString());
+        var operation = SceneManager.LoadSceneAsync(SceneNames.Tutorial.ToString());
+        StartCoroutine(LoadingNewLevel(operation)); 
     }
 
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private IEnumerator LoadingNewLevel(AsyncOperation operation)
+    {
+        while (operation.isDone == false)
+        {
+            yield return null;
+        }
+
+        AudioManager.Instance.PlayRandomInGameTheme();
+    }
+
+    private IEnumerator LoadingMainMenu(AsyncOperation operation)
+    {
+        while (operation.isDone == false)
+        {
+            yield return null;
+        }
+
+        AudioManager.Instance.PlayRandomMenuTheme();
     }
 }

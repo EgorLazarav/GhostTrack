@@ -533,6 +533,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6759482452677191044, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191046, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -577,6 +581,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
+      propertyPath: _inGameThemes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
+      propertyPath: _mainMenuThemes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
+      propertyPath: _inGameThemes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bbdaf7e13d191446a88cd404547ea82, type: 3}
+    - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
+      propertyPath: _mainMenuThemes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e1381180d35ac9f47a26a2c578c53c75, type: 3}
     - target: {fileID: 6759482452677191097, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_Name
       value: AudioManager
