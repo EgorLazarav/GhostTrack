@@ -36,6 +36,20 @@ public class CheatCodeActivator : MonoBehaviour
                 string state = IsInvulnerable ? "" : "DE";
                 print($"GOD CHEAT {state}ACTIVATED");
             }
+            else if (_letters.Substring(_letters.Length - 3, 3) == INF)
+            {
+                _letters = "";
+                IsInfinityBullets = !IsInfinityBullets;
+                string state = IsInfinityBullets ? "" : "DE";
+                print($"INFINITY AMMO CHEAT {state}ACTIVATED");
+            }
+            else if (_letters.Substring(_letters.Length - 3, 3) == INV)
+            {
+                _letters = "";
+                IsPlayerInvisible = !IsPlayerInvisible;
+                string state = IsPlayerInvisible ? "" : "DE";
+                print($"INVISIBLE CHEAT {state}ACTIVATED");
+            }
         }
     }
 
