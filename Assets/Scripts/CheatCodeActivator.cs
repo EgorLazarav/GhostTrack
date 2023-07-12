@@ -3,8 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class CheatCodeActivator : MonoBehaviour
 {
+    [SerializeField] private Weapon[] _weapons;
+    [SerializeField] private PlayerCombat _playerCombat;
+
     public static bool IsInvulnerable { get; private set; } = false;
     public static bool IsInfinityBullets { get; private set; } = false;
     public static bool IsPlayerInvisible { get; private set; } = false;
@@ -14,12 +19,7 @@ public class CheatCodeActivator : MonoBehaviour
     private const string INV = nameof(INV); // invisible (enemies ignores player)
     private const string IMD = nameof(IMD); // invaders must die (kill all enemies)
 
-    private const string EW1 = nameof(EW1); // player get's Uzi
-    private const string EW2 = nameof(EW2); // player get's AK47
-    private const string EW3 = nameof(EW3); // player get's M249
-    private const string EW4 = nameof(EW4); // player get's grenadelauncher
-    private const string EW5 = nameof(EW5); // player get's AWM
-    private const string EW6 = nameof(EW6); // player get's Shotgun
+    private const string EW = nameof(EW); // player get's 1: Uzi, 2 : AK47, 3 : M249, 4 : Grenadelauncher, 5: AWM, 6: Nova
 
     private string _letters = "";
 
@@ -50,6 +50,24 @@ public class CheatCodeActivator : MonoBehaviour
                 string state = IsPlayerInvisible ? "" : "DE";
                 print($"INVISIBLE CHEAT {state}ACTIVATED");
             }
+
+            /*
+            else if (_letters.Substring(_letters.Length - 3, 2) == "EW")
+            {
+                for (int i = 1; i <= _weapons.Length; i++)
+                {
+                    if (_letters[_letters.Length - 1] == Convert.ToChar(i))
+                    {
+                        print("+");
+
+                        var weapon = Instantiate(_weapons[i - 1]);
+                        _playerCombat.EquipWeapon(weapon);
+                        _letters = "";
+                        print(weapon.name + " CREATED");
+                    }
+                }
+            }
+            */
         }
     }
 
