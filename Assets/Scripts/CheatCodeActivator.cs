@@ -30,21 +30,27 @@ public class CheatCodeActivator : MonoBehaviour
     private void Update()
     {
         CheckInput();
+        CheckActivatedCheatCodes();
+    }
 
-        if (_letters.Length >= 3)
+    private void CheckActivatedCheatCodes()
+    {
+        if (_letters.Length < 3)
+            return;
+
+        switch (GetStringEnding(_letters, 3))
         {
-            if (GetStringEnding(_letters, 3) == GOD)
-            {
+            case GOD:
                 ActivateCheatCode(ref _isPlayerInvulnerable, "Invulnerable");
-            }
-            else if (GetStringEnding(_letters, 3) == INF)
-            {
+                break;
+
+            case INF:
                 ActivateCheatCode(ref _isPlayerHasInfinityBullets, "Infinity bullets");
-            }
-            else if (GetStringEnding(_letters, 3) == INV)
-            {
+                break;
+
+            case INV:
                 ActivateCheatCode(ref _isPlayerInvisible, "Invisible");
-            }
+                break;
         }
     }
 
