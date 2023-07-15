@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
 
     public void ApplyDamage(float amount = 100, bool ignoreArmor = false)
     {
-        if (CheatCodeActivator.IsInvulnerable && gameObject.TryGetComponent(out PlayerController player))
+        if (CheatCodeActivator.IsPlayerInvulnerable && gameObject.TryGetComponent(out PlayerController player))
             return;
 
         if (_damageReducer != null && ignoreArmor == false)

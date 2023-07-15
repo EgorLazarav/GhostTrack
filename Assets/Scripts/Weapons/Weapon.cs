@@ -38,7 +38,7 @@ public class Weapon : ObjectPool<Bullet>
         if (_currentBulletsCount <= 0)
             return false;
 
-        if (CheatCodeActivator.IsInfinityBullets == false)
+        if (CheatCodeActivator.IsPlayerHasInfinityBullets == false)
             _currentBulletsCount--;
 
         _internalReloadingCoroutine = StartCoroutine(InternalReloading());

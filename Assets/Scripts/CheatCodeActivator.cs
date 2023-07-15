@@ -10,9 +10,13 @@ public class CheatCodeActivator : MonoBehaviour
     [SerializeField] private Weapon[] _weapons;
     [SerializeField] private PlayerCombat _playerCombat;
 
-    public static bool IsInvulnerable { get; private set; } = false;
-    public static bool IsInfinityBullets { get; private set; } = false;
-    public static bool IsPlayerInvisible { get; private set; } = false;
+    private static bool _isPlayerInvulnerable = false;
+    private static bool _isPlayerHasInfinityBullets = false;
+    private static bool _isPlayerInvisible = false;
+
+    public static bool IsPlayerInvulnerable => _isPlayerInvulnerable;
+    public static bool IsPlayerHasInfinityBullets => _isPlayerHasInfinityBullets;
+    public static bool IsPlayerInvisible => _isPlayerInvisible;
 
     private const string GOD = nameof(GOD); // player is invulnerable
     private const string INF = nameof(INF); // infinity ammo
@@ -29,59 +33,42 @@ public class CheatCodeActivator : MonoBehaviour
 
         if (_letters.Length >= 3)
         {
-            if (_letters.Substring(_letters.Length - 3, 3) == GOD)
+            if (GetStringEnding(_letters, 3) == GOD)
             {
-                _letters = "";
-                IsInvulnerable = !IsInvulnerable;
-                string state = IsInvulnerable ? "" : "DE";
-                print($"GOD CHEAT {state}ACTIVATED");
+                ActivateCheatCode(ref _isPlayerInvulnerable, "Invulnerable");
             }
-            else if (_letters.Substring(_letters.Length - 3, 3) == INF)
+            else if (GetStringEnding(_letters, 3) == INF)
             {
-                _letters = "";
-                IsInfinityBullets = !IsInfinityBullets;
-                string state = IsInfinityBullets ? "" : "DE";
-                print($"INFINITY AMMO CHEAT {state}ACTIVATED");
+                ActivateCheatCode(ref _isPlayerHasInfinityBullets, "Infinity bullets");
             }
-            else if (_letters.Substring(_letters.Length - 3, 3) == INV)
+            else if (GetStringEnding(_letters, 3) == INV)
             {
-                _letters = "";
-                IsPlayerInvisible = !IsPlayerInvisible;
-                string state = IsPlayerInvisible ? "" : "DE";
-                print($"INVISIBLE CHEAT {state}ACTIVATED");
+                ActivateCheatCode(ref _isPlayerInvisible, "Invisible");
             }
-
-            /*
-            else if (_letters.Substring(_letters.Length - 3, 2) == "EW")
-            {
-                for (int i = 1; i <= _weapons.Length; i++)
-                {
-                    if (_letters[_letters.Length - 1] == Convert.ToChar(i))
-                    {
-                        print("+");
-
-                        var weapon = Instantiate(_weapons[i - 1]);
-                        _playerCombat.EquipWeapon(weapon);
-                        _letters = "";
-                        print(weapon.name + " CREATED");
-                    }
-                }
-            }
-            */
         }
+    }
+
+    private string GetStringEnding(string str, int charCount)
+    {
+        if (str.Length < charCount)
+            throw new IndexOutOfRangeException();
+
+        return str.Substring(_letters.Length - charCount, charCount);
+    }
+
+    private void ActivateCheatCode(ref bool state, string cheatName)
+    {
+        _letters = "";
+        state = !state;
+        string output = state ? "" : "DE";
+        print($"{cheatName} CHEAT {output}ACTIVATED");
     }
 
     private void CheckInput()
     {
         if (Input.anyKeyDown)
-        {
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
-            {
                 if (Input.GetKeyDown(key))
-                {
                     _letters += key.ToString();
-                }
-            }
-        }
     }
 }
