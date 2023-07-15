@@ -33,6 +33,22 @@ public class CheatCodeActivator : MonoBehaviour
         CheckActivatedCheatCodes();
     }
 
+    private void CheckActivatedWeaponCheatCode()
+    {
+        if (GetStringEnding(_letters, 3).StartsWith(EW))
+        {
+            for (int i = 0; i < _weapons.Length; i++)
+            {
+                if ((i + 1).ToString() == GetStringEnding(_letters, 1))
+                {
+                    var weapon = Instantiate(_weapons[i]);
+                    _playerCombat.EquipWeapon(weapon);
+                    _letters = "";
+                }
+            }
+        }
+    }
+
     private void CheckActivatedCheatCodes()
     {
         if (_letters.Length < 3)
@@ -51,13 +67,17 @@ public class CheatCodeActivator : MonoBehaviour
             case INV:
                 ActivateCheatCode(ref _isPlayerInvisible, "Invisible");
                 break;
+
+            default:
+                CheckActivatedWeaponCheatCode();
+                break;
         }
     }
 
     private string GetStringEnding(string str, int charCount)
     {
         if (str.Length < charCount)
-            throw new IndexOutOfRangeException();
+            return str;
 
         return str.Substring(_letters.Length - charCount, charCount);
     }
@@ -73,8 +93,15 @@ public class CheatCodeActivator : MonoBehaviour
     private void CheckInput()
     {
         if (Input.anyKeyDown)
+        {
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+            {
                 if (Input.GetKeyDown(key))
-                    _letters += key.ToString();
+                {
+                    string result = key.ToString();
+                    _letters += result[result.Length - 1];
+                }
+            }
+        }
     }
 }

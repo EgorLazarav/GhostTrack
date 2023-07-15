@@ -86,6 +86,6 @@ public class PlayerCombat : MonoBehaviour
         _currentWeapon = newWeapon;
         _currentWeapon.PickUp(_weaponPoint);
 
-        BulletsChanged?.Invoke(_currentWeapon.CurrentBulletsCount);
+        BulletsChanged?.Invoke(newWeapon.CurrentBulletsCount);
     }
 }

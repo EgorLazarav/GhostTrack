@@ -17,7 +17,7 @@ public class Weapon : ObjectPool<Bullet>
     public WeaponData Data => _data;
     public Transform ShootPoint => _shootPoint;
 
-    private void Start()
+    private void Awake()
     {
         InitPool(_data.Bullet);
         _internalReloadingDelay = new WaitForSeconds(_data.TimeBetweenShots);
