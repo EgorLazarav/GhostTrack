@@ -18,6 +18,9 @@ public class Car : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out PlayerController player))
+        {
             PlayerEntered?.Invoke();
+            PlayerInput.Instance.enabled = false;
+        }
     }
 }

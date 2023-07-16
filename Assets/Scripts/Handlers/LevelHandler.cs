@@ -18,14 +18,12 @@ public class LevelHandler : MonoBehaviour
     {
         PlayerController.Died += OnPlayerDied;
         EnemyController.Died += OnEnemyDied;
-        Car.PlayerEntered += OnPlayerEnteredCar;
     }
 
     private void OnDisable()
     {
         PlayerController.Died -= OnPlayerDied;
         EnemyController.Died -= OnEnemyDied;
-        Car.PlayerEntered += OnPlayerEnteredCar;
     }
 
     private void Update()
@@ -63,11 +61,6 @@ public class LevelHandler : MonoBehaviour
             Car.Collider.isTrigger = true;
             _levelInfoDisplay.Show("GO TO CAR");
         }
-    }
-
-    private void OnPlayerEnteredCar()
-    {
-        SceneLoader.Instance.ReloadLevel();
     }
 
     private IEnumerator WaitingForRestart()
