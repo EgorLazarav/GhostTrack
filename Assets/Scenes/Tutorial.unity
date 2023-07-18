@@ -6457,7 +6457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerScoreHandler: {fileID: 815774730}
-  _backgroundWrapper: {fileID: 1581344349}
+  _background: {fileID: 1581344347}
   _killScoreText: {fileID: 1651443486}
   _killStreakScoreText: {fileID: 675674394}
   _timeScoreText: {fileID: 1646579284}

@@ -8,7 +8,7 @@ using System.Linq;
 public class EndLevelInfoDisplay : MonoBehaviour
 {
     [SerializeField] private PlayerScoreHandler _playerScoreHandler;
-    [SerializeField] private Image _backgroundWrapper;
+    [SerializeField] private GameObject _background;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text _killScoreText;
@@ -45,13 +45,15 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private void OnPlayerEnteredCar()
     {
-        _backgroundWrapper.gameObject.SetActive(true);
-
         StartCoroutine(Animating());
     }
 
     private IEnumerator Animating()
     {
+        yield return new WaitForEndOfFrame();
+
+        _background.SetActive(true);
+
         foreach (var item in _scoresMap)
         {
             _animatingScoreTextCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, 1));
@@ -62,8 +64,26 @@ public class EndLevelInfoDisplay : MonoBehaviour
             }
         }
 
+        _rangText.gameObject.SetActive(true);
         _rangText.text += "KILLER";
+
         _pressAnyButtonText.gameObject.SetActive(true);
+
+        // тут нужна ассихронна€ загрузка с экраном натса
+        StartCoroutine(WaitingForRestart());
+    }
+
+    private IEnumerator WaitingForRestart()
+    {
+        while (true)
+        {
+            if (Input.anyKeyDown)
+                break;
+
+            yield return null;
+        }
+
+        SceneLoader.Instance.ReloadLevel();
     }
 
     private IEnumerator ScoreAnimating(TMP_Text text, int value, int speed)
