@@ -6281,11 +6281,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6759482452677191044, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_Volume
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191045, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_Volume
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191046, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_RootOrder
@@ -11977,6 +11977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1534432176}
   _levelHandler: {fileID: 1349201124}
+  _playerScoreHandler: {fileID: 815774730}
   _mainCameraController: {fileID: 1733610483}
   _bulletsDisplay: {fileID: 277885071}
   _enemies:
