@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class LevelHandler : MonoBehaviour
+public class LevelCompleteHandler : MonoBehaviour
 {
-    [SerializeField] private LevelInfoDisplay _levelInfoDisplay;
-
     private int _enemiesCountOnLevel;
+
+    public event UnityAction LevelCompleted;
 
     public void Init(int enemiesCountOnLevel)
     {
@@ -26,29 +27,8 @@ public class LevelHandler : MonoBehaviour
         EnemyController.Died -= OnEnemyDied;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 0)
-            {
-                PlayerInput.Instance.enabled = true;
-                Time.timeScale = 1;
-                SettingsModalWindow.Instance.Close();
-            }
-            else
-            {
-                PlayerInput.Instance.enabled = false;
-                Time.timeScale = 0;
-                SettingsModalWindow.Instance.Show();
-            }
-        }
-    }
-
     private void OnPlayerDied()
     {
-        _levelInfoDisplay.Show("'R' TO RESTART");
-
         StartCoroutine(WaitingForRestart());
     }
 
@@ -57,10 +37,7 @@ public class LevelHandler : MonoBehaviour
         _enemiesCountOnLevel--;
 
         if (_enemiesCountOnLevel == 0)
-        {
-            Car.Collider.isTrigger = true;
-            _levelInfoDisplay.Show("GO TO CAR");
-        }
+            LevelCompleted?.Invoke();
     }
 
     private IEnumerator WaitingForRestart()

@@ -9,7 +9,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private PlayerController _player;
 
     [Header("Handlers")]
-    [SerializeField] private LevelHandler _levelHandler;
+    [SerializeField] private LevelCompleteHandler _levelHandler;
 
     [Header("Camera")]
     [SerializeField] private MainCameraController _mainCameraController;

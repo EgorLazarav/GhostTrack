@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
-
 
 public class CheatCodeActivator : MonoBehaviour
 {
@@ -68,10 +67,20 @@ public class CheatCodeActivator : MonoBehaviour
                 ActivateCheatCode(ref _isPlayerInvisible, "Invisible");
                 break;
 
+            case IMD:
+                KillAllEnemies();
+                break;
+
             default:
                 CheckActivatedWeaponCheatCode();
                 break;
         }
+    }
+
+    private void KillAllEnemies()
+    {
+        var creatures = FindObjectsOfType<Health>().Where(e => e.TryGetComponent(out EnemyController enemy));
+        creatures.ToList().ForEach(c => c.ApplyDamage());
     }
 
     private string GetStringEnding(string str, int charCount)

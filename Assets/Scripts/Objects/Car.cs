@@ -6,13 +6,25 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class Car : MonoBehaviour
 {
-    public static Collider2D Collider { get; private set; }
+    [SerializeField] private LevelCompleteHandler _levelCompleteHandler;
+
+    private Collider2D _collider;
 
     public static event UnityAction PlayerEntered;
 
-    private void Start()
+    private void Awake()
     {
-        Collider = GetComponent<Collider2D>();
+        _collider = GetComponent<Collider2D>();
+    }
+
+    private void OnEnable()
+    {
+        _levelCompleteHandler.LevelCompleted += OnLevelCompleted;
+    }
+
+    private void OnDisable()
+    {
+        _levelCompleteHandler.LevelCompleted -= OnLevelCompleted;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,5 +34,10 @@ public class Car : MonoBehaviour
             PlayerEntered?.Invoke();
             PlayerInput.Instance.enabled = false;
         }
+    }
+
+    private void OnLevelCompleted()
+    {
+        _collider.isTrigger = true;
     }
 }

@@ -5,21 +5,39 @@ using UnityEngine.UI;
 public class LevelInfoDisplay : MonoBehaviour
 {
     [SerializeField] private Text _text;
+    [SerializeField] private LevelCompleteHandler _levelHandler;
 
     private CanvasGroup _canvasGroup;
 
-    private void Start()
+    private const string PlayerDiedText = "PRESS 'R' TO RESTART";
+    private const string LevelCompletedText = "GO TO CAR";
+
+    private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-
-        _canvasGroup.alpha = 0;
-        _canvasGroup.interactable = false;
-        _canvasGroup.blocksRaycasts = false;
     }
 
-    public void Show(string text)
+    private void OnEnable()
     {
-        _text.text = text;
+        PlayerController.Died += OnPlayerDied;
+        _levelHandler.LevelCompleted += OnLevelCompleted;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.Died -= OnPlayerDied;
+        _levelHandler.LevelCompleted -= OnLevelCompleted;
+    }
+
+    private void OnPlayerDied()
+    {
         _canvasGroup.alpha = 1;
+        _text.text = PlayerDiedText;
+    }
+
+    private void OnLevelCompleted()
+    {
+        _canvasGroup.alpha = 1;
+        _text.text = LevelCompletedText;
     }
 }
