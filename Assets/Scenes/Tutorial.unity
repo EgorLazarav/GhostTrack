@@ -584,7 +584,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1451098367}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &432455564
 MonoBehaviour:
@@ -915,7 +915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &675674393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6015,6 +6015,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &815774728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815774729}
+  - component: {fileID: 815774730}
+  m_Layer: 0
+  m_Name: PlayerScoreHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815774729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815774728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1451098367}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815774730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815774728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1a8a8e112aa224baff0917588ed73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1227666994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6412,6 +6456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b2470814df85b44b66525868684409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerScoreHandler: {fileID: 815774730}
   _backgroundWrapper: {fileID: 1581344349}
   _killScoreText: {fileID: 1651443486}
   _killStreakScoreText: {fileID: 675674394}
@@ -6419,6 +6464,7 @@ MonoBehaviour:
   _accuracyScoreText: {fileID: 1440925724}
   _totalScoreText: {fileID: 2110382662}
   _rangText: {fileID: 2122605526}
+  _pressAnyButtonText: {fileID: 1910940546}
 --- !u!1 &1407550217
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,7 +6617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1440925723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6720,6 +6766,7 @@ Transform:
   - {fileID: 2121274213}
   - {fileID: 1512953827}
   - {fileID: 1349201123}
+  - {fileID: 815774729}
   - {fileID: 1705557327}
   - {fileID: 432455563}
   - {fileID: 7093299368009210925}
@@ -9740,7 +9787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1646579283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9875,7 +9922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1651443485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10023,7 +10070,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1451098367}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1705557328
 MonoBehaviour:
@@ -10247,13 +10294,14 @@ GameObject:
   - component: {fileID: 1910940545}
   - component: {fileID: 1910940547}
   - component: {fileID: 1910940546}
+  - component: {fileID: 1910940548}
   m_Layer: 5
   m_Name: PressAnyButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1910940545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10294,7 +10342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press any button to continue
+  m_text: Press any button to continue...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10371,6 +10419,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910940544}
   m_CullTransparentMesh: 1
+--- !u!114 &1910940548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910940544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b00e5cf855e3a04a99aeed5c5a5d01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPlayingOnAwake: 1
+  _animationSpeed: 0.5
+  _maxIncreaseSize: 1.15
+  _maxDecreaseSize: 0.85
 --- !u!1 &1941206556
 GameObject:
   m_ObjectHideFlags: 0
@@ -11747,7 +11811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2110382661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11790,7 +11854,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Total Score:
 
-    15000'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12252,7 +12316,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1451098367}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -173.13}
 --- !u!114 &7093299368009210927
 MonoBehaviour:

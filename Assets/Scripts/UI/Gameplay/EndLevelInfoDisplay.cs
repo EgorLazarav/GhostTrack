@@ -17,8 +17,9 @@ public class EndLevelInfoDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _accuracyScoreText;
     [SerializeField] private TMP_Text _totalScoreText;
     [SerializeField] private TMP_Text _rangText;
+    [SerializeField] private TMP_Text _pressAnyButtonText;
 
-    private TMP_Text[] _scores;
+    private Dictionary<TMP_Text, int> _scoresMap;
     private Coroutine _currentCoroutine;
 
     private void OnEnable()
@@ -33,9 +34,13 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private void Start()
     {
-        _scores = new TMP_Text[] { _killScoreText, _killStreakScoreText, _timeScoreText, _accuracyScoreText, _totalScoreText };
-        _scores.ToList().ForEach(s => s.gameObject.SetActive(false));
-        _rangText.gameObject.SetActive(false);
+        _scoresMap = new Dictionary<TMP_Text, int>();
+
+        _scoresMap.Add(_killScoreText, _playerScoreHandler.KillScore);
+        _scoresMap.Add(_killStreakScoreText, _playerScoreHandler.KillStreakScore);
+        _scoresMap.Add(_timeScoreText, _playerScoreHandler.TimeScore);
+        _scoresMap.Add(_accuracyScoreText, _playerScoreHandler.AccuracyScore);
+        _scoresMap.Add(_totalScoreText, _playerScoreHandler.TotalScore);
     }
 
     private void OnPlayerEnteredCar()
@@ -47,10 +52,9 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private IEnumerator Animating()
     {
-        foreach (var score in _scores)
+        foreach (var item in _scoresMap)
         {
-            int scoreValue = 1500;
-            _currentCoroutine = StartCoroutine(ScoreAnimating(score, scoreValue, scoreValue.ToString().Length));
+            _currentCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, item.Value.ToString().Length);
 
             while (_currentCoroutine != null)
             {
@@ -58,7 +62,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
             }
         }
 
-        _rangText.text += "\nKILLER";
+        _rangText.text += "KILLER";
+        _pressAnyButtonText.gameObject.SetActive(true);
     }
 
     private IEnumerator ScoreAnimating(TMP_Text text, int value, int speed)
