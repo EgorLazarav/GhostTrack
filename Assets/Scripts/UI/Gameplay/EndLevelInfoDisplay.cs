@@ -54,7 +54,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     {
         foreach (var item in _scoresMap)
         {
-            _currentCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, item.Value.ToString().Length);
+            _currentCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, item.Value.ToString().Length));
 
             while (_currentCoroutine != null)
             {
