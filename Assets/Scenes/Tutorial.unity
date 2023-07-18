@@ -10432,9 +10432,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlayingOnAwake: 1
-  _animationSpeed: 0.5
-  _maxIncreaseSize: 1.15
-  _maxDecreaseSize: 0.85
+  _animationSpeed: 2
+  _maxIncreaseSize: 1.05
+  _maxDecreaseSize: 0.95
 --- !u!1 &1941206556
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     {
         foreach (var item in _scoresMap)
         {
-            _currentCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, item.Value.ToString().Length));
+            _currentCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, 1));
 
             while (_currentCoroutine != null)
             {
@@ -76,12 +76,19 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         while (currentValue != value)
         {
+            if (Input.anyKeyDown)
+            {
+                yield return new WaitForEndOfFrame();
+                break;
+            }
+
             currentValue = Mathf.Clamp(currentValue += speed, currentValue, value);
             text.text = defaultText + currentValue;
 
             yield return null;  
         }
 
+        text.text = defaultText + value;
         _currentCoroutine = null;
     }
 }
