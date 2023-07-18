@@ -6408,6 +6408,7 @@ GameObject:
   - component: {fileID: 1370352049}
   - component: {fileID: 1370352050}
   - component: {fileID: 1370352051}
+  - component: {fileID: 1370352052}
   m_Layer: 5
   m_Name: EndLevelInfoDisplay
   m_TagString: Untagged
@@ -6465,6 +6466,18 @@ MonoBehaviour:
   _totalScoreText: {fileID: 2110382662}
   _rangText: {fileID: 2122605526}
   _pressAnyButtonText: {fileID: 1910940546}
+--- !u!225 &1370352052
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370352048}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1407550217
 GameObject:
   m_ObjectHideFlags: 0
@@ -7081,7 +7094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1581344348
 RectTransform:
   m_ObjectHideFlags: 0

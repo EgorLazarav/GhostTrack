@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class EndLevelInfoDisplay : MonoBehaviour
 {
     [SerializeField] private PlayerScoreHandler _playerScoreHandler;
-    [SerializeField] private GameObject _background;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text _killScoreText;
@@ -19,8 +19,10 @@ public class EndLevelInfoDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _rangText;
     [SerializeField] private TMP_Text _pressAnyButtonText;
 
+    private CanvasGroup _canvasGroup;
     private Dictionary<TMP_Text, int> _scoresMap;
     private Coroutine _animatingScoreTextCoroutine;
+    private Coroutine _mainCoroutine;
 
     private void OnEnable()
     {
@@ -29,11 +31,12 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private void OnDisable()
     {
-        Car.PlayerEntered += OnPlayerEnteredCar;
+        Car.PlayerEntered -= OnPlayerEnteredCar;
     }
 
     private void Start()
     {
+        _canvasGroup = GetComponent<CanvasGroup>();
         _scoresMap = new Dictionary<TMP_Text, int>();
 
         _scoresMap.Add(_killScoreText, _playerScoreHandler.KillScore);
@@ -50,9 +53,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private IEnumerator Animating()
     {
-        yield return new WaitForEndOfFrame();
-
-        _background.SetActive(true);
+        _canvasGroup.alpha = 1;
 
         foreach (var item in _scoresMap)
         {
