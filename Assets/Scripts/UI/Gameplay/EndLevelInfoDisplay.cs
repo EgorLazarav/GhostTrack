@@ -20,7 +20,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _pressAnyButtonText;
 
     private Dictionary<TMP_Text, int> _scoresMap;
-    private Coroutine _currentCoroutine;
+    private Coroutine _animatingScoreTextCoroutine;
 
     private void OnEnable()
     {
@@ -54,9 +54,9 @@ public class EndLevelInfoDisplay : MonoBehaviour
     {
         foreach (var item in _scoresMap)
         {
-            _currentCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, 1));
+            _animatingScoreTextCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, 1));
 
-            while (_currentCoroutine != null)
+            while (_animatingScoreTextCoroutine != null)
             {
                 yield return null;
             }
@@ -89,6 +89,6 @@ public class EndLevelInfoDisplay : MonoBehaviour
         }
 
         text.text = defaultText + value;
-        _currentCoroutine = null;
+        _animatingScoreTextCoroutine = null;
     }
 }

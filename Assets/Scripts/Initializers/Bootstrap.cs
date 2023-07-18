@@ -10,6 +10,7 @@ public class Bootstrap : MonoBehaviour
 
     [Header("Handlers")]
     [SerializeField] private LevelCompleteHandler _levelHandler;
+    [SerializeField] private PlayerScoreHandler _playerScoreHandler;
 
     [Header("Camera")]
     [SerializeField] private MainCameraController _mainCameraController;
@@ -25,6 +26,7 @@ public class Bootstrap : MonoBehaviour
         _player.Init();
 
         _levelHandler.Init(_enemies.Length);
+        _playerScoreHandler.Init(_enemies.Length);
 
         _mainCameraController.Init(_player.transform, _player.ViewRange);
 
