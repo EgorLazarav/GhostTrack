@@ -46,8 +46,13 @@ public class EnemyCombatState : EnemyState
     {
         float boxSize = 0.2f;
         float boxAngle = 90;
+        float attackRange = EnemyController.ViewRange / 2;
 
-        var hit = Physics2D.BoxCast(EnemyController.Weapon.ShootPoint.position, new Vector2(boxSize, boxSize), boxAngle, EnemyController.Weapon.transform.right);
+        var hit = Physics2D.BoxCast(EnemyController.Weapon.ShootPoint.position, 
+            new Vector2(boxSize, boxSize), 
+            boxAngle, 
+            EnemyController.Weapon.transform.right, 
+            attackRange);
 
         return (hit.collider != null && hit.collider.TryGetComponent(out PlayerController player));
     }

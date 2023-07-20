@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private bool _soundEnabled = false;
+
+    [Header("Sources")]
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _effectsSource;
 
     [Header("Music")]
     [SerializeField] private AudioClip[] _mainMenuThemes;
     [SerializeField] private AudioClip[] _inGameThemes;
+    [SerializeField] private AudioClip[] _endLevelThemes;
 
     public static AudioManager Instance { get; private set; } = null;
 
@@ -24,6 +28,9 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (!_soundEnabled)
+            AudioListener.volume = 0;
     }
 
     public void PlaySound(AudioClip clip)
@@ -51,5 +58,16 @@ public class AudioManager : MonoBehaviour
     {
         _musicSource.clip = _inGameThemes[Random.Range(0, _inGameThemes.Length)];
         _musicSource.Play();
+    }
+
+    public void PlayRandomEndLevelTheme()
+    {
+        _musicSource.clip = _endLevelThemes[Random.Range(0, _endLevelThemes.Length)];
+        _musicSource.Play();
+    }
+
+    public void StopPlayback()
+    {
+        _musicSource.Stop();
     }
 }

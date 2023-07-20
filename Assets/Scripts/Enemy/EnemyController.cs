@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
     public Vector2 PatrolAreaSize => _patrolAreaSize;
     public Vector2 PatrolAreaOffset => _patrolAreaOffset;
     public float MaxReactionTime => _maxReactionTime;
+    public float ViewRange => _viewRange;
 
     public static event UnityAction<EnemyController> Died;
 

@@ -15,24 +15,21 @@ public class MainCameraController : MonoBehaviour
 
     private const float BasePositionZ = -10;
 
+    private void OnEnable()
+    {
+        PlayerInput.LookKeyPressed += OnLookKeyPressed;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.LookKeyPressed -= OnLookKeyPressed;
+    }
+
     private void Start()
     {
         Vector3 basePosition = transform.position;
         basePosition.z = BasePositionZ;
         transform.position = basePosition;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            OnLookKeyPressed(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            OnLookKeyPressed(false);
-        }
     }
 
     public void Init(Transform followTarget, float sizeOfLookingArea)
@@ -58,13 +55,11 @@ public class MainCameraController : MonoBehaviour
     {
         if (isKeyDown)
         {
-            PlayerInput.Instance.enabled = false;
             StopCoroutine(_followingCoroutine);
             _lookingCoroutine = StartCoroutine(Looking(_sizeOfLookingArea));
         }
         else
         {
-            PlayerInput.Instance.enabled = true;
             StopCoroutine(_lookingCoroutine);
             _followingCoroutine = StartCoroutine(Following(_followTarget));
         }

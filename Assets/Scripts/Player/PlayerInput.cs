@@ -8,20 +8,29 @@ public class PlayerInput : MonoBehaviour
     public static event UnityAction PuncKeyPressed;
     public static event UnityAction DropWeaponKeyPressed;
     public static event UnityAction PickUpWeaponKeyPressed;
+    public static event UnityAction<bool> LookKeyPressed;
 
     public static PlayerInput Instance { get; private set; }
+
+    private bool _isLookKeyPressing = false;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        CheckLookKeyPressing();
+
+        if (_isLookKeyPressing)
+            return;
+
+        CheckCombatKeysPressing();
         CheckMoveKeysPressing();
     }
 
-    private void Update()
+    private static void CheckCombatKeysPressing()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -41,6 +50,21 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PickUpWeaponKeyPressed?.Invoke();
+        }
+    }
+
+    private void CheckLookKeyPressing()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            LookKeyPressed?.Invoke(true);
+            _isLookKeyPressing = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            LookKeyPressed?.Invoke(false);
+            _isLookKeyPressing = false;
         }
     }
 

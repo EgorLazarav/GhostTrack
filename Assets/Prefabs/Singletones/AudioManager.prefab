@@ -142,16 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2d68b2bab63cd4eb95f0b2457ffd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soundEnabled: 1
   _musicSource: {fileID: 6759482452677191044}
   _effectsSource: {fileID: 6759482452677191045}
-  _hitSFX: {fileID: 8300000, guid: ba2ed5447f0e5fb4ca7a9a149654c060, type: 3}
-  _punchSFX: {fileID: 8300000, guid: 1f866c88edb340b489d66793db87b04e, type: 3}
-  _emptyClipSFX: {fileID: 8300000, guid: df2b8d35fb68b6d4581ec8a91382b0a5, type: 3}
-  _explosionSFX: {fileID: 8300000, guid: 2debde5c9b033454db4d6e6763665a96, type: 3}
-  _bounceGrenadeSFX: {fileID: 8300000, guid: c0c38ae5b310f754b971e9ea8eac44fe, type: 3}
-  _pickUpWeaponSFX: {fileID: 8300000, guid: a971d069695cb6545b265f4a10af5b8e, type: 3}
-  _dropWeaponSFX: {fileID: 8300000, guid: eecb8512eb14dec47b88a2a7aa7dd80f, type: 3}
-  _chargableWeaponSFX: {fileID: 8300000, guid: 807beff09edf4494a82294edd87a39db, type: 3}
+  _mainMenuThemes:
+  - {fileID: 8300000, guid: e1381180d35ac9f47a26a2c578c53c75, type: 3}
+  _inGameThemes:
+  - {fileID: 8300000, guid: 6bbdaf7e13d191446a88cd404547ea82, type: 3}
+  _endLevelThemes:
+  - {fileID: 8300000, guid: 0af114b277061ea41be9b40c7b8cd116, type: 3}
 --- !u!82 &6759482452677191045
 AudioSource:
   m_ObjectHideFlags: 0

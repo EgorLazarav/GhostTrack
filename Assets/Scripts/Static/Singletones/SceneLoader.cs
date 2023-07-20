@@ -48,6 +48,7 @@ public class SceneLoader : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        AudioManager.Instance.PlayRandomInGameTheme();
     }
 
     private IEnumerator LoadingNewLevel(AsyncOperation operation)
