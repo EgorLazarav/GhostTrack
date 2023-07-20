@@ -46,6 +46,9 @@ public class MainCameraController : MonoBehaviour
     {
         while (true)
         {
+            if (target == null)
+                break;
+
             _camera.transform.SetPositionToTargetXY(target);
             yield return null;
         }

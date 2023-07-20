@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput.PickUpWeaponKeyPressed += OnPickUpWeaponKeyPressed;
         PlayerInput.PuncKeyPressed += OnPuncKeyPressed;
         PlayerInput.ShootKeyPressing += OnShootKeyPressing;
+        PlayerInput.LookKeyPressed += OnLookKeyPressed;
 
         _health.Over += OnHealthOver;
     }
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput.PickUpWeaponKeyPressed -= OnPickUpWeaponKeyPressed;
         PlayerInput.PuncKeyPressed -= OnPuncKeyPressed;
         PlayerInput.ShootKeyPressing -= OnShootKeyPressing;
+        PlayerInput.LookKeyPressed -= OnLookKeyPressed;
 
         _health.Over -= OnHealthOver;
     }
@@ -82,6 +84,11 @@ public class PlayerController : MonoBehaviour
     private void OnDropWeaponKeyPressed()
     {
         _combat.TryDropWeapon();
+    }
+
+    private void OnLookKeyPressed(bool state)
+    {
+        _movement.Move(Vector2.zero);
     }
 
     private void OnHealthOver()

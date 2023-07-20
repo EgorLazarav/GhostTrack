@@ -22,7 +22,7 @@ public class CheatCodeActivator : MonoBehaviour
     private const string INV = nameof(INV); // invisible (enemies ignores player)
     private const string IMD = nameof(IMD); // invaders must die (kill all enemies)
 
-    private const string EW = nameof(EW); // player get's 1: Uzi, 2 : AK47, 3 : M249, 4 : Grenadelauncher, 5: AWM, 6: Nova
+    private const string GW = nameof(GW); // player get's 1: Uzi, 2 : AK47, 3 : M249, 4 : Grenadelauncher, 5: AWM, 6: Nova
 
     private string _letters = "";
 
@@ -34,7 +34,7 @@ public class CheatCodeActivator : MonoBehaviour
 
     private void CheckActivatedWeaponCheatCode()
     {
-        if (GetStringEnding(_letters, 3).StartsWith(EW))
+        if (GetStringEnding(_letters, 3).StartsWith(GW))
         {
             for (int i = 0; i < _weapons.Length; i++)
             {

@@ -21,13 +21,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
-    {
-        if (!PlayerInput.Instance.enabled)
-            _rigidbody.velocity = Vector2.zero;
-    }
-
-    public void Move(Vector2 direction, bool isWeaponEquiped)
+    public void Move(Vector2 direction, bool isWeaponEquiped = true)
     {
         _rigidbody.velocity = direction * (_speed + (Convert.ToInt32(isWeaponEquiped) * _noWeaponBonusSpeed));
     }
