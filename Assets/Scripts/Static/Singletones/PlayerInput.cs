@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,6 +29,7 @@ public class PlayerInput : MonoBehaviour
     public Dictionary<Keys, KeyCode> KeysMap { get; private set; } = new Dictionary<Keys, KeyCode>();
 
     private bool _isLookKeyPressing = false;
+    private Keys _lastBindedKey;
 
     private void Awake()
     {
@@ -141,5 +143,17 @@ public class PlayerInput : MonoBehaviour
             return;
 
         KeysMap[key] = keyCode;
+        _lastBindedKey = key;
+
+        for (int index = 0; index < KeysMap.Count; index++)
+        {
+            var item = KeysMap.ElementAt(index);
+
+            if (item.Key == _lastBindedKey)
+                continue;
+
+            if (item.Value == keyCode)
+                KeysMap[item.Key] = KeyCode.None;
+        }
     }
 }

@@ -32,6 +32,9 @@ public class KeyBinder : MonoBehaviour
         {
             PlayerInput.Instance.TryBindKey(el.BindingKey, el.CurrentKeyBind);
         }
+
+        print(123456);
+        gameObject.SetActive(false);
     }
 
     private void Draw()
