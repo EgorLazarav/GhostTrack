@@ -640,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: _soundEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: _inGameThemes.Array.size
