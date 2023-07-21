@@ -4,15 +4,15 @@ using UnityEngine.Events;
 
 public enum Keys
 {
-    MoveUpKey,
-    MoveDownKey,
-    MoveLeftKey,
-    MoveRightKey,
-    ShootKey,
-    PunchKey,
-    DropWeaponKey,
-    PickUpWeaponKey,
-    LookKey
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    Shoot,
+    Punch,
+    DropWeapon,
+    PickUpWeapon,
+    Look
 }
 
 public class PlayerInput : MonoBehaviour
@@ -46,17 +46,17 @@ public class PlayerInput : MonoBehaviour
 
     private void InitKeys()
     {
-        KeysMap.Add(Keys.MoveUpKey, KeyCode.W);
-        KeysMap.Add(Keys.MoveLeftKey, KeyCode.A);
-        KeysMap.Add(Keys.MoveDownKey, KeyCode.S);
-        KeysMap.Add(Keys.MoveRightKey, KeyCode.D);
+        KeysMap.Add(Keys.MoveUp, KeyCode.W);
+        KeysMap.Add(Keys.MoveLeft, KeyCode.A);
+        KeysMap.Add(Keys.MoveDown, KeyCode.S);
+        KeysMap.Add(Keys.MoveRight, KeyCode.D);
 
-        KeysMap.Add(Keys.ShootKey, KeyCode.Mouse0);
-        KeysMap.Add(Keys.PunchKey, KeyCode.Mouse1);
-        KeysMap.Add(Keys.PickUpWeaponKey, KeyCode.E);
-        KeysMap.Add(Keys.DropWeaponKey, KeyCode.Q);
+        KeysMap.Add(Keys.Shoot, KeyCode.Mouse0);
+        KeysMap.Add(Keys.Punch, KeyCode.Mouse1);
+        KeysMap.Add(Keys.PickUpWeapon, KeyCode.E);
+        KeysMap.Add(Keys.DropWeapon, KeyCode.Q);
 
-        KeysMap.Add(Keys.LookKey, KeyCode.LeftShift);
+        KeysMap.Add(Keys.Look, KeyCode.LeftShift);
     }
 
     private void Update()
@@ -72,22 +72,22 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckCombatKeysPressing()
     {
-        if (Input.GetKeyDown(KeysMap[Keys.PunchKey]))
+        if (Input.GetKeyDown(KeysMap[Keys.Punch]))
         {
             PuncKeyPressed?.Invoke();
         }
 
-        if (Input.GetKey(KeysMap[Keys.ShootKey]))
+        if (Input.GetKey(KeysMap[Keys.Shoot]))
         {
             ShootKeyPressing?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeysMap[Keys.DropWeaponKey]))
+        if (Input.GetKeyDown(KeysMap[Keys.DropWeapon]))
         {
             DropWeaponKeyPressed?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeysMap[Keys.PickUpWeaponKey]))
+        if (Input.GetKeyDown(KeysMap[Keys.PickUpWeapon]))
         {
             PickUpWeaponKeyPressed?.Invoke();
         }
@@ -95,13 +95,13 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckLookKeyPressing()
     {
-        if (Input.GetKeyDown(KeysMap[Keys.LookKey]))
+        if (Input.GetKeyDown(KeysMap[Keys.Look]))
         {
             LookKeyPressed?.Invoke(true);
             _isLookKeyPressing = true;
         }
 
-        if (Input.GetKeyUp(KeysMap[Keys.LookKey]))
+        if (Input.GetKeyUp(KeysMap[Keys.Look]))
         {
             LookKeyPressed?.Invoke(false);
             _isLookKeyPressing = false;
@@ -112,22 +112,22 @@ public class PlayerInput : MonoBehaviour
     {
         Vector2 moveVector = Vector2.zero;
 
-        if (Input.GetKey(KeysMap[Keys.MoveUpKey]))
+        if (Input.GetKey(KeysMap[Keys.MoveUp]))
         {
             moveVector += Vector2.up;
         }
 
-        if (Input.GetKey(KeysMap[Keys.MoveLeftKey]))
+        if (Input.GetKey(KeysMap[Keys.MoveLeft]))
         {
             moveVector += Vector2.left;
         }
 
-        if (Input.GetKey(KeysMap[Keys.MoveDownKey]))
+        if (Input.GetKey(KeysMap[Keys.MoveDown]))
         {
             moveVector += Vector2.down;
         }
 
-        if (Input.GetKey(KeysMap[Keys.MoveRightKey]))
+        if (Input.GetKey(KeysMap[Keys.MoveRight]))
         {
             moveVector += Vector2.right;
         }
@@ -141,13 +141,5 @@ public class PlayerInput : MonoBehaviour
             return;
 
         KeysMap[key] = keyCode;
-
-        foreach (var k in KeysMap)
-        {
-            if (k.Value == keyCode)
-            {
-                KeysMap[k.Key] = KeyCode.None;
-            }
-        }
     }
 }
