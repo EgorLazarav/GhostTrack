@@ -39,7 +39,7 @@ public class KeyBinder : MonoBehaviour
 
     private void OnApplyButtonClicked()
     {
-        ConfirmModalWindow.Instance.Show("Save Binds?", ApplyBinds);
+        ConfirmModalWindow.Instance.Show("Save binds?", ApplyBinds);
     }
 
     private void ApplyBinds()

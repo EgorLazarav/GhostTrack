@@ -10,7 +10,7 @@ public class ButtonBackToMainMenu : ButtonClickHandler
         if (SceneManager.GetActiveScene().name == SceneNames.MainMenu.ToString())
             SettingsModalWindow.Instance.Close();
         else
-            ConfirmModalWindow.Instance.Show("Выйти в главное меню? Прогресс уровня будет сброшен", BackToMenu);
+            ConfirmModalWindow.Instance.Show("Exit to main menu? Unsaved progress will be lost", BackToMenu);
     }
 
     private void BackToMenu()
