@@ -29,7 +29,6 @@ public class PlayerInput : MonoBehaviour
     public Dictionary<Keys, KeyCode> KeysMap { get; private set; } = new Dictionary<Keys, KeyCode>();
 
     private bool _isLookKeyPressing = false;
-    private Keys _lastBindedKey;
 
     private void Awake()
     {
@@ -137,23 +136,8 @@ public class PlayerInput : MonoBehaviour
         MoveKeyPressing?.Invoke(moveVector);
     }
 
-    public void TryBindKey(Keys key, KeyCode keyCode)
+    public void BindKey(Keys key, KeyCode keyCode)
     {
-        if (!KeysMap.ContainsKey(key))
-            return;
-
         KeysMap[key] = keyCode;
-        _lastBindedKey = key;
-
-        for (int index = 0; index < KeysMap.Count; index++)
-        {
-            var item = KeysMap.ElementAt(index);
-
-            if (item.Key == _lastBindedKey)
-                continue;
-
-            if (item.Value == keyCode)
-                KeysMap[item.Key] = KeyCode.None;
-        }
     }
 }

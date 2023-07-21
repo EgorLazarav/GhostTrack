@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class KeyBindDisplay : MonoBehaviour
@@ -10,8 +11,10 @@ public class KeyBindDisplay : MonoBehaviour
     [SerializeField] private Text _keyText;
     [SerializeField] private Text _actionText;
 
-    public KeyCode CurrentKeyBind { get; private set; }
-    public Keys BindingKey { get; private set; }
+    private KeyCode _keyCode;
+    private Keys _action;
+
+    public static event UnityAction<Keys, KeyCode> KeyBinded;
 
     private void OnEnable()
     {
@@ -25,8 +28,8 @@ public class KeyBindDisplay : MonoBehaviour
 
     public void Init(KeyCode key, Keys action)
     {
-        CurrentKeyBind = key;
-        BindingKey = action;
+        _keyCode = key;
+        _action = action;
 
         _keyText.text = key.ToString();
         _actionText.text = action.ToString();
@@ -34,10 +37,10 @@ public class KeyBindDisplay : MonoBehaviour
 
     private void OnButtonClicked()
     {
-        StartCoroutine(CheckingInput());
+        StartCoroutine(BindingKeyOnInput());
     }
 
-    private IEnumerator CheckingInput()
+    private IEnumerator BindingKeyOnInput()
     {
         bool isKeyPressed = false;
         _keyText.text = "";
@@ -51,7 +54,7 @@ public class KeyBindDisplay : MonoBehaviour
                     if (Input.GetKeyDown(key))
                     {
                         isKeyPressed = true;
-                        CurrentKeyBind = key;
+                        _keyCode = key;
                         break;
                     }
                 }
@@ -60,6 +63,7 @@ public class KeyBindDisplay : MonoBehaviour
             yield return null;
         }
 
-        _keyText.text = CurrentKeyBind.ToString();
+        _keyText.text = _keyCode.ToString();
+        KeyBinded?.Invoke(_action, _keyCode);
     }
 }
