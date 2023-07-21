@@ -16,7 +16,7 @@ MonoBehaviour:
   _bulletsCount: 150
   _damagePercent: 100
   _shotPower: 15
-  _timeBetweenShots: 0.15
+  _timeBetweenShots: 0.03
   _shotSFX: {fileID: 8300000, guid: 1e45a1bebdb0d7e47ad0fe73179c42b8, type: 3}
   _emptyClipSFX: {fileID: 8300000, guid: df2b8d35fb68b6d4581ec8a91382b0a5, type: 3}
   _pickUpSFX: {fileID: 8300000, guid: a971d069695cb6545b265f4a10af5b8e, type: 3}

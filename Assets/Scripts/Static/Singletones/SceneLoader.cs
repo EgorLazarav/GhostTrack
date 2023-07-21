@@ -41,6 +41,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNewGame()
     {
+        PlayerInput.Instance.enabled = true; // костыль
         var operation = SceneManager.LoadSceneAsync(SceneNames.Tutorial.ToString());
         StartCoroutine(LoadingNewLevel(operation)); 
     }
