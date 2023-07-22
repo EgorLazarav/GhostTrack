@@ -20,4 +20,9 @@ public class PauseMenuHandler : MonoBehaviour
             }
         }
     }
+
+    private void OnDisable()
+    {
+        PlayerInput.Instance.enabled = true;
+    }
 }
