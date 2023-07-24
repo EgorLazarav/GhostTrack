@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
       
         if (_currentPercent <= 0)
         {
-            Instantiate(_bloodSprites[Random.Range(0, _bloodSprites.Length)], transform.position, Quaternion.identity);
+            Instantiate(_bloodSprites[Random.Range(0, _bloodSprites.Length)], transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
             var hitVFX = Instantiate(_hitVFX, transform.position, Quaternion.identity);
             Destroy(hitVFX.gameObject, hitVFX.main.duration);
             AudioManager.Instance.PlaySound(_deathSFX);

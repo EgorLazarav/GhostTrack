@@ -82,7 +82,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
             }
         }
 
-        float result = _playerScoreHandler.TotalScore / _playerScoreHandler.MaxScore;
+        float result = (float)_playerScoreHandler.TotalScore / (float)_playerScoreHandler.MaxScore;
+        print(result);
         string rang = DetermineRang(result);
         _rangText.gameObject.SetActive(true);
         _rangText.text += rang;
@@ -100,9 +101,9 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         if (result >= 0.9f)
             rang = Rangs.Ghost.ToString();
-        else if (result >= 0.75f)
+        else if (result >= 0.7f)
             rang = Rangs.Killer.ToString();
-        else if (result >= 0.6f)
+        else if (result >= 0.5f)
             rang = Rangs.Amateur.ToString();
         else
             rang = Rangs.Pussyboy.ToString();
