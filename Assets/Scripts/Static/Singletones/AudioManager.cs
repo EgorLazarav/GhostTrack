@@ -68,6 +68,13 @@ public class AudioManager : MonoBehaviour
 
     public void StopPlayback()
     {
-        _musicSource.Stop();
+        _musicSource.Pause();
+        _effectsSource.Pause();
+    }
+
+    public void ContinuePlayback()
+    {
+        _musicSource.UnPause();
+        _effectsSource.UnPause();
     }
 }

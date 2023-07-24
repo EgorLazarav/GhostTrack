@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitVFX;
     [SerializeField] private AudioClip _deathSFX;
+    [SerializeField] private SpriteRenderer[] _bloodSprites;
 
     private float _currentPercent = 100;
     private DamageReducer _damageReducer;
@@ -29,6 +30,7 @@ public class Health : MonoBehaviour
       
         if (_currentPercent <= 0)
         {
+            Instantiate(_bloodSprites[Random.Range(0, _bloodSprites.Length)], transform.position, Quaternion.identity);
             var hitVFX = Instantiate(_hitVFX, transform.position, Quaternion.identity);
             Destroy(hitVFX.gameObject, hitVFX.main.duration);
             AudioManager.Instance.PlaySound(_deathSFX);
