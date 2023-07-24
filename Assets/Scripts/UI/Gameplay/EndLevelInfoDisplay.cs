@@ -32,7 +32,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
         LevelEndHandler.PlayerEntered -= OnPlayerEnteredCar;
     }
 
-    private void Start()
+    private void CreateDict()
     {
         _scoresMap = new Dictionary<TMP_Text, int>();
 
@@ -50,6 +50,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private IEnumerator Animating()
     {
+        CreateDict();
         float currentAlpha = 0;
         float animationSpeed = 0.5f;
 
