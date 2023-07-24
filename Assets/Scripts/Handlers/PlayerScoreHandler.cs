@@ -5,33 +5,38 @@ using UnityEngine;
 public class PlayerScoreHandler : MonoBehaviour
 {
     public int KillScore => _killScore;
-    public int KillStreakScore => _maxKillStreak * ScoreForEachStreak;
-    public int TimeScore => (int)(BaseTimeScoreBonus - _timePassed * TimeScoreMultiplier);
-    public int AccuracyScore => (int)((_enemiesCountOnLevel / _playerAttacksCount) * AccuracyMultiplier);
+    public int KillStreakScore => _maxReachedKillStreak * ScoreForEachStreak;
+    public int TimeScore => Mathf.Clamp((int)((BaseTimeScoreBonus + _timeScoreBonusOnLevel) - _timePassed * _timeScoreMultiplier), 0, BaseTimeScoreBonus);
+    public int AccuracyScore => Mathf.Clamp((int)((_enemiesCountOnLevel / _playerAttacksCount) * BaseAccuracyScoreBonus), 0, BaseAccuracyScoreBonus);
     public int TotalScore => GetTotalScore();
+    public int MaxScore => GetMaxScore();
 
+    private Coroutine _killStreakCoroutine;
     private int _killScore;
     private float _timePassed;
-
     private float _enemiesCountOnLevel;
     private float _currentEnemiesCountOnLevel;
     private float _playerAttacksCount;
-
-    private int _maxKillStreak = 0;
-    private int _currentKillStreak = 0;
-    private Coroutine _killStreakCoroutine;
+    private float _timeScoreMultiplier;
+    private int _maxReachedKillStreak;
+    private int _currentReachedKillStreak;
+    private int _maxKillStreak;
+    private float _timeScoreBonusOnLevel;
 
     private const int ScoreForKill = 100;
     private const int ScoreForEachStreak = 100;
     private const int SecondsToContinueStreak = 3;
-    private const int AccuracyMultiplier = 1000;
-    private const int TimeScoreMultiplier = 5;
+    private const int BaseAccuracyScoreBonus = 1000;
     private const int BaseTimeScoreBonus = 1000;
+    private const float BaseTimeScoreMultiplier = 100;
 
     public void Init(int enemiesCountOnLevel)
     {
+        _maxKillStreak = enemiesCountOnLevel;
         _enemiesCountOnLevel = enemiesCountOnLevel;
-        _currentEnemiesCountOnLevel = _enemiesCountOnLevel;
+        _currentEnemiesCountOnLevel = enemiesCountOnLevel;
+        _timeScoreMultiplier = BaseTimeScoreMultiplier / enemiesCountOnLevel;
+        _timeScoreBonusOnLevel = SecondsToContinueStreak * enemiesCountOnLevel * 10;
     }
 
     private void OnEnable()
@@ -62,13 +67,11 @@ public class PlayerScoreHandler : MonoBehaviour
     private void OnEnemyDied(EnemyController enemy)
     {
         _killScore += ScoreForKill;
-        print(AccuracyScore);
-
-        _currentKillStreak++;
+        _currentReachedKillStreak++;
         _currentEnemiesCountOnLevel--;
 
-        if (_currentKillStreak > _maxKillStreak)
-            _maxKillStreak = _currentKillStreak;
+        if (_currentReachedKillStreak > _maxReachedKillStreak)
+            _maxReachedKillStreak = _currentReachedKillStreak;
 
         if (_killStreakCoroutine != null)
             StopCoroutine(_killStreakCoroutine);
@@ -80,7 +83,7 @@ public class PlayerScoreHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(SecondsToContinueStreak);
 
-        _currentKillStreak = 0;
+        _currentReachedKillStreak = 0;
         _killStreakCoroutine = null;
     }
 
@@ -88,5 +91,11 @@ public class PlayerScoreHandler : MonoBehaviour
     {
         return KillScore + KillStreakScore + TimeScore + AccuracyScore;
     }
-
+    private int GetMaxScore()
+    { 
+        return (int)(ScoreForKill * _enemiesCountOnLevel
+            + _maxKillStreak * ScoreForEachStreak
+            + BaseTimeScoreBonus
+            + BaseAccuracyScoreBonus);
+    }
 }

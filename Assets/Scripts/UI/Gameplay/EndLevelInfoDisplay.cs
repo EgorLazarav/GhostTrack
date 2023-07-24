@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum Rangs
+{
+    Pussyboy,
+    Amateur,
+    Killer,
+    Ghost
+}
+
 public class EndLevelInfoDisplay : MonoBehaviour
 {
     [SerializeField] private PlayerScoreHandler _playerScoreHandler;
@@ -74,15 +82,32 @@ public class EndLevelInfoDisplay : MonoBehaviour
             }
         }
 
-        // тут нужно определять уровень и анимировать ранг
+        float result = _playerScoreHandler.TotalScore / _playerScoreHandler.MaxScore;
+        string rang = DetermineRang(result);
         _rangText.gameObject.SetActive(true);
-        _rangText.text += "KILLER";
+        _rangText.text += rang;
 
         // после анимации ранга вылазит
         _pressAnyButtonText.gameObject.SetActive(true);
 
         // тут нужна ассихронная загрузка с экраном натса
         StartCoroutine(WaitingForRestart());
+    }
+
+    private static string DetermineRang(float result)
+    {
+        string rang;
+
+        if (result >= 0.9f)
+            rang = Rangs.Ghost.ToString();
+        else if (result >= 0.75f)
+            rang = Rangs.Killer.ToString();
+        else if (result >= 0.6f)
+            rang = Rangs.Amateur.ToString();
+        else
+            rang = Rangs.Pussyboy.ToString();
+
+        return rang;
     }
 
     private IEnumerator WaitingForRestart()
