@@ -126,7 +126,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private IEnumerator ScoreAnimating(TMP_Text text, int value, int speed)
     {
-        int currentValue = 0;
+        float currentValue = 0;
         string defaultText = text.text;
 
         text.text = defaultText + currentValue;
@@ -140,8 +140,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
                 break;
             }
 
-            currentValue = Mathf.Clamp(currentValue += speed, currentValue, value);
-            text.text = defaultText + currentValue;
+            currentValue = Mathf.Clamp(currentValue += value * Time.deltaTime * speed, currentValue, value);
+            text.text = defaultText + (int)currentValue;
 
             yield return null;  
         }
