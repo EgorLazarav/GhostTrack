@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public enum Rangs
 {
@@ -18,6 +19,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     [SerializeField] private Image _curtainPanel;
     [SerializeField] private Image _scoresWrapper;
     [SerializeField] private AudioClip _scoreLoopSFX;
+    [SerializeField] private AudioClip _scoreRangSFX;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text _killScoreText;
@@ -87,12 +89,19 @@ public class EndLevelInfoDisplay : MonoBehaviour
         }
 
         float result = (float)_playerScoreHandler.TotalScore / (float)_playerScoreHandler.MaxScore;
+        float scaleMultiplier = 5;
+        float baseScale = 1;
+        float animationTime = 1;
+
         _rangText.gameObject.SetActive(true);
         _rangText.text += DetermineRang(result);
+        _rangText.transform.localScale *= scaleMultiplier;
+        _rangText.transform.DOScale(baseScale, animationTime);
+        AudioManager.Instance.PlaySound(_scoreRangSFX);
 
-        // после анимации ранга вылазит
+        yield return new WaitForSeconds(animationTime);
+
         _pressAnyButtonText.gameObject.SetActive(true);
-
         // тут нужна ассихронная загрузка с экраном натса
         StartCoroutine(WaitingForRestart());
     }

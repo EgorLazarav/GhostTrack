@@ -24019,7 +24019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: _soundEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191097, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_Name
@@ -24623,6 +24623,7 @@ MonoBehaviour:
   _curtainPanel: {fileID: 1266660951}
   _scoresWrapper: {fileID: 1581344349}
   _scoreLoopSFX: {fileID: 8300000, guid: 67a08056d9556d94ba1d8f8361928a62, type: 3}
+  _scoreRangSFX: {fileID: 8300000, guid: c9e1461a22c814943803ae19d2612ee6, type: 3}
   _killScoreText: {fileID: 1651443486}
   _killStreakScoreText: {fileID: 675674394}
   _timeScoreText: {fileID: 1646579284}
