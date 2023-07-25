@@ -1,43 +1,57 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CanvasGroup))]
 public class LevelInfoDisplay : MonoBehaviour
 {
     [SerializeField] private Text _text;
     [SerializeField] private LevelCompleteHandler _levelHandler;
 
-    private CanvasGroup _canvasGroup;
-
-    private const string PlayerDiedText = "PRESS 'R' TO RESTART";
+    private const string PlayerDiedText = "'R' TO RESTART";
     private const string LevelCompletedText = "GO TO CAR";
+    private const string NoAmmoText = "NO AMMO";
+    private const string BulletsText = "|||";
 
-    private void Awake()
+    public void Init(int startWeaponBulletsCount)
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
+        SetBulletsText(startWeaponBulletsCount);
     }
 
     private void OnEnable()
     {
         PlayerController.Died += OnPlayerDied;
+        PlayerCombat.BulletsChanged += OnPlayerBulletsChanged;
         _levelHandler.LevelCompleted += OnLevelCompleted;
     }
 
     private void OnDisable()
     {
         PlayerController.Died -= OnPlayerDied;
+        PlayerCombat.BulletsChanged -= OnPlayerBulletsChanged;
         _levelHandler.LevelCompleted -= OnLevelCompleted;
+    }
+
+    private void OnPlayerBulletsChanged(int bulletsCount)
+    {
+        SetBulletsText(bulletsCount);
+    }
+
+    private void SetBulletsText(int bulletsCount)
+    {
+        if (bulletsCount == 0)
+            _text.text = NoAmmoText;
+        else
+            _text.text = BulletsText + bulletsCount;
     }
 
     private void OnPlayerDied()
     {
-        _canvasGroup.alpha = 1;
+        PlayerCombat.BulletsChanged -= OnPlayerBulletsChanged;
         _text.text = PlayerDiedText;
     }
 
     private void OnLevelCompleted()
     {
-        _canvasGroup.alpha = 1;
+        PlayerCombat.BulletsChanged -= OnPlayerBulletsChanged;
         _text.text = LevelCompletedText;
     }
 }

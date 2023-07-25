@@ -16,7 +16,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private MainCameraController _mainCameraController;
 
     [Header("UI")]
-    [SerializeField] private BulletsDisplay _bulletsDisplay;
+    [SerializeField] private LevelInfoDisplay _levelInfoDisplay;
 
     [Header("Enemies")]
     [SerializeField] private EnemyController[] _enemies;
@@ -30,7 +30,7 @@ public class Bootstrap : MonoBehaviour
 
         _mainCameraController.Init(_player.transform, _player.ViewRange);
 
-        _bulletsDisplay.Init(_player.StartWeapon.Data.BulletsCount);
+        _levelInfoDisplay.Init(_player.StartWeapon.Data.BulletsCount);
 
         _enemies.ToList().ForEach(e => e.Init(_player));
     }
