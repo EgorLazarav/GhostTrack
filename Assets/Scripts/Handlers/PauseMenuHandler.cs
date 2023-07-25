@@ -11,14 +11,14 @@ public class PauseMenuHandler : MonoBehaviour
                 PlayerInput.Instance.enabled = true;
                 Time.timeScale = 1;
                 SettingsModalWindow.Instance.Close();
-                AudioManager.Instance.ContinuePlayback();
+                AudioManager.Instance.ContinuePlaybackAll();
             }
             else
             {
                 PlayerInput.Instance.enabled = false;
                 Time.timeScale = 0;
                 SettingsModalWindow.Instance.Show();
-                AudioManager.Instance.StopPlayback();
+                AudioManager.Instance.StopPlaybackAll();
             }
         }
     }

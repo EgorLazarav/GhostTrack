@@ -129,7 +129,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         text.text = defaultText + currentValue;
         text.gameObject.SetActive(true);
-        AudioManager.Instance.StartPlaySoundLoop(_scoreLoopSFX);
+        AudioManager.Instance.PlaySound(_scoreLoopSFX);
 
         while (currentValue != value)
         {
@@ -145,7 +145,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
             yield return null;  
         }
 
-        AudioManager.Instance.StopPlaySoundLoop();
+        AudioManager.Instance.StopPlaybackEffect();
         text.text = defaultText + value;
         _animatingScoreTextCoroutine = null;
     }

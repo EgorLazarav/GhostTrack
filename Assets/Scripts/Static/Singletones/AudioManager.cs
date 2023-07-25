@@ -66,29 +66,20 @@ public class AudioManager : MonoBehaviour
         _musicSource.Play();
     }
 
-    public void StopPlayback()
+    public void StopPlaybackAll()
     {
         _musicSource.Pause();
         _effectsSource.Pause();
     }
 
-    public void ContinuePlayback()
+    public void ContinuePlaybackAll()
     {
         _musicSource.UnPause();
         _effectsSource.UnPause();
     }
 
-    public void StartPlaySoundLoop(AudioClip clip)
-    {
-        _effectsSource.clip = clip;
-        _effectsSource.loop = true;
-        _effectsSource.Play();
-    }
-
-    public void StopPlaySoundLoop()
+    public void StopPlaybackEffect()
     {
         _effectsSource.Stop();
-        _effectsSource.loop = false;
-        _effectsSource.clip = null;
     }
 }
