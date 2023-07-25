@@ -1,0 +1,8 @@
+0 - ground
+1 - floor
+2 - objects on floor
+3 - walls	
+5 - objects
+6 - higher objects
+7 - bullets and weapons
+8 - creatures

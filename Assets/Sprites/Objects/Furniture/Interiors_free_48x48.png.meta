@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -3867,15 +3867,15 @@ TextureImporter:
       Interiors_free_48x48_162: 1621780847
       Interiors_free_48x48_67: 1257739550
       Interiors_free_48x48_119: 1616032626
-      Interiors_free_48x48_100: -1409849803
       Interiors_free_48x48_173: 1175242309
+      Interiors_free_48x48_100: -1409849803
       Interiors_free_48x48_57: 261434668
       Interiors_free_48x48_45: -219032587
       Interiors_free_48x48_85: 1924551937
       Interiors_free_48x48_3: -773828601
-      Interiors_free_48x48_4: 1539822709
-      Interiors_free_48x48_56: 628714033
       Interiors_free_48x48_98: -1372000212
+      Interiors_free_48x48_56: 628714033
+      Interiors_free_48x48_4: 1539822709
       Interiors_free_48x48_132: 1579029724
       Interiors_free_48x48_40: -1253699476
       Interiors_free_48x48_174: -122012045
