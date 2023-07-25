@@ -21288,6 +21288,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1a8a8e112aa224baff0917588ed73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killStreakSFX:
+  - {fileID: 8300000, guid: 79e9c22cd9cb9ed4aa227bb54f0f170c, type: 3}
+  - {fileID: 8300000, guid: f1f89e35664167f4b96717a9ebe9f7ec, type: 3}
+  - {fileID: 8300000, guid: 81e165ac36f9ce1448f680d629711bb3, type: 3}
+  - {fileID: 8300000, guid: 6ae0990f1d731d340b3cc6c2f5fc1e3b, type: 3}
+  - {fileID: 8300000, guid: 5c226cb7014609b4b949579135163c39, type: 3}
+  - {fileID: 8300000, guid: 0c9271f00c813be43bb9d4fa450a78dd, type: 3}
+  - {fileID: 8300000, guid: 357fc60e7bc4f264ca72a132a752d932, type: 3}
+  - {fileID: 8300000, guid: aafebaf331034eb4089a895f552bc60e, type: 3}
+  - {fileID: 8300000, guid: 78b005c6cc18652419920371b566c4a0, type: 3}
+  - {fileID: 8300000, guid: ffb662bd4368a7947a6d4cbd58734b1a, type: 3}
 --- !u!1 &817969120
 GameObject:
   m_ObjectHideFlags: 0

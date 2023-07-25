@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class PlayerScoreHandler : MonoBehaviour
 {
-    public float KillScore => _killScore;
-    public float KillStreakScore => GetKillStreakScore();
-    public float TimeScore => GetTimeScore();
-    public float AccuracyScore => GetAccuracyScore();
-    public float TotalScore => GetTotalScore();
-    public float MaxScore => GetMaxScore();
+    [SerializeField] private AudioClip[] _killStreakSFX;
 
     private float _enemiesCountOnLevel;
     private float _currentEnemiesCountOnLevel;
@@ -23,6 +18,13 @@ public class PlayerScoreHandler : MonoBehaviour
 
     private float _timePassed;
     private float _timeToPerfectCompleteLevel;
+
+    public float KillScore => _killScore;
+    public float KillStreakScore => GetKillStreakScore();
+    public float TimeScore => GetTimeScore();
+    public float AccuracyScore => GetAccuracyScore();
+    public float TotalScore => GetTotalScore();
+    public float MaxScore => GetMaxScore();
 
     public void Init(int enemiesCountOnLevel)
     {
@@ -60,7 +62,10 @@ public class PlayerScoreHandler : MonoBehaviour
     private void OnEnemyDied(EnemyController enemy)
     {
         _killScore += Constants.KillScoreMultiplier;
+
         _currentReachedKillStreak++;
+        AnnounceKillStreak();
+
         _currentEnemiesCountOnLevel--;
 
         if (_currentReachedKillStreak > _maxReachedKillStreak)
@@ -70,6 +75,11 @@ public class PlayerScoreHandler : MonoBehaviour
             StopCoroutine(_killStreakCoroutine);
 
         _killStreakCoroutine = StartCoroutine(CountingKillStreakTimer());
+    }
+
+    private void AnnounceKillStreak()
+    {
+        AudioManager.Instance.PlaySound(_killStreakSFX[(int)_currentReachedKillStreak - 1]);
     }
 
     private IEnumerator CountingKillStreakTimer()
