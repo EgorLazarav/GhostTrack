@@ -44,11 +44,11 @@ public class EndLevelInfoDisplay : MonoBehaviour
     {
         _scoresMap = new Dictionary<TMP_Text, int>();
 
-        _scoresMap.Add(_killScoreText, _playerScoreHandler.KillScore);
-        _scoresMap.Add(_killStreakScoreText, _playerScoreHandler.KillStreakScore);
-        _scoresMap.Add(_timeScoreText, _playerScoreHandler.TimeScore);
-        _scoresMap.Add(_accuracyScoreText, _playerScoreHandler.AccuracyScore);
-        _scoresMap.Add(_totalScoreText, _playerScoreHandler.TotalScore);
+        _scoresMap.Add(_killScoreText, (int)_playerScoreHandler.KillScore);
+        _scoresMap.Add(_killStreakScoreText, (int)_playerScoreHandler.KillStreakScore);
+        _scoresMap.Add(_timeScoreText, (int)_playerScoreHandler.TimeScore);
+        _scoresMap.Add(_accuracyScoreText, (int)_playerScoreHandler.AccuracyScore);
+        _scoresMap.Add(_totalScoreText, (int)_playerScoreHandler.TotalScore);
     }
 
     private void OnPlayerEnteredCar()
@@ -59,6 +59,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     private IEnumerator Animating()
     {
         CreateDict();
+
         float currentAlpha = 0;
         float animationSpeed = 0.5f;
 
@@ -74,7 +75,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         foreach (var item in _scoresMap)
         {
-            _animatingScoreTextCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value, 1));
+            _animatingScoreTextCoroutine = StartCoroutine(ScoreAnimating(item.Key, item.Value));
 
             while (_animatingScoreTextCoroutine != null)
             {
@@ -83,10 +84,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
         }
 
         float result = (float)_playerScoreHandler.TotalScore / (float)_playerScoreHandler.MaxScore;
-        print(result);
-        string rang = DetermineRang(result);
         _rangText.gameObject.SetActive(true);
-        _rangText.text += rang;
+        _rangText.text += DetermineRang(result);
 
         // после анимации ранга вылазит
         _pressAnyButtonText.gameObject.SetActive(true);
@@ -97,18 +96,14 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
     private static string DetermineRang(float result)
     {
-        string rang;
-
         if (result >= 0.9f)
-            rang = Rangs.Ghost.ToString();
+            return Rangs.Ghost.ToString();
         else if (result >= 0.7f)
-            rang = Rangs.Killer.ToString();
+            return Rangs.Killer.ToString();
         else if (result >= 0.5f)
-            rang = Rangs.Amateur.ToString();
+            return Rangs.Amateur.ToString();
         else
-            rang = Rangs.Pussyboy.ToString();
-
-        return rang;
+            return Rangs.Pussyboy.ToString();
     }
 
     private IEnumerator WaitingForRestart()
@@ -124,7 +119,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
         SceneLoader.Instance.ReloadLevel();
     }
 
-    private IEnumerator ScoreAnimating(TMP_Text text, int value, int speed)
+    private IEnumerator ScoreAnimating(TMP_Text text, int value)
     {
         float currentValue = 0;
         string defaultText = text.text;
@@ -140,7 +135,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
                 break;
             }
 
-            currentValue = Mathf.Clamp(currentValue += value * Time.deltaTime * speed, currentValue, value);
+            currentValue = Mathf.Clamp(currentValue += value * Time.deltaTime, currentValue, value);
             text.text = defaultText + (int)currentValue;
 
             yield return null;  

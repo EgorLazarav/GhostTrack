@@ -4,39 +4,32 @@ using UnityEngine;
 
 public class PlayerScoreHandler : MonoBehaviour
 {
-    public int KillScore => _killScore;
-    public int KillStreakScore => _maxReachedKillStreak * ScoreForEachStreak;
-    public int TimeScore => Mathf.Clamp((int)((BaseTimeScoreBonus + _timeScoreBonusOnLevel) - _timePassed * _timeScoreMultiplier), 0, BaseTimeScoreBonus);
-    public int AccuracyScore => Mathf.Clamp((int)((_enemiesCountOnLevel / _playerAttacksCount) * BaseAccuracyScoreBonus), 0, BaseAccuracyScoreBonus);
-    public int TotalScore => GetTotalScore();
-    public int MaxScore => GetMaxScore();
+    public float KillScore => _killScore;
+    public float KillStreakScore => GetKillStreakScore();
+    public float TimeScore => GetTimeScore();
+    public float AccuracyScore => GetAccuracyScore();
+    public float TotalScore => GetTotalScore();
+    public float MaxScore => GetMaxScore();
 
-    private Coroutine _killStreakCoroutine;
-    private int _killScore;
-    private float _timePassed;
     private float _enemiesCountOnLevel;
     private float _currentEnemiesCountOnLevel;
     private float _playerAttacksCount;
-    private float _timeScoreMultiplier;
-    private int _maxReachedKillStreak;
-    private int _currentReachedKillStreak;
-    private int _maxKillStreak;
-    private float _timeScoreBonusOnLevel;
 
-    private const int ScoreForKill = 100;
-    private const int ScoreForEachStreak = 100;
-    private const int SecondsToContinueStreak = 3;
-    private const int BaseAccuracyScoreBonus = 1000;
-    private const int BaseTimeScoreBonus = 1000;
-    private const float BaseTimeScoreMultiplier = 100;
+    private Coroutine _killStreakCoroutine;
+    private float _killScore;
+    private float _maxKillStreak;
+    private float _currentReachedKillStreak;
+    private float _maxReachedKillStreak;
+
+    private float _timePassed;
+    private float _timeToPerfectCompleteLevel;
 
     public void Init(int enemiesCountOnLevel)
     {
         _maxKillStreak = enemiesCountOnLevel;
         _enemiesCountOnLevel = enemiesCountOnLevel;
         _currentEnemiesCountOnLevel = enemiesCountOnLevel;
-        _timeScoreMultiplier = BaseTimeScoreMultiplier / enemiesCountOnLevel;
-        _timeScoreBonusOnLevel = SecondsToContinueStreak * enemiesCountOnLevel * 10;
+        _timeToPerfectCompleteLevel = enemiesCountOnLevel * Constants.SecondsToContinueStreak;
     }
 
     private void OnEnable()
@@ -66,7 +59,7 @@ public class PlayerScoreHandler : MonoBehaviour
 
     private void OnEnemyDied(EnemyController enemy)
     {
-        _killScore += ScoreForKill;
+        _killScore += Constants.KillScoreMultiplier;
         _currentReachedKillStreak++;
         _currentEnemiesCountOnLevel--;
 
@@ -81,21 +74,37 @@ public class PlayerScoreHandler : MonoBehaviour
 
     private IEnumerator CountingKillStreakTimer()
     {
-        yield return new WaitForSeconds(SecondsToContinueStreak);
+        yield return new WaitForSeconds(Constants.SecondsToContinueStreak);
 
         _currentReachedKillStreak = 0;
         _killStreakCoroutine = null;
     }
 
-    private int GetTotalScore()
+    private float GetTotalScore()
     {
         return KillScore + KillStreakScore + TimeScore + AccuracyScore;
     }
-    private int GetMaxScore()
+
+    private float GetMaxScore()
     { 
-        return (int)(ScoreForKill * _enemiesCountOnLevel
-            + _maxKillStreak * ScoreForEachStreak
-            + BaseTimeScoreBonus
-            + BaseAccuracyScoreBonus);
+        return Constants.KillScoreMultiplier * _enemiesCountOnLevel
+            + _maxKillStreak * Constants.KillStreakScoreMultiplier
+            + Constants.TimeScoreMultiplier
+            + Constants.AccuracyScoreMultiplier;
+    }
+
+    private float GetKillStreakScore()
+    {
+        return _maxReachedKillStreak * Constants.KillStreakScoreMultiplier;
+    }
+
+    private float GetTimeScore()
+    {
+        return Mathf.Clamp((_timeToPerfectCompleteLevel / _timePassed) * Constants.TimeScoreMultiplier, 0, Constants.TimeScoreMultiplier);
+    }
+
+    private float GetAccuracyScore()
+    {
+        return Mathf.Clamp((_enemiesCountOnLevel / _playerAttacksCount) * Constants.AccuracyScoreMultiplier, 0, Constants.AccuracyScoreMultiplier);
     }
 }
