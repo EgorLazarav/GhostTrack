@@ -102,8 +102,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
         yield return new WaitForSeconds(animationTime);
 
         _pressAnyButtonText.gameObject.SetActive(true);
-        // тут нужна ассихронна€ загрузка с экраном натса
-        StartCoroutine(WaitingForRestart());
+        StartCoroutine(WaitingForInput());
     }
 
     private static string DetermineRang(float result)
@@ -118,7 +117,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
             return Rangs.Pussyboy.ToString();
     }
 
-    private IEnumerator WaitingForRestart()
+    private IEnumerator WaitingForInput()
     {
         while (true)
         {
@@ -128,7 +127,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
             yield return null;
         }
 
-        SceneLoader.Instance.ReloadLevel();
+        SceneLoader.Instance.LoadMainMenu();
     }
 
     private IEnumerator ScoreAnimating(TMP_Text text, int value)
