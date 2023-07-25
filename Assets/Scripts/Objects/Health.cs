@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Health : MonoBehaviour
@@ -30,9 +31,12 @@ public class Health : MonoBehaviour
       
         if (_currentPercent <= 0)
         {
-            Instantiate(_bloodSprites[Random.Range(0, _bloodSprites.Length)], transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+            var blood = Instantiate(_bloodSprites[Random.Range(0, _bloodSprites.Length)], transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+            blood.transform.DOScale(Random.Range(0.6f, 1.2f), Random.Range(0.3f, 0.6f));
+
             var hitVFX = Instantiate(_hitVFX, transform.position, Quaternion.identity);
             Destroy(hitVFX.gameObject, hitVFX.main.duration);
+
             AudioManager.Instance.PlaySound(_deathSFX);
             Over?.Invoke();
         }
