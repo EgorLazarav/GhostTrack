@@ -43170,7 +43170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2d68b2bab63cd4eb95f0b2457ffd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEnabled: 0
+  _soundEnabled: 1
   _musicSource: {fileID: 6759482453668952697}
   _effectsSource: {fileID: 6759482453668952696}
   _mainMenuThemes:
