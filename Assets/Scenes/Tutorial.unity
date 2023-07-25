@@ -24621,7 +24621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerScoreHandler: {fileID: 815774730}
   _curtainPanel: {fileID: 1266660951}
-  _scorePanel: {fileID: 1581344349}
+  _scoresWrapper: {fileID: 1581344349}
+  _scoreLoopSFX: {fileID: 8300000, guid: 67a08056d9556d94ba1d8f8361928a62, type: 3}
   _killScoreText: {fileID: 1651443486}
   _killStreakScoreText: {fileID: 675674394}
   _timeScoreText: {fileID: 1646579284}
@@ -26690,7 +26691,7 @@ GameObject:
   - component: {fileID: 1581344349}
   - component: {fileID: 1581344351}
   m_Layer: 5
-  m_Name: ScoresPanel
+  m_Name: ScoresWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

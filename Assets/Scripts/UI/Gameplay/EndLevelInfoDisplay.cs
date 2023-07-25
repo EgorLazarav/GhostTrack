@@ -16,7 +16,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
 {
     [SerializeField] private PlayerScoreHandler _playerScoreHandler;
     [SerializeField] private Image _curtainPanel;
-    [SerializeField] private Image _scorePanel;
+    [SerializeField] private Image _scoresWrapper;
+    [SerializeField] private AudioClip _scoreLoopSFX;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text _killScoreText;
@@ -71,7 +72,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
             yield return null;
         }
 
-        _scorePanel.gameObject.SetActive(true);
+        _scoresWrapper.gameObject.SetActive(true);
 
         foreach (var item in _scoresMap)
         {
@@ -81,6 +82,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
             {
                 yield return null;
             }
+
+            yield return new WaitForEndOfFrame();
         }
 
         float result = (float)_playerScoreHandler.TotalScore / (float)_playerScoreHandler.MaxScore;
@@ -126,6 +129,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         text.text = defaultText + currentValue;
         text.gameObject.SetActive(true);
+        AudioManager.Instance.StartPlaySoundLoop(_scoreLoopSFX);
 
         while (currentValue != value)
         {
@@ -141,6 +145,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
             yield return null;  
         }
 
+        AudioManager.Instance.StopPlaySoundLoop();
         text.text = defaultText + value;
         _animatingScoreTextCoroutine = null;
     }
