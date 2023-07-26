@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,6 +26,10 @@ public class PlayerController : MonoBehaviour
     [Header("Optional")]
     [SerializeField] private float _viewRange = 3;
 
+    [Header("Shift")]
+    [SerializeField] private float _shiftDuration = 3;
+    [SerializeField] private float _shiftReloadTime = 6;
+
     public Weapon StartWeapon => _startWeapon;
     public float ViewRange => _viewRange;
 
@@ -32,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        _combat.Init(_startWeapon, _weaponPoint, _handsLength, _punchPoint, _enemyMask, _weaponMask);
+        _combat.Init(_startWeapon, _weaponPoint, _handsLength, _punchPoint, _enemyMask, _weaponMask, _shiftDuration, _shiftReloadTime, _punchSFX);
         _movement.Init(_speed, _noWeaponBonusSpeed);
     }
 
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput.PuncKeyPressed += OnPuncKeyPressed;
         PlayerInput.ShootKeyPressing += OnShootKeyPressing;
         PlayerInput.LookKeyPressed += OnLookKeyPressed;
+        PlayerInput.ShiftKeyPressed += OnShiftKeyPressed;
 
         _health.Over += OnHealthOver;
     }
@@ -56,8 +62,14 @@ public class PlayerController : MonoBehaviour
         PlayerInput.PuncKeyPressed -= OnPuncKeyPressed;
         PlayerInput.ShootKeyPressing -= OnShootKeyPressing;
         PlayerInput.LookKeyPressed -= OnLookKeyPressed;
+        PlayerInput.ShiftKeyPressed -= OnShiftKeyPressed;
 
         _health.Over -= OnHealthOver;
+    }
+
+    private void OnShiftKeyPressed()
+    {
+        _combat.TryShift();
     }
 
     private void OnShootKeyPressing()
@@ -67,7 +79,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnPuncKeyPressed()
     {
-        AudioManager.Instance.PlaySound(_punchSFX);
         _combat.TryPunch();
     }
 

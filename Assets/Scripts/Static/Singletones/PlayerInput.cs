@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +14,8 @@ public enum Keys
     Punch,
     DropWeapon,
     PickUpWeapon,
-    Look
+    Look,
+    Shift
 }
 
 public class PlayerInput : MonoBehaviour
@@ -24,6 +26,7 @@ public class PlayerInput : MonoBehaviour
     public static event UnityAction DropWeaponKeyPressed;
     public static event UnityAction PickUpWeaponKeyPressed;
     public static event UnityAction<bool> LookKeyPressed;
+    public static event UnityAction ShiftKeyPressed;
 
     public static PlayerInput Instance { get; private set; }
     public Dictionary<Keys, KeyCode> KeysMap { get; private set; } = new Dictionary<Keys, KeyCode>();
@@ -57,7 +60,8 @@ public class PlayerInput : MonoBehaviour
         KeysMap.Add(Keys.PickUpWeapon, KeyCode.E);
         KeysMap.Add(Keys.DropWeapon, KeyCode.Q);
 
-        KeysMap.Add(Keys.Look, KeyCode.LeftShift);
+        KeysMap.Add(Keys.Look, KeyCode.V);
+        KeysMap.Add(Keys.Shift, KeyCode.LeftShift);
     }
 
     private void Update()
@@ -91,6 +95,11 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeysMap[Keys.PickUpWeapon]))
         {
             PickUpWeaponKeyPressed?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeysMap[Keys.Shift]))
+        {
+            ShiftKeyPressed?.Invoke();
         }
     }
 
