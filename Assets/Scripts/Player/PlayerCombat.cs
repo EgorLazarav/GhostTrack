@@ -130,11 +130,12 @@ public class PlayerCombat : MonoBehaviour
         StopCoroutine(_shiftingCoroutine);
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(1);
         _collider.enabled = true;
-        _shiftingCoroutine = null;
     }
 
     private IEnumerator Shifting()
     {
+        StartCoroutine(ShiftReloading());
+
         float shiftAlpha = 0.5f;
 
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(shiftAlpha);
@@ -145,7 +146,10 @@ public class PlayerCombat : MonoBehaviour
 
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(1);
         _collider.enabled = true;
+    }
 
+    private IEnumerator ShiftReloading()
+    {
         yield return _shiftCooldown;
 
         _shiftingCoroutine = null;
