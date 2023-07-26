@@ -152,6 +152,8 @@ MonoBehaviour:
   _speed: 4
   _noWeaponBonusSpeed: 1
   _viewRange: 3
+  _shiftDuration: 3
+  _shiftReloadTime: 6
 --- !u!58 &29
 CircleCollider2D:
   m_ObjectHideFlags: 0
