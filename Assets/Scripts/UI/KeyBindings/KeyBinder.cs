@@ -60,8 +60,6 @@ public class KeyBinder : MonoBehaviour
             Destroy(el.gameObject);
         }
 
-        print(_copiedKeysMap.Count);
-
         foreach (var el in _copiedKeysMap)
         {
             var item = Instantiate(_keyBindDisplayPrefab, _container.transform);
