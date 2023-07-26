@@ -2902,6 +2902,7 @@ MonoBehaviour:
   - {fileID: 4942116768135113959, guid: 65d74fa9d6710f848a1f07ea91b5d2c4, type: 3}
   - {fileID: -1398422719830060170, guid: 047c118110cdbfc469b948af4fe61f93, type: 3}
   _playerCombat: {fileID: 1977911552944472304}
+  _cheatCodeActivatedSFX: {fileID: 8300000, guid: 1a959d866935b4341a0f688dd17e2276, type: 3}
 --- !u!1 &444415586
 GameObject:
   m_ObjectHideFlags: 0

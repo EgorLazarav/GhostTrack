@@ -8,6 +8,7 @@ public class CheatCodeActivator : MonoBehaviour
 {
     [SerializeField] private Weapon[] _weapons;
     [SerializeField] private PlayerCombat _playerCombat;
+    [SerializeField] private AudioClip _cheatCodeActivatedSFX;
 
     private static bool _isPlayerInvulnerable = false;
     private static bool _isPlayerHasInfinityBullets = false;
@@ -43,6 +44,7 @@ public class CheatCodeActivator : MonoBehaviour
                     var weapon = Instantiate(_weapons[i]);
                     _playerCombat.EquipWeapon(weapon);
                     _letters = "";
+                    AudioManager.Instance.PlaySound(_cheatCodeActivatedSFX);
                 }
             }
         }
@@ -97,6 +99,7 @@ public class CheatCodeActivator : MonoBehaviour
         state = !state;
         string output = state ? "" : "DE";
         print($"{cheatName} CHEAT {output}ACTIVATED");
+        AudioManager.Instance.PlaySound(_cheatCodeActivatedSFX);
     }
 
     private void CheckInput()
