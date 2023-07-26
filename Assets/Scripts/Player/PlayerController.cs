@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public float ViewRange => _viewRange;
 
     public static event UnityAction Died;
+    public static event UnityAction Shifted;
 
     public void Init()
     {
@@ -69,7 +70,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnShiftKeyPressed()
     {
-        _combat.TryShift();
+        if (_combat.TryShift())
+            Shifted?.Invoke();
     }
 
     private void OnShootKeyPressing()

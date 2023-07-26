@@ -53,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
     public void TryPunch()
     {
         if (_shiftingCoroutine != null)
-            return;
+            Unshift();
 
         var hit = Physics2D.OverlapCircle(_punchPoint.position, _handsLength, _enemyMask);
         AudioManager.Instance.PlaySound(_punchSFX);
@@ -95,6 +95,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void TryPickUpClosestWeapon()
     {
+        if (_shiftingCoroutine != null)
+            Unshift();
+
         var closestObjects = Physics2D.OverlapCircleAll(transform.position, _handsLength, _weaponMask);
         var closestWeapon = closestObjects.FirstOrDefault(obj => obj.transform.parent == null && obj.TryGetComponent(out Weapon weapon));
 
@@ -112,17 +115,26 @@ public class PlayerCombat : MonoBehaviour
         BulletsChanged?.Invoke(newWeapon.CurrentBulletsCount);
     }
 
-    public void TryShift()
+    public bool TryShift()
     {
         if (_shiftingCoroutine != null)
-            return;
+            return false;
 
         _shiftingCoroutine = StartCoroutine(Shifting());
+
+        return true;
+    }
+
+    private void Unshift()
+    {
+        StopCoroutine(_shiftingCoroutine);
+        _spriteRenderer.color = _spriteRenderer.color.SetAlpha(1);
+        _collider.enabled = true;
+        _shiftingCoroutine = null;
     }
 
     private IEnumerator Shifting()
     {
-        float baseAlpha = _spriteRenderer.color.a;
         float shiftAlpha = 0.5f;
 
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(shiftAlpha);
@@ -131,7 +143,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return _shiftDelay;
 
-        _spriteRenderer.color = _spriteRenderer.color.SetAlpha(baseAlpha);
+        _spriteRenderer.color = _spriteRenderer.color.SetAlpha(1);
         _collider.enabled = true;
 
         yield return _shiftCooldown;
