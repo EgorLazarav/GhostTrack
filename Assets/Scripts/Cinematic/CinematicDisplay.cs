@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CinematicDisplay : MonoBehaviour
 {
+    // костыль
     [SerializeField] private DialogTextDisplay _dialogTextDisplay;
+    // костыль
 
     [Header("UI")]
     [SerializeField] private RectTransform _characterPanel;
@@ -13,7 +15,9 @@ public class CinematicDisplay : MonoBehaviour
 
     private void OnEnable()
     {
+        // костыль
         StartAnimations();
+        // костыль
     }
 
     private void StartAnimations()
@@ -59,6 +63,25 @@ public class CinematicDisplay : MonoBehaviour
             yield return null;
         }
 
-        _dialogTextDisplay.PrintText("I exterminate every single one of them...");
+        // костыль
+        Time.timeScale = 0;
+        _dialogTextDisplay.PrintText(new string[] 
+        {
+            "I exterminate every single one of them...",
+            "Fucking bastards...",
+            "Prepare to die...",
+        });
+
+        _dialogTextDisplay.DialogOver += OnDialogOver;
+        // костыль
     }
+
+    // костыль
+    private void OnDialogOver()
+    {
+        _dialogTextDisplay.DialogOver -= OnDialogOver;
+        GetComponent<CanvasGroup>().alpha = 0;
+        Time.timeScale = 1;
+    }
+    // костыль
 }

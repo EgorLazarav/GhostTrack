@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -12,31 +13,47 @@ public class DialogTextDisplay : MonoBehaviour
 
     private Text _text;
 
+    public event UnityAction DialogOver;
+
     private void Awake()
     {
         _text = GetComponent<Text>();
     }
 
-    public void PrintText(string message)
+    public void PrintText(string[] messages)
     {
-        StartCoroutine(Printing(message));
+        StartCoroutine(Printing(messages));
     }
 
-    private IEnumerator Printing(string message)
+    private IEnumerator Printing(string[] messages)
     {
-        var tween = _text.DOText(message, 1 / _typeSpeed);
-
-        while (_text.text != message)
+        foreach (var message in messages)
         {
-            if (Input.anyKeyDown)
+            _text.text = "";
+
+            yield return new WaitForEndOfFrame();
+
+            int i = 0;
+
+            while (_text.text != message)
             {
-                tween.Kill();
-                break;
+                _text.text += message[i];
+                i++;
+
+                if (Input.anyKeyDown)
+                    break;
+
+                yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime / _typeSpeed);
             }
 
-            yield return null;
+            _text.text = message;
+
+            yield return new WaitForEndOfFrame();
+
+            while (!Input.anyKeyDown)
+                yield return null;
         }
 
-        _text.text = message;
+        DialogOver?.Invoke();
     }
 }
