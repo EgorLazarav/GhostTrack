@@ -4,12 +4,43 @@ using UnityEngine;
 
 public class CinematicDisplay : MonoBehaviour
 {
+    [SerializeField] private DialogTextDisplay _dialogTextDisplay;
+
+    [Header("UI")]
     [SerializeField] private RectTransform _characterPanel;
+    [SerializeField] private RectTransform _topBorder;
+    [SerializeField] private RectTransform _bottomBorder;
 
     private void OnEnable()
     {
-        StartCoroutine(CharacterPanelShowing());
+        StartAnimations();
     }
+
+    private void StartAnimations()
+    {
+        StartCoroutine(CharacterPanelShowing());
+        StartCoroutine(BorderShowing(_topBorder));
+        StartCoroutine(BorderShowing(_bottomBorder));
+    }
+
+    private IEnumerator BorderShowing(RectTransform rectTransform)
+    {
+        var speed = Mathf.Abs(rectTransform.transform.localPosition.y);
+        var startPosition = rectTransform.transform.localPosition;
+        var positionYMultiplier = 2f;
+        var delay = 0.1f;
+
+        rectTransform.transform.localPosition = new Vector3(rectTransform.transform.localPosition.x, rectTransform.transform.localPosition.y * positionYMultiplier);
+
+        yield return new WaitForSeconds(delay);
+
+        while (Mathf.Abs(rectTransform.transform.localPosition.y) > Mathf.Abs(startPosition.y))
+        {
+            rectTransform.transform.localPosition = Vector2.MoveTowards(rectTransform.transform.localPosition, startPosition, Time.unscaledDeltaTime * speed);
+            yield return null;
+        }
+    }
+
 
     private IEnumerator CharacterPanelShowing()
     {
@@ -27,5 +58,7 @@ public class CinematicDisplay : MonoBehaviour
             _characterPanel.transform.localPosition = Vector2.MoveTowards(_characterPanel.transform.localPosition, startPosition, Time.unscaledDeltaTime * speed);
             yield return null;
         }
+
+        _dialogTextDisplay.PrintText("I exterminate every single one of them...");
     }
 }
