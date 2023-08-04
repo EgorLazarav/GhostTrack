@@ -31,7 +31,7 @@ public class ButtonsMenuAnimator : AnimatedUI
         if (_isEnded)
             return;
 
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
         {
             StopAllCoroutines();
             _isEnded = true;

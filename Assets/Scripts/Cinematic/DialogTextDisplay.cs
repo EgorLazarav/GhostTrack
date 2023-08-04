@@ -45,7 +45,7 @@ public class DialogTextDisplay : MonoBehaviour
 
                 yield return new WaitForEndOfFrame();
 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
                     break;
             }
 
@@ -53,8 +53,14 @@ public class DialogTextDisplay : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
 
-            while (!Input.GetKeyDown(KeyCode.Mouse0))
+            float timer = 2;
+
+            while (!Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]) && timer > 0)
+            {
+                timer -= Time.unscaledDeltaTime;
+
                 yield return null;
+            }
         }
 
         DialogOver?.Invoke();

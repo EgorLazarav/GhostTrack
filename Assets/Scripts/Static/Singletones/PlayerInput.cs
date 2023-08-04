@@ -15,7 +15,8 @@ public enum Keys
     DropWeapon,
     PickUpWeapon,
     Look,
-    Shift
+    Shift,
+    Skip
 }
 
 public class PlayerInput : MonoBehaviour
@@ -62,6 +63,7 @@ public class PlayerInput : MonoBehaviour
 
         KeysMap.Add(Keys.Look, KeyCode.V);
         KeysMap.Add(Keys.Shift, KeyCode.LeftShift);
+        KeysMap.Add(Keys.Skip, KeyCode.Space);
     }
 
     private void Update()

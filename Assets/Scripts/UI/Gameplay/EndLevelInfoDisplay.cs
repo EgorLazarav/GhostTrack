@@ -121,7 +121,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     {
         while (true)
         {
-            if (Input.anyKeyDown)
+            if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
                 break;
 
             yield return null;
@@ -141,7 +141,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         while (currentValue != value)
         {
-            if (Input.anyKeyDown)
+            if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
             {
                 yield return new WaitForEndOfFrame();
                 break;
