@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CinematicDisplay : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CinematicDisplay : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private RectTransform _characterPanel;
+    [SerializeField] private Image _characterPortait;
     [SerializeField] private RectTransform _topBorder;
     [SerializeField] private RectTransform _bottomBorder;
 
@@ -20,52 +22,37 @@ public class CinematicDisplay : MonoBehaviour
         // костыль
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator Scaling(RectTransform rectTransform)
+    {
+        yield return new WaitForEndOfFrame();
+
+        float speed = 1f;
+
+        while (rectTransform.localScale != Vector3.one)
+        {
+            rectTransform.localScale = Vector3.MoveTowards(rectTransform.localScale, Vector3.one, Time.unscaledDeltaTime * speed);
+
+            yield return null;
+        }
+    }
+
     private void StartAnimations()
     {
-        StartCoroutine(CharacterPanelShowing());
-        StartCoroutine(BorderShowing(_topBorder));
-        StartCoroutine(BorderShowing(_bottomBorder));
-    }
+        StartCoroutine(Scaling(_topBorder));
+        StartCoroutine(Scaling(_bottomBorder));
+        StartCoroutine(Scaling(_characterPanel));
 
-    private IEnumerator BorderShowing(RectTransform rectTransform)
-    {
-        var speed = Mathf.Abs(rectTransform.transform.localPosition.y);
-        var startPosition = rectTransform.transform.localPosition;
-        var positionYMultiplier = 2f;
-        var delay = 0.1f;
-
-        rectTransform.transform.localPosition = new Vector3(rectTransform.transform.localPosition.x, rectTransform.transform.localPosition.y * positionYMultiplier);
-
-        yield return new WaitForSeconds(delay);
-
-        while (Mathf.Abs(rectTransform.transform.localPosition.y) > Mathf.Abs(startPosition.y))
-        {
-            rectTransform.transform.localPosition = Vector2.MoveTowards(rectTransform.transform.localPosition, startPosition, Time.unscaledDeltaTime * speed);
-            yield return null;
-        }
-    }
-
-
-    private IEnumerator CharacterPanelShowing()
-    {
-        var speed = _characterPanel.transform.localPosition.x;
-        var startPosition = _characterPanel.transform.localPosition;
-        var positionXMultiplier = 2f;
-        var delay = 0.1f;
-
-        _characterPanel.transform.localPosition = new Vector3(_characterPanel.transform.localPosition.x * positionXMultiplier, _characterPanel.transform.localPosition.y);
-
-        yield return new WaitForSeconds(delay);
-
-        while (_characterPanel.transform.localPosition.x > startPosition.x)
-        {
-            _characterPanel.transform.localPosition = Vector2.MoveTowards(_characterPanel.transform.localPosition, startPosition, Time.unscaledDeltaTime * speed);
-            yield return null;
-        }
-
-        // костыль
         Time.timeScale = 0;
-        _dialogTextDisplay.PrintText(new string[] 
+
+        _dialogTextDisplay.PrintText(new string[]
         {
             "I exterminate every single one of them...",
             "Fucking bastards...",
@@ -73,7 +60,6 @@ public class CinematicDisplay : MonoBehaviour
         });
 
         _dialogTextDisplay.DialogOver += OnDialogOver;
-        // костыль
     }
 
     // костыль

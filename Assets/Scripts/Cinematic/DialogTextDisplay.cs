@@ -27,12 +27,15 @@ public class DialogTextDisplay : MonoBehaviour
 
     private IEnumerator Printing(string[] messages)
     {
+        float delay = 1f;
+
+        yield return new WaitForSecondsRealtime(delay);
+
         foreach (var message in messages)
         {
-            _text.text = "";
-
             yield return new WaitForEndOfFrame();
 
+            _text.text = "";
             int i = 0;
 
             while (_text.text != message)
@@ -40,17 +43,17 @@ public class DialogTextDisplay : MonoBehaviour
                 _text.text += message[i];
                 i++;
 
-                if (Input.anyKeyDown)
-                    break;
+                yield return new WaitForEndOfFrame();
 
-                yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime / _typeSpeed);
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                    break;
             }
 
             _text.text = message;
 
             yield return new WaitForEndOfFrame();
 
-            while (!Input.anyKeyDown)
+            while (!Input.GetKeyDown(KeyCode.Mouse0))
                 yield return null;
         }
 
