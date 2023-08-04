@@ -7,6 +7,7 @@ public class Weapon : ObjectPool<Bullet>
 {
     [SerializeField] private WeaponData _data;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Transform _shotVFXPoint;
     [SerializeField] private Collider2D _collider;
 
     private Coroutine _internalReloadingCoroutine = null;
@@ -48,6 +49,11 @@ public class Weapon : ObjectPool<Bullet>
 
     protected virtual void Shoot(Quaternion rotation, float shotPower, int damagePercent)
     {
+        var shotVFX = VFXManager.Instance.GetShotVFX();
+        shotVFX.transform.parent = _shotVFXPoint;
+        shotVFX.transform.localPosition = Vector3.zero;
+        shotVFX.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
         var bullet = GetItem();
         bullet.Init(_shootPoint.position, rotation, shotPower, damagePercent);
         AudioManager.Instance.PlaySound(Data.ShotSFX);
