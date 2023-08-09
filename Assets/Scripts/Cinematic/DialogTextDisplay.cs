@@ -6,23 +6,33 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
+[RequireComponent(typeof(TMP_Text))]
 public class DialogTextDisplay : MonoBehaviour
 {
-    [SerializeField] private float _typeSpeed = 5;
+    [SerializeField] private float _typeSpeed = 0.5f;
 
-    private Text _text;
+    private TMP_Text _text;
+    private Coroutine _coroutine;
 
     public event UnityAction DialogOver;
 
     private void Awake()
     {
-        _text = GetComponent<Text>();
+        _text = GetComponent<TMP_Text>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopCoroutine(_coroutine);
+            DialogOver?.Invoke();
+        }
     }
 
     public void PrintText(string[] messages)
     {
-        StartCoroutine(Printing(messages));
+        _coroutine = StartCoroutine(Printing(messages));
     }
 
     private IEnumerator Printing(string[] messages)
@@ -62,6 +72,8 @@ public class DialogTextDisplay : MonoBehaviour
                 yield return null;
             }
         }
+
+        _text.text = "";
 
         DialogOver?.Invoke();
     }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class CinematicDisplay : MonoBehaviour
 {
-    // костыль
     [SerializeField] private DialogTextDisplay _dialogTextDisplay;
-    // костыль
 
     [Header("UI")]
     [SerializeField] private RectTransform _characterPanel;
@@ -15,19 +14,34 @@ public class CinematicDisplay : MonoBehaviour
     [SerializeField] private RectTransform _topBorder;
     [SerializeField] private RectTransform _bottomBorder;
 
-    private void OnEnable()
+    private CanvasGroup _canvasGroup;
+
+    private void Awake()
     {
-        // костыль
-        StartAnimations();
-        // костыль
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            gameObject.SetActive(false);
-        }
+        _dialogTextDisplay.DialogOver += OnDialogOver;
+        DialogTriggerPoint.Triggered += OnDialogTriggerPointTriggered;
+    }
+
+    private void OnDisable()
+    {
+        _dialogTextDisplay.DialogOver -= OnDialogOver;
+        DialogTriggerPoint.Triggered -= OnDialogTriggerPointTriggered;
+    }
+
+    private void OnDialogTriggerPointTriggered(string[] messages)
+    {
+        _canvasGroup.alpha = 1;
+
+        StartCoroutine(Scaling(_topBorder));
+        StartCoroutine(Scaling(_bottomBorder));
+        StartCoroutine(Scaling(_characterPanel));
+
+        _dialogTextDisplay.PrintText(messages);
     }
 
     private IEnumerator Scaling(RectTransform rectTransform)
@@ -44,30 +58,8 @@ public class CinematicDisplay : MonoBehaviour
         }
     }
 
-    private void StartAnimations()
-    {
-        StartCoroutine(Scaling(_topBorder));
-        StartCoroutine(Scaling(_bottomBorder));
-        StartCoroutine(Scaling(_characterPanel));
-
-        Time.timeScale = 0;
-
-        _dialogTextDisplay.PrintText(new string[]
-        {
-            "I exterminate every single one of them...",
-            "Fucking bastards...",
-            "Prepare to die...",
-        });
-
-        _dialogTextDisplay.DialogOver += OnDialogOver;
-    }
-
-    // костыль
     private void OnDialogOver()
     {
-        _dialogTextDisplay.DialogOver -= OnDialogOver;
-        GetComponent<CanvasGroup>().alpha = 0;
-        Time.timeScale = 1;
+        _canvasGroup.alpha = 0;
     }
-    // костыль
 }
