@@ -10,15 +10,22 @@ public class CinematicManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private RectTransform _characterPanel;
-    [SerializeField] private Image _characterPortait;
     [SerializeField] private RectTransform _topBorder;
     [SerializeField] private RectTransform _bottomBorder;
+
+    private Vector3 _baseCharacterPanelScale;
+    private Vector3 _baseTopBorderScale;
+    private Vector3 _baseBottomBorderScale;
 
     private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
+
+        _baseCharacterPanelScale = _characterPanel.localScale;
+        _baseTopBorderScale = _topBorder.localScale;
+        _baseBottomBorderScale = _bottomBorder.localScale;
     }
 
     private void OnEnable()
@@ -62,6 +69,11 @@ public class CinematicManager : MonoBehaviour
     private void OnDialogOver()
     {
         _canvasGroup.alpha = 0;
+
+        _characterPanel.localScale = _baseCharacterPanelScale;
+        _topBorder.localScale = _baseTopBorderScale;
+        _bottomBorder.localScale = _baseBottomBorderScale;
+
         GamePauseManager.Instance.Unpause(true);
     }
 }
