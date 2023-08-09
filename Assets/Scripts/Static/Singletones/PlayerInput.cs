@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     public static event UnityAction PickUpWeaponKeyPressed;
     public static event UnityAction<bool> LookKeyPressed;
     public static event UnityAction ShiftKeyPressed;
+    public static event UnityAction SkipKeyPressed;
 
     public static PlayerInput Instance { get; private set; }
     public Dictionary<Keys, KeyCode> KeysMap { get; private set; } = new Dictionary<Keys, KeyCode>();
@@ -68,6 +69,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        CheckSkipKeyPressed();
         CheckLookKeyPressing();
 
         if (_isLookKeyPressing)
@@ -75,6 +77,14 @@ public class PlayerInput : MonoBehaviour
 
         CheckCombatKeysPressing();
         CheckMoveKeysPressing();
+    }
+
+    private void CheckSkipKeyPressed()
+    {
+        if (Input.GetKeyDown(KeysMap[Keys.Skip]))
+        {
+            SkipKeyPressed?.Invoke();
+        }
     }
 
     private void CheckCombatKeysPressing()

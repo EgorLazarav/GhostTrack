@@ -10,15 +10,27 @@ using UnityEngine.UI;
 public class DialogTextDisplay : MonoBehaviour
 {
     [SerializeField] private float _typeSpeed = 0.5f;
+    [SerializeField] private float _timeToShowMessage = 2;
 
     private TMP_Text _text;
     private Coroutine _coroutine;
+    private float _currentMessageTimer;
 
     public event UnityAction DialogOver;
 
     private void Awake()
     {
         _text = GetComponent<TMP_Text>();
+    }
+
+    private void OnEnable()
+    {
+        PlayerInput.SkipKeyPressed += OnSkipKeyPressed;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.SkipKeyPressed -= OnSkipKeyPressed;
     }
 
     private void Update()
@@ -30,7 +42,7 @@ public class DialogTextDisplay : MonoBehaviour
         }
     }
 
-    public void PrintText(string[] messages)
+    public void StartDialog(string[] messages)
     {
         _coroutine = StartCoroutine(Printing(messages));
     }
@@ -63,11 +75,11 @@ public class DialogTextDisplay : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
 
-            float timer = 2;
+            _currentMessageTimer = _timeToShowMessage;
 
-            while (!Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]) && timer > 0)
+            while (_currentMessageTimer > 0)
             {
-                timer -= Time.unscaledDeltaTime;
+                _currentMessageTimer -= Time.unscaledDeltaTime;
 
                 yield return null;
             }
@@ -76,5 +88,10 @@ public class DialogTextDisplay : MonoBehaviour
         _text.text = "";
 
         DialogOver?.Invoke();
+    }
+
+    private void OnSkipKeyPressed()
+    {
+        _currentMessageTimer = 0;
     }
 }

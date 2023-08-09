@@ -41,7 +41,7 @@ public class CinematicDisplay : MonoBehaviour
         StartCoroutine(Scaling(_bottomBorder));
         StartCoroutine(Scaling(_characterPanel));
 
-        _dialogTextDisplay.PrintText(messages);
+        _dialogTextDisplay.StartDialog(messages);
     }
 
     private IEnumerator Scaling(RectTransform rectTransform)
