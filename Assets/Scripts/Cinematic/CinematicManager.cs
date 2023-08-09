@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class CinematicDisplay : MonoBehaviour
+public class CinematicManager : MonoBehaviour
 {
     [SerializeField] private DialogTextDisplay _dialogTextDisplay;
 
@@ -42,6 +42,7 @@ public class CinematicDisplay : MonoBehaviour
         StartCoroutine(Scaling(_characterPanel));
 
         _dialogTextDisplay.StartDialog(messages);
+        GamePauseManager.Instance.Unpause(false);
     }
 
     private IEnumerator Scaling(RectTransform rectTransform)
@@ -61,5 +62,6 @@ public class CinematicDisplay : MonoBehaviour
     private void OnDialogOver()
     {
         _canvasGroup.alpha = 0;
+        GamePauseManager.Instance.Unpause(true);
     }
 }

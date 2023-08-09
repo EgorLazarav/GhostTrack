@@ -4892,7 +4892,7 @@ GameObject:
   - component: {fileID: 664397699}
   - component: {fileID: 664397701}
   m_Layer: 5
-  m_Name: CinematicDisplay
+  m_Name: CinematicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadc80a784a5ba647830f64aabbd05b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogTextDisplay: {fileID: 0}
+  _dialogTextDisplay: {fileID: 664397701}
   _characterPanel: {fileID: 262312977}
   _characterPortait: {fileID: 791462596}
   _topBorder: {fileID: 1090827116}
@@ -32335,7 +32335,7 @@ GameObject:
   - component: {fileID: 1705557327}
   - component: {fileID: 1705557328}
   m_Layer: 0
-  m_Name: PauseMenuHandler
+  m_Name: GamePauseManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32365,7 +32365,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1705557326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4fbc0ab6c3e504a941016d5f658cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f270b9f6bd059c48ae9ee3f090d12be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1733610479
@@ -36030,10 +36030,6 @@ PrefabInstance:
     - target: {fileID: 6759482452677191046, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6759482452677191047, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
-      propertyPath: _soundEnabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759482452677191097, guid: eddbef0729d9fa2459919ad26f956fde, type: 3}
       propertyPath: m_Name

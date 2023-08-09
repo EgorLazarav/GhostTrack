@@ -70,6 +70,10 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         CheckSkipKeyPressed();
+
+        if (Time.timeScale == 0)
+            return;
+
         CheckLookKeyPressing();
 
         if (_isLookKeyPressing)

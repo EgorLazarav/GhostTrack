@@ -27,6 +27,22 @@ public class DialogTextDisplay : MonoBehaviour
         PlayerInput.SkipKeyPressed -= OnSkipKeyPressed;
     }
 
+    private void Update()
+    {
+        if (_coroutine != null && Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopCoroutine(_coroutine);
+            HandleEndOfDialog();
+        }
+    }
+
+    private void HandleEndOfDialog()
+    {
+        _coroutine = null;
+        _text.text = "";
+        DialogOver?.Invoke();
+    }
+
     public void StartDialog(string[] messages)
     {
         _coroutine = StartCoroutine(Printing(messages));
@@ -70,9 +86,7 @@ public class DialogTextDisplay : MonoBehaviour
             }
         }
 
-        _text.text = "";
-
-        DialogOver?.Invoke();
+        HandleEndOfDialog();
     }
 
     private void OnSkipKeyPressed()
