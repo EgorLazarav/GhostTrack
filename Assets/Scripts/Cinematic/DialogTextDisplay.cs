@@ -6,22 +6,16 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(TMP_Text))]
 public class DialogTextDisplay : MonoBehaviour
 {
     [SerializeField] private float _typeSpeed = 0.5f;
     [SerializeField] private float _timeToShowMessage = 2;
+    [SerializeField] private TMP_Text _text;
 
-    private TMP_Text _text;
     private Coroutine _coroutine;
     private float _currentMessageTimer;
 
     public event UnityAction DialogOver;
-
-    private void Awake()
-    {
-        _text = GetComponent<TMP_Text>();
-    }
 
     private void OnEnable()
     {
@@ -31,15 +25,6 @@ public class DialogTextDisplay : MonoBehaviour
     private void OnDisable()
     {
         PlayerInput.SkipKeyPressed -= OnSkipKeyPressed;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StopCoroutine(_coroutine);
-            DialogOver?.Invoke();
-        }
     }
 
     public void StartDialog(string[] messages)

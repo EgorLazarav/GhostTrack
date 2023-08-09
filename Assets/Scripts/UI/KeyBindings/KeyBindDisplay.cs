@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class KeyBindDisplay : MonoBehaviour
 {
@@ -32,7 +33,9 @@ public class KeyBindDisplay : MonoBehaviour
         _action = action;
 
         _keyText.text = key.ToString();
-        _actionText.text = action.ToString();
+
+        var actionName = string.Join(" ", Regex.Split(action.ToString(), "(?=\\p{Lu})"));
+        _actionText.text = actionName;
     }
 
     private void OnButtonClicked()
