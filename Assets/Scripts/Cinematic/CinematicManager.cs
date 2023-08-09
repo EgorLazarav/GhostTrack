@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CanvasGroup))]
 public class CinematicManager : MonoBehaviour
 {
     [SerializeField] private DialogTextDisplay _dialogTextDisplay;
@@ -17,12 +16,8 @@ public class CinematicManager : MonoBehaviour
     private Vector3 _baseTopBorderScale;
     private Vector3 _baseBottomBorderScale;
 
-    private CanvasGroup _canvasGroup;
-
     private void Awake()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
-
         _baseCharacterPanelScale = _characterPanel.localScale;
         _baseTopBorderScale = _topBorder.localScale;
         _baseBottomBorderScale = _bottomBorder.localScale;
@@ -42,8 +37,6 @@ public class CinematicManager : MonoBehaviour
 
     private void OnDialogTriggerPointTriggered(string[] messages)
     {
-        _canvasGroup.alpha = 1;
-
         StartCoroutine(Scaling(_topBorder));
         StartCoroutine(Scaling(_bottomBorder));
         StartCoroutine(Scaling(_characterPanel));
@@ -68,8 +61,6 @@ public class CinematicManager : MonoBehaviour
 
     private void OnDialogOver()
     {
-        _canvasGroup.alpha = 0;
-
         _characterPanel.localScale = _baseCharacterPanelScale;
         _topBorder.localScale = _baseTopBorderScale;
         _bottomBorder.localScale = _baseBottomBorderScale;

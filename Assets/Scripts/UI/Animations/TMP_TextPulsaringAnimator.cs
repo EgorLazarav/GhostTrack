@@ -22,10 +22,10 @@ public class TMP_TextPulsaringAnimator : AnimatedUI
         while (true)
         {
             transform.DOScale(_maxIncreaseSize, 1 / AnimationSpeed);
-            yield return new WaitForSeconds(1 / AnimationSpeed);
+            yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
 
             transform.DOScale(_maxDecreaseSize, 1 / AnimationSpeed);
-            yield return new WaitForSeconds(1 / AnimationSpeed);
+            yield return new WaitForSecondsRealtime(1 / AnimationSpeed);
         }
     }
 }
