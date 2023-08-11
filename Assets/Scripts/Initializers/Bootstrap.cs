@@ -21,7 +21,7 @@ public class Bootstrap : MonoBehaviour
     [Header("Enemies")]
     [SerializeField] private EnemyController[] _enemies;
 
-    private void Start()
+    private void Awake()
     {
         _player.Init();
 
