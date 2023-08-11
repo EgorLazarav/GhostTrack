@@ -17414,8 +17414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _messages:
   - Oh shit...
-  - Here we go again...
-  - They only understand violence...
+  - Here we go again
 --- !u!61 &1110974820
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21792,6 +21791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _punchSFX: {fileID: 8300000, guid: 1f866c88edb340b489d66793db87b04e, type: 3}
+  _shiftSFX: {fileID: 0}
   _combat: {fileID: 1961481253}
   _startWeapon: {fileID: 8589889352696452954, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
   _weaponPoint: {fileID: 794494839}

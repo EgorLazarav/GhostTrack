@@ -44,14 +44,6 @@ public class LevelEndHandler : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
-    {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
-
-        _endLevelInfoDisplay.StartAnimation();
-    }
-
     private void OnAnimationEnded()
     {
         SceneLoader.Instance.TryLoadNextLevel();
@@ -76,13 +68,17 @@ public class LevelEndHandler : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         transform.DORotate(new Vector3(0, 0, angle), turnTime);
+        float timer = 1;
 
-        while (true)
+        while (timer > 0)
         {
             transform.position -= Vector3.up * Time.deltaTime * speed;
             speed += speed * Time.deltaTime;
+            timer -= Time.deltaTime;
 
             yield return null;
         }
+
+        _endLevelInfoDisplay.StartAnimation();
     }
 }

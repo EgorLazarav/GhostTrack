@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Sound")]
     [SerializeField] private AudioClip _punchSFX;
+    [SerializeField] private AudioClip _shiftSFX;
 
     [Header("Combat")]
     [SerializeField] private PlayerCombat _combat;
@@ -71,7 +72,10 @@ public class PlayerController : MonoBehaviour
     private void OnShiftKeyPressed()
     {
         if (_combat.TryShift())
+        {
+            AudioManager.Instance.PlaySound(_shiftSFX);
             Shifted?.Invoke();
+        }
     }
 
     private void OnShootKeyPressing()

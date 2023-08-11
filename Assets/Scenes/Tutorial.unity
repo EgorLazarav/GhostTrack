@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _punchSFX: {fileID: 8300000, guid: 1f866c88edb340b489d66793db87b04e, type: 3}
+  _shiftSFX: {fileID: 8300000, guid: 487c3c7e20207804a81dc6526906f309, type: 3}
   _combat: {fileID: 1977911552944472304}
   _startWeapon: {fileID: 8589889352696452954, guid: 9073cbdc43900d6438bbaa0dce61501c, type: 3}
   _weaponPoint: {fileID: 1977911552613922034}
@@ -23018,9 +23019,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _messages:
-  - Oh shit...
-  - Here we go again...
-  - They only understand violence...
+  - 'I''m tired of being what you want me to be '
+  - Feeling so faithless lost under the surface
+  - Don't know what you're expecting of me
+  - Put under the pressure of walking in your shoes
 --- !u!1 &1138865346
 GameObject:
   m_ObjectHideFlags: 0
@@ -37011,10 +37013,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _messages:
-  - Fucking bastards...
-  - I'll exterminate every single one of you...
-  - Prepare to die...
-  - AAAA!!!!!!
+  - Caught in the undertow just caught in the undertow
+  - Every step that I take is another mistake to you
+  - Caught in the undertow just caught in the undertow
 --- !u!61 &2072050497
 BoxCollider2D:
   m_ObjectHideFlags: 0
