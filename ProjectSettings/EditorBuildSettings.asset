@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 96cc99dfc360039409d92674d88e34b1
+  - enabled: 1
+    path: Assets/Scenes/NightClub.unity
+    guid: 57a687f1136f76d4ba6648f34d28d1c4
   m_configObjects: {}

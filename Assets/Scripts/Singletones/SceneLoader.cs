@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public enum SceneNames
 {
     MainMenu,
-    Tutorial
+    Tutorial,
+    NightClub
 }
 
 public class SceneLoader : MonoBehaviour
@@ -48,6 +49,22 @@ public class SceneLoader : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void TryLoadNextLevel()
+    {
+        var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            var operation = SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
+            StartCoroutine(LoadingMainMenu(operation));
+        }
+        else
+        {
+            var operation = SceneManager.LoadSceneAsync(nextSceneIndex);
+            StartCoroutine(LoadingNewLevel(operation));
+        }
     }
 
     private IEnumerator LoadingNewLevel(AsyncOperation operation)

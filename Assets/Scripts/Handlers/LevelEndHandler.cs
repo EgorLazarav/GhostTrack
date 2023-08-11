@@ -54,7 +54,7 @@ public class LevelEndHandler : MonoBehaviour
 
     private void OnAnimationEnded()
     {
-        SceneLoader.Instance.LoadMainMenu();
+        SceneLoader.Instance.TryLoadNextLevel();
     }
 
     private void OnLevelCompleted()
