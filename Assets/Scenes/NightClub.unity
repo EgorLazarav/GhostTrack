@@ -16551,6 +16551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9d5b0aa3bac4d4292c0d2a9f0fd5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _endLevelInfoDisplay: {fileID: 376128058}
   _levelCompleteHandler: {fileID: 853290914}
   _playerInCarSprite: {fileID: 21300000, guid: 5bd1253faa6d4b04ba3336ba9648174d, type: 3}
   _carTurnOnSFX: {fileID: 8300000, guid: 711be726985ea4941a7e49dcad113243, type: 3}
@@ -17383,7 +17384,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1110974818
 Transform:
   m_ObjectHideFlags: 0
@@ -17392,7 +17393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110974817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: -3, z: 0}
+  m_LocalPosition: {x: -8.34, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public enum Rangs
 {
@@ -33,15 +34,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     private Dictionary<TMP_Text, int> _scoresMap;
     private Coroutine _animatingScoreTextCoroutine;
 
-    private void OnEnable()
-    {
-        LevelEndHandler.PlayerEntered += OnPlayerEnteredCar;
-    }
-
-    private void OnDisable()
-    {
-        LevelEndHandler.PlayerEntered -= OnPlayerEnteredCar;
-    }
+    public event UnityAction AnimationEnded;
 
     private void CreateDict()
     {
@@ -54,7 +47,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
         _scoresMap.Add(_totalScoreText, (int)_playerScoreHandler.TotalScore);
     }
 
-    private void OnPlayerEnteredCar()
+    public void StartAnimation()
     {
         StartCoroutine(Animating());
     }
@@ -127,7 +120,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
             yield return null;
         }
 
-        SceneLoader.Instance.LoadMainMenu();
+        AnimationEnded?.Invoke();
     }
 
     private IEnumerator ScoreAnimating(TMP_Text text, int value)

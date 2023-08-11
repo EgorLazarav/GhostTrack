@@ -8,14 +8,14 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 public class LevelEndHandler : MonoBehaviour
 {
+    [SerializeField] private EndLevelInfoDisplay _endLevelInfoDisplay;
     [SerializeField] private LevelCompleteHandler _levelCompleteHandler;
     [SerializeField] private Sprite _playerInCarSprite;
     [SerializeField] private AudioClip _carTurnOnSFX;
 
     private Collider2D _collider;
     private SpriteRenderer _renderer;
-
-    public static event UnityAction PlayerEntered;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -26,11 +26,13 @@ public class LevelEndHandler : MonoBehaviour
     private void OnEnable()
     {
         _levelCompleteHandler.LevelCompleted += OnLevelCompleted;
+        _endLevelInfoDisplay.AnimationEnded += OnAnimationEnded;
     }
 
     private void OnDisable()
     {
         _levelCompleteHandler.LevelCompleted -= OnLevelCompleted;
+        _endLevelInfoDisplay.AnimationEnded -= OnAnimationEnded;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,8 +40,21 @@ public class LevelEndHandler : MonoBehaviour
         if (collision.TryGetComponent(out PlayerController player))
         {
             player.gameObject.SetActive(false);
-            StartCoroutine(Animating());
+            _coroutine = StartCoroutine(Animating());
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
+        _endLevelInfoDisplay.StartAnimation();
+    }
+
+    private void OnAnimationEnded()
+    {
+        SceneLoader.Instance.LoadMainMenu();
     }
 
     private void OnLevelCompleted()
@@ -60,7 +75,6 @@ public class LevelEndHandler : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        PlayerEntered?.Invoke();
         transform.DORotate(new Vector3(0, 0, angle), turnTime);
 
         while (true)
