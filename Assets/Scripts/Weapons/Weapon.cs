@@ -69,7 +69,7 @@ public class Weapon : ObjectPool<Bullet>
         transform.localPosition += weaponOffset;
         _collider.isTrigger = false;
 
-        AudioManager.Instance.PlaySound(Data.PickUpSFX);
+        AudioManager.Instance.PlaySound(Data.PickUpSFX); // иногда багует
     }
 
     public virtual void Throw()
