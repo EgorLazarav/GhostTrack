@@ -15,7 +15,7 @@ public class ButtonBackToMainMenu : ButtonClickHandler
 
     private void BackToMenu()
     {
-        GamePauseManager.Instance.Unpause(true);
+        GamePauseManager.Instance.Unpause();
         SettingsModalWindow.Instance.Close();
         SceneLoader.Instance.LoadMainMenu();
     }

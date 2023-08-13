@@ -37,12 +37,13 @@ public class CinematicManager : MonoBehaviour
 
     private void OnDialogTriggerPointTriggered(string[] messages)
     {
+        _dialogTextDisplay.StartDialog(messages);
+
         StartCoroutine(Scaling(_topBorder));
         StartCoroutine(Scaling(_bottomBorder));
         StartCoroutine(Scaling(_characterPanel));
 
-        _dialogTextDisplay.StartDialog(messages);
-        GamePauseManager.Instance.Unpause(false);
+        GamePauseManager.Instance.Pause();
     }
 
     private IEnumerator Scaling(RectTransform rectTransform)
@@ -65,6 +66,6 @@ public class CinematicManager : MonoBehaviour
         _topBorder.localScale = _baseTopBorderScale;
         _bottomBorder.localScale = _baseBottomBorderScale;
 
-        GamePauseManager.Instance.Unpause(true);
+        GamePauseManager.Instance.Unpause();
     }
 }

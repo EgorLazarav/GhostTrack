@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class DialogTextDisplay : MonoBehaviour
 {
-    [SerializeField] private float _typeSpeed = 0.5f;
     [SerializeField] private float _timeToShowMessage = 2;
     [SerializeField] private TMP_Text _text;
 
@@ -17,30 +16,12 @@ public class DialogTextDisplay : MonoBehaviour
 
     public event UnityAction DialogOver;
 
-    private void OnEnable()
-    {
-        PlayerInput.SkipKeyPressed += OnSkipKeyPressed;
-    }
-
-    private void OnDisable()
-    {
-        PlayerInput.SkipKeyPressed -= OnSkipKeyPressed;
-    }
-
-    private void Update()
-    {
-        if (_coroutine != null && Input.GetKeyDown(KeyCode.Escape))
-        {
-            StopCoroutine(_coroutine);
-            HandleEndOfDialog();
-        }
-    }
-
     private void HandleEndOfDialog()
     {
-        _coroutine = null;
-        _text.text = "";
         DialogOver?.Invoke();
+        StopCoroutine(_coroutine);
+        _text.text = "";
+        _coroutine = null;
     }
 
     public void StartDialog(string[] messages)
@@ -66,16 +47,10 @@ public class DialogTextDisplay : MonoBehaviour
                 _text.text += message[i];
                 i++;
 
-                yield return new WaitForEndOfFrame();
-
-                if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
-                    break;
+                yield return null;
             }
 
             _text.text = message;
-
-            yield return new WaitForEndOfFrame();
-
             _currentMessageTimer = _timeToShowMessage;
 
             while (_currentMessageTimer > 0)
@@ -87,10 +62,5 @@ public class DialogTextDisplay : MonoBehaviour
         }
 
         HandleEndOfDialog();
-    }
-
-    private void OnSkipKeyPressed()
-    {
-        _currentMessageTimer = 0;
     }
 }

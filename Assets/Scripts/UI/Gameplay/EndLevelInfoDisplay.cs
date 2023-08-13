@@ -29,7 +29,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _accuracyScoreText;
     [SerializeField] private TMP_Text _totalScoreText;
     [SerializeField] private TMP_Text _rangText;
-    [SerializeField] private TMP_Text _pressAnyButtonText;
+    [SerializeField] private TMP_Text _pressSkipButtonText;
 
     private Dictionary<TMP_Text, int> _scoresMap;
     private Coroutine _animatingScoreTextCoroutine;
@@ -94,7 +94,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         yield return new WaitForSeconds(animationTime);
 
-        _pressAnyButtonText.gameObject.SetActive(true);
+        _pressSkipButtonText.gameObject.SetActive(true);
         StartCoroutine(WaitingForInput());
     }
 

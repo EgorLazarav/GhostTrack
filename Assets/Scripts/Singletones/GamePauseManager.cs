@@ -10,8 +10,21 @@ public class GamePauseManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Unpause(bool state)
+    private void Update()
     {
-        Time.timeScale = Convert.ToInt32(state);
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+
+        }
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
     }
 }
