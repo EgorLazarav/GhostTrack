@@ -7,7 +7,7 @@ public class ContinueButton : ButtonClickHandler
 {
     private void Start()
     {
-        // Button.interactable = PlayerData.CurrentLevel != 0;
+        Button.interactable = SaveManager.CurrentLevel != 0;
 
         var components = GetComponents<AnimatedUI>();
         components.ToList().ForEach(c => c.enabled = Button.interactable);
@@ -16,5 +16,6 @@ public class ContinueButton : ButtonClickHandler
     protected override void OnButtonClicked()
     {
         print("continue");
+        SceneLoader.Instance.LoadLastLevel();
     }
 }

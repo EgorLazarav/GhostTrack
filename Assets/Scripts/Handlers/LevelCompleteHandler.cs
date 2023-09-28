@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LevelCompleteHandler : MonoBehaviour
 {
@@ -37,7 +38,10 @@ public class LevelCompleteHandler : MonoBehaviour
         _enemiesCountOnLevel--;
 
         if (_enemiesCountOnLevel == 0)
+        {
             LevelCompleted?.Invoke();
+            SaveManager.TrySaveLevel(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private IEnumerator WaitingForRestart()

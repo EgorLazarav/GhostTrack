@@ -8,7 +8,8 @@ public enum SceneNames
 {
     MainMenu,
     Tutorial,
-    NightClub
+    NightClub,
+    EndGame
 }
 
 public class SceneLoader : MonoBehaviour
@@ -34,6 +35,12 @@ public class SceneLoader : MonoBehaviour
             LoadMainMenu();
     }
 
+    public void LoadLastLevel()
+    {
+        var operation = SceneManager.LoadSceneAsync(SaveManager.CurrentLevel);
+        StartCoroutine(LoadingNewLevel(operation));
+    }
+
     public void LoadMainMenu()
     {
         var operation = SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
@@ -51,20 +58,11 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void TryLoadNextLevel()
+    public void LoadNextLevel()
     {
         var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
-        {
-            var operation = SceneManager.LoadSceneAsync(SceneNames.MainMenu.ToString());
-            StartCoroutine(LoadingMainMenu(operation));
-        }
-        else
-        {
-            var operation = SceneManager.LoadSceneAsync(nextSceneIndex);
-            StartCoroutine(LoadingNewLevel(operation));
-        }
+        var operation = SceneManager.LoadSceneAsync(nextSceneIndex);
+        StartCoroutine(LoadingNewLevel(operation));
     }
 
     private IEnumerator LoadingNewLevel(AsyncOperation operation)
