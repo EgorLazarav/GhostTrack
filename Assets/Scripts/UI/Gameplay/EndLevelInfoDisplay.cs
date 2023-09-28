@@ -29,12 +29,28 @@ public class EndLevelInfoDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _accuracyScoreText;
     [SerializeField] private TMP_Text _totalScoreText;
     [SerializeField] private TMP_Text _rangText;
-    [SerializeField] private TMP_Text _pressSkipButtonText;
+    [SerializeField] private TMP_Text _pressAnyButtonText;
 
     private Dictionary<TMP_Text, int> _scoresMap;
     private Coroutine _animatingScoreTextCoroutine;
+    private bool _animationSkipped = false;
 
     public event UnityAction AnimationEnded;
+
+    private void OnEnable()
+    {
+        PlayerInput.SkipKeyPressed += OnSkipKeyPressed;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.SkipKeyPressed -= OnSkipKeyPressed;
+    }
+
+    private void OnSkipKeyPressed()
+    {
+        _animationSkipped = true;
+    }
 
     private void CreateDict()
     {
@@ -59,7 +75,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
         float currentAlpha = 0;
         float animationSpeed = 0.5f;
 
-        while (currentAlpha < 1)
+        while (currentAlpha < 1 && _animationSkipped == false)
         {
             _curtainPanel.color = _curtainPanel.color.SetAlpha(currentAlpha);
             currentAlpha += Time.deltaTime * animationSpeed;
@@ -67,6 +83,8 @@ public class EndLevelInfoDisplay : MonoBehaviour
             yield return null;
         }
 
+        _animationSkipped = false;
+        _curtainPanel.color = _curtainPanel.color.SetAlpha(1);
         _scoresWrapper.gameObject.SetActive(true);
 
         foreach (var item in _scoresMap)
@@ -94,7 +112,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
 
         yield return new WaitForSeconds(animationTime);
 
-        _pressSkipButtonText.gameObject.SetActive(true);
+        _pressAnyButtonText.gameObject.SetActive(true);
         StartCoroutine(WaitingForInput());
     }
 
@@ -114,7 +132,7 @@ public class EndLevelInfoDisplay : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
+            if (Input.anyKeyDown)
                 break;
 
             yield return null;
@@ -132,20 +150,15 @@ public class EndLevelInfoDisplay : MonoBehaviour
         text.gameObject.SetActive(true);
         AudioManager.Instance.PlaySound(_scoreLoopSFX);
 
-        while (currentValue != value)
+        while (currentValue != value && _animationSkipped == false)
         {
-            if (Input.GetKeyDown(PlayerInput.Instance.KeysMap[Keys.Skip]))
-            {
-                yield return new WaitForEndOfFrame();
-                break;
-            }
-
             currentValue = Mathf.Clamp(currentValue += value * Time.deltaTime, currentValue, value);
             text.text = defaultText + (int)currentValue;
 
             yield return null;  
         }
 
+        _animationSkipped = false;
         AudioManager.Instance.StopPlaybackEffect();
         text.text = defaultText + value;
         _animatingScoreTextCoroutine = null;

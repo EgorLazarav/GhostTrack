@@ -13,8 +13,36 @@ public class DialogTextDisplay : MonoBehaviour
 
     private Coroutine _coroutine;
     private float _currentMessageTimer;
+    private bool _skipSlide = false;
 
     public event UnityAction DialogOver;
+
+    private void OnEnable()
+    {
+        PlayerInput.PauseKeyPressed += OnPauseKeyPressed;
+        PlayerInput.SkipKeyPressed += OnSkipKeyPressed;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.PauseKeyPressed -= OnPauseKeyPressed;
+        PlayerInput.SkipKeyPressed -= OnSkipKeyPressed;
+    }
+
+    private void OnSkipKeyPressed()
+    {
+        _skipSlide = true;
+    }
+
+    private void OnPauseKeyPressed()
+    {
+        if (_coroutine == null)
+            return;
+
+        StopCoroutine(_coroutine);
+        _text.text = "";
+        _coroutine = null;
+    }
 
     private void HandleEndOfDialog()
     {
@@ -41,8 +69,9 @@ public class DialogTextDisplay : MonoBehaviour
 
             _text.text = "";
             int i = 0;
+            _skipSlide = false;
 
-            while (_text.text != message)
+            while (_text.text != message && _skipSlide == false)
             {
                 _text.text += message[i];
                 i++;
@@ -53,7 +82,7 @@ public class DialogTextDisplay : MonoBehaviour
             _text.text = message;
             _currentMessageTimer = _timeToShowMessage;
 
-            while (_currentMessageTimer > 0)
+            while (_currentMessageTimer > 0 && _skipSlide == false)
             {
                 _currentMessageTimer -= Time.unscaledDeltaTime;
 

@@ -5084,7 +5084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a7ce9132d5eff41aa3d1fe8692fff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _typeSpeed: 0.5
   _timeToShowMessage: 2
   _text: {fileID: 1621386971}
 --- !u!1 &667205920
@@ -33103,7 +33102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1910940545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33144,7 +33143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press skip key to continue...
+  m_text: Press any key to continue...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -21,7 +21,6 @@ public class PlayerCombat : MonoBehaviour
     private WaitForSeconds _shiftDelay;
     private WaitForSeconds _shiftCooldown;
     private Coroutine _shiftingCoroutine;
-    private Collider2D _collider;
     private AudioClip _punchSFX;
 
     public Weapon CurrentWeapon => _currentWeapon;
@@ -29,19 +28,23 @@ public class PlayerCombat : MonoBehaviour
     public static event UnityAction<int> BulletsChanged;
     public static event UnityAction Attacked;
 
-    public void Init(Weapon startWeapon, Transform weaponPoint, float handsLength, Transform punchPoint, LayerMask enemyMask,LayerMask weaponMask, float shiftDuration, float shiftReloadTime, AudioClip punchSFX)
+    public void Init(Weapon startWeapon, Transform weaponPoint, 
+        float handsLength, Transform punchPoint, 
+        LayerMask enemyMask,LayerMask weaponMask, 
+        float shiftDuration, float shiftReloadTime, AudioClip punchSFX)
     {
         _weaponPoint = weaponPoint;
         _punchPoint = punchPoint;
         _handsLength = handsLength;
+
         _enemyMask = enemyMask;
         _weaponMask = weaponMask;
+
         _shiftDuration = shiftDuration;
         _shiftReloadTime = shiftReloadTime;
         _punchSFX = punchSFX;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _collider = GetComponent<Collider2D>();
 
         _shiftDelay = new WaitForSeconds(_shiftDuration);
         _shiftCooldown = new WaitForSeconds(_shiftReloadTime);
@@ -129,7 +132,7 @@ public class PlayerCombat : MonoBehaviour
     {
         StopCoroutine(_shiftingCoroutine);
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(1);
-        _collider.enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private IEnumerator Shifting()
@@ -138,14 +141,14 @@ public class PlayerCombat : MonoBehaviour
 
         float shiftAlpha = 0.5f;
 
+        gameObject.layer = LayerMask.NameToLayer("Ghost");
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(shiftAlpha);
-        _collider.enabled = false;
         TryDropWeapon();
 
         yield return _shiftDelay;
 
         _spriteRenderer.color = _spriteRenderer.color.SetAlpha(1);
-        _collider.enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private IEnumerator ShiftReloading()

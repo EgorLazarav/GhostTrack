@@ -27,16 +27,27 @@ public class CinematicManager : MonoBehaviour
     {
         _dialogTextDisplay.DialogOver += OnDialogOver;
         DialogTriggerPoint.Triggered += OnDialogTriggerPointTriggered;
+        PlayerInput.PauseKeyPressed += OnPauseKeyPressed;
     }
 
     private void OnDisable()
     {
         _dialogTextDisplay.DialogOver -= OnDialogOver;
         DialogTriggerPoint.Triggered -= OnDialogTriggerPointTriggered;
+        PlayerInput.PauseKeyPressed -= OnPauseKeyPressed;
+    }
+
+    private void OnPauseKeyPressed()
+    {
+        StopAllCoroutines();
+        _characterPanel.localScale = _baseCharacterPanelScale;
+        _topBorder.localScale = _baseTopBorderScale;
+        _bottomBorder.localScale = _baseBottomBorderScale;
     }
 
     private void OnDialogTriggerPointTriggered(string[] messages)
     {
+        GamePauseManager.Instance.Pause();
         _dialogTextDisplay.StartDialog(messages);
 
         StartCoroutine(Scaling(_topBorder));
@@ -63,5 +74,6 @@ public class CinematicManager : MonoBehaviour
         _characterPanel.localScale = _baseCharacterPanelScale;
         _topBorder.localScale = _baseTopBorderScale;
         _bottomBorder.localScale = _baseBottomBorderScale;
+        GamePauseManager.Instance.Unpause();
     }
 }
