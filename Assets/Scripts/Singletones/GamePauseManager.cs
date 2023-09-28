@@ -10,21 +10,39 @@ public class GamePauseManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
+        PlayerInput.PauseKeyPressed += OnPauseKeyPressed;
+    }
 
+    private void OnDisable()
+    {
+        PlayerInput.PauseKeyPressed -= OnPauseKeyPressed;
+    }
+
+    private void OnPauseKeyPressed()
+    {
+        if (Time.timeScale == 0)
+        {
+            Unpause();
+            SettingsModalWindow.Instance.Close();
+        }
+        else
+        {
+            Pause();
+            SettingsModalWindow.Instance.Show();
         }
     }
 
     public void Unpause()
     {
+        print("Unpause");
         Time.timeScale = 1;
     }
 
     public void Pause()
     {
+        print("pause");
         Time.timeScale = 0;
     }
 }

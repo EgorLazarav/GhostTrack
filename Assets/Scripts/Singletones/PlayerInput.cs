@@ -16,7 +16,8 @@ public enum Keys
     PickUpWeapon,
     Look,
     Shift,
-    Skip
+    Skip,
+    Pause
 }
 
 public class PlayerInput : MonoBehaviour
@@ -29,6 +30,7 @@ public class PlayerInput : MonoBehaviour
     public static event UnityAction<bool> LookKeyPressed;
     public static event UnityAction ShiftKeyPressed;
     public static event UnityAction SkipKeyPressed;
+    public static event UnityAction PauseKeyPressed;
 
     public static PlayerInput Instance { get; private set; }
     public Dictionary<Keys, KeyCode> KeysMap { get; private set; } = new Dictionary<Keys, KeyCode>();
@@ -65,11 +67,13 @@ public class PlayerInput : MonoBehaviour
         KeysMap.Add(Keys.Look, KeyCode.V);
         KeysMap.Add(Keys.Shift, KeyCode.LeftShift);
         KeysMap.Add(Keys.Skip, KeyCode.Space);
+        KeysMap.Add(Keys.Pause, KeyCode.Escape);
     }
 
     private void Update()
     {
         CheckSkipKeyPressed();
+        CheckPauseKeyPressed();
 
         if (Time.timeScale == 0)
             return;
@@ -88,6 +92,14 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeysMap[Keys.Skip]))
         {
             SkipKeyPressed?.Invoke();
+        }
+    }
+
+    private void CheckPauseKeyPressed()
+    {
+        if (Input.GetKeyDown(KeysMap[Keys.Pause]))
+        {
+            PauseKeyPressed?.Invoke();
         }
     }
 

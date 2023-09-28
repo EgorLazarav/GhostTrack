@@ -42,8 +42,6 @@ public class CinematicManager : MonoBehaviour
         StartCoroutine(Scaling(_topBorder));
         StartCoroutine(Scaling(_bottomBorder));
         StartCoroutine(Scaling(_characterPanel));
-
-        GamePauseManager.Instance.Pause();
     }
 
     private IEnumerator Scaling(RectTransform rectTransform)
@@ -65,7 +63,5 @@ public class CinematicManager : MonoBehaviour
         _characterPanel.localScale = _baseCharacterPanelScale;
         _topBorder.localScale = _baseTopBorderScale;
         _bottomBorder.localScale = _baseBottomBorderScale;
-
-        GamePauseManager.Instance.Unpause();
     }
 }
