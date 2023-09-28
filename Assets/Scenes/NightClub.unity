@@ -16678,6 +16678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fe8bd63fe707649817ae0e254ddef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerScoreHandler: {fileID: 1391322831}
 --- !u!4 &853290915
 Transform:
   m_ObjectHideFlags: 0
@@ -16746,7 +16747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a7ce9132d5eff41aa3d1fe8692fff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _typeSpeed: 0.5
   _timeToShowMessage: 2
   _text: {fileID: 163356919}
 --- !u!114 &862344377

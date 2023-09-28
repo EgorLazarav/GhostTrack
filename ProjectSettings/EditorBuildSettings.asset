@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NightClub.unity
     guid: 57a687f1136f76d4ba6648f34d28d1c4
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: db4afa55c19876047a50c90728ae8cd1
   m_configObjects: {}

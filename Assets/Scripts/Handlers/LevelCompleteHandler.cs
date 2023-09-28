@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelCompleteHandler : MonoBehaviour
 {
+    [SerializeField] private PlayerScoreHandler _playerScoreHandler;
+
     private int _enemiesCountOnLevel;
 
     public event UnityAction LevelCompleted;
@@ -40,7 +42,8 @@ public class LevelCompleteHandler : MonoBehaviour
         if (_enemiesCountOnLevel == 0)
         {
             LevelCompleted?.Invoke();
-            SaveManager.TrySaveLevel(SceneManager.GetActiveScene().buildIndex);
+            SaveManager.TrySaveLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            SaveManager.IncreaseTotalScore(_playerScoreHandler.TotalScore);
         }
     }
 
