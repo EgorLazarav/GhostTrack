@@ -9,7 +9,7 @@ public class EndGameDisplay : MonoBehaviour
 
     private void Start()
     {
-        _totalScoreText.text = "Total Score:" + SaveManager.TotalScore;
+        _totalScoreText.text = "Total Score:" + (int)SaveManager.TotalScore;
     }
 
     private void Update()
