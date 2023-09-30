@@ -26,6 +26,7 @@ public class SoundEnableToggle : MonoBehaviour
 
     private void OnToggleValueChanged(bool state)
     {
-        AudioListener.volume = Convert.ToInt32(state);
+        // AudioListener.volume = Convert.ToInt32(state);
+        AudioListener.pause = !state;
     }
 }

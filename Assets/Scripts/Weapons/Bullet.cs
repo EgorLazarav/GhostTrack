@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
     protected Collider2D Collider;
     protected float DamagePercent;
 
+    private WaitForSeconds _disableDelay;
+    private Coroutine _disableCoroutine;
+
+    private const float DisableTime = 0.1f;
+
     protected virtual void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
@@ -17,11 +22,20 @@ public class Bullet : MonoBehaviour
 
         Rigidbody.isKinematic = true;
         Collider.isTrigger = true;
+
+        _disableDelay = new WaitForSeconds(DisableTime);
+    }
+
+    private void OnDisable()
+    {
+        if (_disableCoroutine != null)
+            StopCoroutine(_disableCoroutine);
     }
 
     private void OnBecameInvisible()
     {
-        gameObject.SetActive(false);
+        if (gameObject.activeSelf)
+            _disableCoroutine = StartCoroutine(DelayedDisabling());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +44,13 @@ public class Bullet : MonoBehaviour
             DealDamage(health);
         else
             gameObject.SetActive(false);
+    }
+
+    private IEnumerator DelayedDisabling()
+    {
+        yield return _disableDelay;
+
+        gameObject.SetActive(false);
     }
 
     protected virtual void DealDamage(Health health)
